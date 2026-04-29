@@ -2,7 +2,7 @@
 version: 1
 project:
   id: 99a874a9-1dd6-43e9-b972-b05be3203b65
-  title: Privacy audit of the compliance checker
+  title: "Privacy audit"
   description: A detailed privacy audit of the compliance checker tool.
   # keywords: []
   # authors: []

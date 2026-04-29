@@ -1,4 +1,4 @@
-# Week 1: Identifying use cases and data flows
+# Week 1: Identify use cases and data flows
 
 ## Use cases
 
@@ -14,4 +14,4 @@
 
 ![Data paths](images/PII_DataPrivacy_ExcalidrawPath_2026-04-06.svg)
 
-![ComponentDiagram](images/mermaid-ComponentDiagram_docComplianceChecker_2026-04-26.svg)
+<!-- ![ComponentDiagram](images/mermaid-ComponentDiagram_docComplianceChecker_2026-04-26.svg) -->
