@@ -7,9 +7,6 @@ project:
   # keywords: []
   # authors: []
   github: https://github.com/willingc/compliance-checker
-  toc:
-    - file: docs/index.md
-    - file: docs/week1_use_cases.md
 
 site:
   template: book-theme
