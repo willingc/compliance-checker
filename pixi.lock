@@ -73,6 +73,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/markupsafe-3.0.3-py314h6e9b3f0_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/matplotlib-inline-0.2.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/mistune-3.2.0-pyhcf101f3_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/mystmd-1.8.3-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/nbclient-0.10.4-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/nbconvert-core-7.17.1-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/nbformat-5.10.4-pyhd8ed1ab_1.conda
@@ -902,6 +903,17 @@ packages:
   license_family: BSD
   size: 74250
   timestamp: 1766504456031
+- conda: https://conda.anaconda.org/conda-forge/noarch/mystmd-1.8.3-pyhcf101f3_0.conda
+  sha256: eef3ec4ad6f83e8e20a84d18bd6a70ca21a38ee4144a5a6c010a20574d40f292
+  md5: a44086c58b2f81dc318ded3c107d6afd
+  depends:
+  - python >=3.10
+  - nodejs >=18
+  - python
+  license: MIT
+  license_family: MIT
+  size: 2183857
+  timestamp: 1775082702883
 - conda: https://conda.anaconda.org/conda-forge/noarch/nbclient-0.10.4-pyhd8ed1ab_0.conda
   sha256: 1b66960ee06874ddceeebe375d5f17fb5f393d025a09e15b830ad0c4fffb585b
   md5: 00f5b8dafa842e0c27c1cd7296aa4875
