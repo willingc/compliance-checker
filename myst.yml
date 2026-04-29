@@ -8,6 +8,10 @@ project:
   # authors: []
   github: https://github.com/willingc/compliance-checker
 
+  toc:
+    - file: docs/01-index.md
+    - file: docs/02-week1_use_cases.md
+
 site:
   template: book-theme
   # options:
