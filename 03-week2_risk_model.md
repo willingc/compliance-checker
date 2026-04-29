@@ -1,6 +1,6 @@
 # Risk hunt and threat model the use cases
 
-:::{note} Week 1
+:::{note} Week 2
 Hunt for risks. Determine type of risk. Prioritize.
 :::
 
