@@ -7,9 +7,3 @@ Hunt for risks. Determine type of risk. Prioritize.
 ## Risk hunt diagram
 
 ![](images/risks-2026-04-29.svg)
-
-```{figure} images/risks-2026-04-29.svg
-:alt: Risks
-:width: 500px
-:align: center
-```
