@@ -1,10 +1,11 @@
 # compliance-checker
-Privacy audit for doc compliance checker
+Privacy audit for [doc quality compliance checker](https://github.com/IloBe/doc_quality_compliance_check)
 
-A repo to hold information related to a privacy audit.
+This repo holds information related to a privacy audit.
 
-## About the project
+## Project for audit
 
+https://github.com/IloBe/doc_quality_compliance_check by Ilona Brinkmeier
 
 ## Use cases (week 1)
 
@@ -14,4 +15,5 @@ A repo to hold information related to a privacy audit.
 - use case 4: verify user-supplied text is sanitized before being persistence or used (input sanitization of potential PII payload)
 - use case 5: verify machine client scope and privacy auditability (service-client boundary + traceability consistency)
 
-Diagrams
+## Data flow diagrams (week 1)
+
