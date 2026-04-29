@@ -1,4 +1,8 @@
-# Week 1: Identify use cases and data flows
+# Identify use cases and data flows
+
+:::{note} Week 1
+Identify use cases and compose data flow diagrams for privacy.
+:::
 
 ## Use cases
 
