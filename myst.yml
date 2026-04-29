@@ -9,10 +9,7 @@ project:
   github: https://github.com/willingc/compliance-checker
   toc:
     - file: docs/index.md
-
-    - title: Use cases
-      children:
-        - file: docs/week1_use_cases.md
+    - file: docs/week1_use_cases.md
 
 site:
   template: book-theme
