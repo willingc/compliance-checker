@@ -1,0 +1,11 @@
+[workspace]
+authors = ["Carol Willing <carolcode@willingconsulting.com>"]
+channels = ["conda-forge"]
+name = "compliance-checker"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+jupyter-book = ">=2.1.4,<3"
