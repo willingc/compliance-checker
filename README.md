@@ -8,3 +8,6 @@ This repo holds information related to a privacy audit.
 
 [Repo for doc_quality_compliance_check](https://github.com/IloBe/doc_quality_compliance_check) by Ilona Brinkmeier
 
+## Privacy audit
+
+[Website](https://willingc.github.io/compliance-checker/)
