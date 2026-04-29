@@ -11,6 +11,7 @@ project:
   toc:
     - file: docs/01-index.md
     - file: docs/02-week1_use_cases.md
+    - file: docs/03-week2_risk_model.md
 
 site:
   template: book-theme
