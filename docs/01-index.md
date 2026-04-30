@@ -1,8 +1,6 @@
 # Privacy audit of documentation quality compliance checker
 
-:::{note} Project
 Project for kjam's privacy course.
-:::
 
 ## Audit subject
 

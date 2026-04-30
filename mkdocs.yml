@@ -1,0 +1,11 @@
+site_name: Privacy audit
+site_url: https://willingc.github.io/compliance-checker
+theme:
+  name: material
+  features:
+    - navigation.indexes
+
+nav:
+  - Home: 01-index.md
+  - 02-week1_use_cases.md
+  - 03-week2_risk_model.md

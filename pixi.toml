@@ -8,5 +8,5 @@ version = "0.1.0"
 [tasks]
 
 [dependencies]
-jupyter-book = ">=2.1.4,<3"
-mystmd = ">=1.8.3,<2"
+mkdocs-glightbox = ">=0.5.2,<0.6"
+mkdocs-material = ">=9.7.6,<10"
