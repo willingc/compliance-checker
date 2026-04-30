@@ -5,6 +5,11 @@ theme:
   features:
     - navigation.indexes
 
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
 nav:
   - Home: 01-index.md
   - 02-week1_use_cases.md
