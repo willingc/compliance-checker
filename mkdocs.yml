@@ -5,6 +5,14 @@ theme:
   features:
     - navigation.indexes
 
+plugins:
+  - glightbox:
+      width: 100%
+      height: auto
+      zoomable: true
+
+  - search
+
 markdown_extensions:
   - admonition
   - pymdownx.details
