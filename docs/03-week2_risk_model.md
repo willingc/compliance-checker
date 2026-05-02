@@ -7,6 +7,6 @@
 
 ## Risk hunt diagram
 
-![](images/risks-2026-04-29.svg)
+![](images/raw/compliance-checker-2026-05-02.png)
 
 [Source](https://app.excalidraw.com/s/2bco0PliSxS/5fEk0TEdyb8)
