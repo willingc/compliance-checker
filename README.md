@@ -11,3 +11,23 @@ This repo holds information related to a privacy audit.
 ## Privacy audit
 
 [Website](https://willingc.github.io/compliance-checker/)
+
+
+---
+
+## Contribute to the documentation
+
+- Add a document page in markdown in the `docs` folder.
+- Add the document to the `nav` section in the `mkdocs.yaml` file.
+- Add images to the `docs/images` folder.
+
+### Build and run docs locally
+
+1. Install pixi if needed: https://pixi.prefix.dev/v0.19.0/#installation
+2. Using pixi from the terminal. At the root of the repo, run:
+
+```sh
+pixi run serve
+```
+
+3. Navigate to http://127.0.0.1:8000/compliance-checker in your browser to view the documentation.

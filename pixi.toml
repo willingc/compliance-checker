@@ -6,6 +6,7 @@ platforms = ["osx-arm64"]
 version = "0.1.0"
 
 [tasks]
+serve = "mkdocs serve"
 
 [dependencies]
 mkdocs-glightbox = ">=0.5.2,<0.6"
