@@ -6,8 +6,8 @@
 - Egress to openclaw orchestrator and models (perplexity, anthropic, others) (Prio 1)
 - Export of reports to storage
 - Role base access controls (Prio 2)
-- Telemetry,evaluation user workflow tracking (Prio 3)
-- Structured logging, same/similar? user workflow tracking (Prio 3)
+- Telemetry: evaluation user workflow tracking (Prio 3)
+- Structured logging: coding workflow tracking (Prio 3)
 - Secrets, tokens, and keys (Prio 4)
 - CI
 
@@ -21,7 +21,7 @@
    - AI suggests risk templates
    - AI suggests document analysis
    - AI suggests human review
-- Human review process HITL (is this the same user or different?)
+- Human review process HITL (Right now always the same user, because it's connected to the login. May change in the future.)
 - Store reviewed document
 - Store reports
 - Export reports to recipients
@@ -75,7 +75,7 @@
 
 ## 5. AI orchestrator and models — Anthropic and Perplexity
 
-### OpenClaw
+### OpenClaw 
 
 - Orchestrate messages to AI agents
 
@@ -99,6 +99,9 @@ Agents:
 - Document analysis agent (doc_check_agent)
 - Compliance agent (compliance_agent)
 
+Risk mitigation: 
+in example template ->>> to be removed
+
 ## 6. Exports, remote uploads, records retention
 
 ### Export registry
@@ -108,14 +111,23 @@ Agents:
 
 ### Records retention
 
-Who has access to what? How long?
+Who has access to what?
+How long?
 
 - local
 - offsite
 
+Risk mitigation:
+RBCR 
+- admin account can define roles and access
+- storage is forever right now
+- admin can delete users and records
+
 ### IDE / MCP / Copilot
 
 What is used
+
+VScode & gitHub CoPilot
 
 ## 7. Access controls (individuals / org)
 
