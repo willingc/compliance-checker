@@ -127,7 +127,7 @@ Risk mitigation:
 
 What is used
 
-- VScode & gitHub CoPilot
+- VS Code & GitHub Copilot
 
 ## 7. Access controls (individuals / org)
 
