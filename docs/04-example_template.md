@@ -1,8 +1,11 @@
 # AI System Privacy Audit: [System Name]
 
+*DRAFT - Needs to be edited*
+
 ## 1. System Diagram
 
-[Attach image or link to diagram]
+![](images/raw/compliance-checker-2026-05-02.png)
+
 ## 2. Data Flow Analysis
 | Data Flow | Source | Destination | Encrypted? | Logged? | Priority |
 |-----------|--------|-------------|------------|---------|---------|
