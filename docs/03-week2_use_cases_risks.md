@@ -2,13 +2,13 @@
 
 ## 1. Areas to explore for privacy risks
 
-- Personal/sensitive data storage
-- Egress to openclaw orchestrator and models (perplexity, anthropic, others)
+- Personal/sensitive data storage 
+- Egress to openclaw orchestrator and models (perplexity, anthropic, others) (Prio 1)
 - Export of reports to storage
-- Role base access controls
-- Telemetry
-- Structured logging
-- Secrets, tokens, and keys
+- Role base access controls (Prio 2)
+- Telemetry,evaluation user workflow tracking (Prio 3)
+- Structured logging, same/similar? user workflow tracking (Prio 3)
+- Secrets, tokens, and keys (Prio 4)
 - CI
 
 ## 2. General application workflow
