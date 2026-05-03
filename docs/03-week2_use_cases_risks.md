@@ -100,7 +100,7 @@ Agents:
 - Compliance agent (compliance_agent)
 
 Risk mitigation: 
-in example template ->>> to be removed
+- in example template ->>> to be removed
 
 ## 6. Exports, remote uploads, records retention
 
@@ -118,7 +118,7 @@ How long?
 - offsite
 
 Risk mitigation:
-RBCR 
+- RBAC 
 - admin account can define roles and access
 - storage is forever right now
 - admin can delete users and records
@@ -127,7 +127,7 @@ RBCR
 
 What is used
 
-VScode & gitHub CoPilot
+- VScode & gitHub CoPilot
 
 ## 7. Access controls (individuals / org)
 
