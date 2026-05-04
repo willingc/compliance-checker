@@ -1,4 +1,4 @@
-# Risk priority 4: Secrets, tokens, and keys
+# Risk level 4: Secrets, tokens, and keys
 
 **AI System Privacy Audit: Documentation Quality Compliance Checker**
 
@@ -29,9 +29,9 @@
 
 ## 4. Privacy Risks
 
-### Risk 1...: Secrets, tokens, and keys
+### Risk 4: Secrets, tokens, and keys
 
-- **Priority:** [Low/Medium/High]
+- **Priority:** [Low]
 - **Risk Category:** [model/input/additional data/other (please describe!)]
 - **Potential Harm/Impact:** What happens if this risk isn't addressed?
 - **Ability to Implement Control:** [Low/Medium/High]

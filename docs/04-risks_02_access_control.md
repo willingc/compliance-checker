@@ -1,4 +1,4 @@
-# Risk 2: Role based access controls (RBAC)
+# Risk level 2: Role based access controls (RBAC)
 
 **AI System Privacy Audit: Documentation Quality Compliance Checker**
 
@@ -31,7 +31,7 @@
 
 ### Risk 2: Role based access controls RBAC
 
-- **Priority:** [Low/Medium/High]
+- **Priority:** [High]
 - **Risk Category:** [model/input/additional data/other (please describe!)]
 - **Potential Harm/Impact:** What happens if this risk isn't addressed?
 - **Ability to Implement Control:** [Low/Medium/High]

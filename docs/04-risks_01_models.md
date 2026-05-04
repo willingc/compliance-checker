@@ -1,4 +1,4 @@
-# Risk 1: Egress to AI orchestrator and models
+# Risk level 1: Egress to AI orchestrator and models
 
 **AI System Privacy Audit: Documentation Quality Compliance Checker**
 
