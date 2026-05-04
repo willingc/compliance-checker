@@ -19,24 +19,27 @@
 
 ## 3. Sensitive Data
 
-### Sensitive Data Name: [Brief description]
+### Sensitive Data Name: Access to data based on a user's role
 
-- **Category:**
-- **Examples:**
-- **Why Sensitive:**
-- **Current Protection:**
-- **Risk (or Harm) if Exposed:**
+- **Category:** Document contents, database records
+- **Examples:** informmation about people contained in documents
+- **Why Sensitive:** May contain data about individuals, document processes, quality information, potential reputation risk of company or individuals
+- **Current Protection:** Role based on the user's need to access functions and tasks
+- **Risk (or Harm) if Exposed:** Data breach; personal data leaks
 
 ## 4. Privacy Risks
 
 ### Risk 2: Role based access controls RBAC
 
 - **Priority:** [High]
-- **Risk Category:** [model/input/additional data/other (please describe!)]
-- **Potential Harm/Impact:** What happens if this risk isn't addressed?
-- **Ability to Implement Control:** [Low/Medium/High]
+- **Risk Category:** [other - permissions and access to data)]
+- **Potential Harm/Impact:** A malicious actor could access any information stored in database and documents
+- **Ability to Implement Control:** [Medium]
 - **Recommended controls:**
-  - (your first guess, ok to not know and leave blank)
+  - Use a well-vetted library for role based access controls
+  - Implement only enough privilege to do the needed work
+  - Time bound any privilege that is only needed for a single task
+  - Rigorously remove any individuals who no longer require access
 
 ---
 
