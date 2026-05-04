@@ -1,38 +1,127 @@
-# AI System Privacy Audit: [System Name]
+# AI System Privacy Audit: Model Provider Risks and Mitigations
 
-_DRAFT - Needs to be edited_
+System in scope: `doc_quality_compliance_check` (backend + orchestrator + observability).
 
 ## 1. System Diagram
 
 ![](images/raw/compliance-checker-2026-05-02.png)
 
+Model-relevant architecture facts used in this risk sheet:
+
+- The backend/orchestrator uses a model adapter layer (Anthropic, OpenAI-compatible, Nemotron target/scaffold).
+- Prompt/output traces are exposed and persisted for observability and audit workflows.
+- The product already includes anti-hallucination signals and a validator stage, but model outputs can still be wrong or overconfident.
+
 ## 2. Data Flow Analysis
 
-| Data Flow    | Source  | Destination | Encrypted? | Logged? | Priority |
-| ------------ | ------- | ----------- | ---------- | ------- | -------- |
-| User input   | Web app | LLM API     | In-transit | Yes     | High     |
-| Model output | LLM API | Database    | No         | 50%     | Medium   |
+| Data Flow | Source | Destination | Encrypted? | Logged? | Priority |
+| --- | --- | --- | --- | --- | --- |
+| User document/text submission (may include personal data) | Frontend user session | FastAPI API routes (`/documents/*`, workflow endpoints) | In-transit (HTTPS/TLS) | Request + audit metadata; selected payload fields in audit/observability paths | High |
+| Workflow context assembly for model call | FastAPI/Orchestrator | Model adapter layer | Internal service transport (TLS in deployment) | Yes (workflow/audit events) | High |
+| Prompt payload to model provider (current state) | Model adapter | External provider endpoint (Anthropic/OpenAI-compatible/Nemotron target) | In-transit (HTTPS/TLS) | Provider metadata and local audit/trace logs | High |
+| Model completion returned to service | External provider | Model adapter + orchestrator flow | In-transit (HTTPS/TLS) | Yes (quality traces, run/step events) | High |
+| Prompt/output pair persistence | Orchestrator/quality service | PostgreSQL observability/audit records | In-transit + at-rest DB controls | Yes (explicitly persisted) | High |
+| Quality telemetry view (provider, model, prompt/output, rich payload) | Backend observability endpoints | Admin UI (`/admin/observability`) | In-transit (HTTPS/TLS) | Access path is auditable | High |
+| On-prem target model invocation (target state) | Model adapter | Internal model gateway/cluster (private network) | In-transit (mTLS recommended) | Yes (internal trace + governance logs) | High |
+| Shadow evaluation during migration | Adapter dual-run mode | External + internal models (temporarily) | In-transit (TLS/mTLS) | Yes (comparison-only dataset, restricted retention) | Medium |
+
+### Corrected interpretation for privacy
+
+- The critical privacy boundary is not only frontend-to-backend, but backend/orchestrator-to-model-provider.
+- The highest-risk payload is the full prompt context plus model output, because both may contain direct or indirect personal data.
+- Observability improves governance but increases privacy exposure if traces are over-retained or insufficiently redacted.
 
 ## 3. Sensitive Data
 
-### Sensitive Data Name: [external model]
+### Sensitive Data: Prompt Context and Model Output Content
 
-- **Category:**
-- **Examples:**
-- **Why Sensitive:**
-- **Current Protection:**
-- **Risk (or Harm) if Exposed:**
+- **Category:** Input/output content containing direct or inferred personal data
+- **Examples:** Names, emails, stakeholder assignments, reviewer identifiers, document passages copied into prompts, generated summaries that may restate personal data
+- **Why Sensitive:** Leaves the primary application context during model inference (current external-provider path)
+- **Current Protection:** Session auth, RBAC, TLS, audit events, optional graceful fallback without external model key
+- **Risk (or Harm) if Exposed:** Unauthorized disclosure, regulatory non-compliance (GDPR purpose limitation/data minimization), reputational harm
+
+### Sensitive Data: Provider/Model Telemetry and Rich Trace Payload
+
+- **Category:** Metadata linked to actors, workflows, and potentially sensitive content fingerprints
+- **Examples:** `provider`, `model_used`, `trace_id`, `correlation_id`, latency/tokens, rich payload entries, prompt/output snapshots
+- **Why Sensitive:** Enables reconstruction of who triggered what model action and when; can become re-identifiable when combined with audit tables
+- **Current Protection:** Backend-protected endpoints, role checks, PostgreSQL persistence
+- **Risk (or Harm) if Exposed:** Excessive internal visibility, inference attacks, unauthorized profiling of users/reviewers
+
+### Sensitive Data: Model Credentials and Routing Configuration
+
+- **Category:** Secrets and control-plane configuration
+- **Examples:** API keys, adapter routing flags, provider selection settings
+- **Why Sensitive:** Compromise enables data exfiltration or unauthorized model usage
+- **Current Protection:** Environment-based secret configuration and backend auth controls
+- **Risk (or Harm) if Exposed:** Account abuse, data leakage, loss of integrity of compliance decisions
 
 ## 4. Privacy Risks
 
-### Risk 1...: [Brief description]
+### Risk 1: External model transfer of potentially personal prompt/output data
 
-- **Priority:** [High]
-- **Risk Category:** [model (please describe!)]
-- **Potential Harm/Impact:** What happens if this risk isn't addressed?
-- **Ability to Implement Control:** [Low/Medium/High]
+- **Priority:** High
+- **Risk Category:** Model data transfer and residency
+- **Potential Harm/Impact:** Data leaves controlled environment; third-party processing and cross-border concerns
+- **Ability to Implement Control:** Medium
 - **Recommended controls:**
-  - usage of local model
-  - evaluate models via model cards
-  - quality management needs to be defined
-  - ....
+  - Replace external inference path with internal on-prem model gateway as default.
+  - Keep adapter interface stable so provider swap does not change business logic.
+  - Enforce strict egress policy: only approved internal model endpoints from production.
+
+### Risk 2: Over-collection and over-retention in model observability traces
+
+- **Priority:** High
+- **Risk Category:** Logging/telemetry minimization
+- **Potential Harm/Impact:** Prompt/output traces may store unnecessary personal data for too long
+- **Ability to Implement Control:** High
+- **Recommended controls:**
+  - Apply pre-persistence redaction policy for prompt/output trace fields.
+  - Separate "operational" vs "audit-evidence" retention classes with explicit TTLs.
+  - Restrict raw trace visibility to least-privilege roles and log all access.
+
+### Risk 3: Hallucinated model output impacts compliance decisions
+
+- **Priority:** High
+- **Risk Category:** Model output reliability and decision integrity
+- **Potential Harm/Impact:** Wrong legal/compliance guidance, missed obligations, false audit confidence
+- **Ability to Implement Control:** Medium
+- **Recommended controls:**
+  - Keep mandatory validator stage and add citation-required answer format.
+  - Add grounding checks against rule packs before output is accepted.
+  - Require HITL approval for high-impact outputs.
+
+### Risk 4: Model/version drift reduces reproducibility and explainability
+
+- **Priority:** Medium
+- **Risk Category:** Governance and traceability
+- **Potential Harm/Impact:** Same input yields diverging output without clear reason; weak audit defensibility
+- **Ability to Implement Control:** Medium
+- **Recommended controls:**
+  - Persist model version, adapter version, prompt template version, and config hash for every run.
+  - Freeze approved model release sets per environment.
+  - Run periodic regression suite on reference compliance tasks.
+
+### Risk 5: Migration to on-prem models may degrade quality if unmanaged
+
+- **Priority:** Medium
+- **Risk Category:** Migration and model quality assurance
+- **Potential Harm/Impact:** Quality drop or hidden failure modes could shift risk from privacy to governance failure
+- **Ability to Implement Control:** High
+- **Recommended controls:**
+  - Build a benchmark set from real workflows (privacy-scrubbed), including hallucination-sensitive cases.
+  - Use shadow mode (external vs on-prem) with acceptance thresholds before cutover.
+  - Define release gates: factuality, citation correctness, latency, and refusal behavior.
+
+## 5. On-Prem Migration Plan (Quality-Preserving)
+
+Target objective: remove external GenAI dependency for production personal-data paths while maintaining or improving compliance-output quality.
+
+1. **Adapter-first migration:** keep orchestration and API contracts unchanged; switch routing in adapter layer.
+2. **Dual-run validation:** run external and on-prem in parallel for a controlled period on the same scrubbed inputs.
+3. **Quality gate:** promote on-prem only when benchmark thresholds are met (accuracy, hallucination rate, explainability/citations, latency).
+4. **Privacy hardening:** enforce prompt minimization, redaction, and retention classes before and after cutover.
+5. **Operational fallback:** if on-prem model confidence/validator checks fail, route to deterministic rules + HITL instead of external provider.
+
+This sequence preserves output quality while reducing privacy exposure and external model dependency.
