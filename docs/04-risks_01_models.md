@@ -1,6 +1,11 @@
-# AI System Privacy Audit: [System Name]
+# Risk 1: Egress to AI orchestrator and models
 
-_DRAFT - Needs to be edited_
+**AI System Privacy Audit: Documentation Quality Compliance Checker**
+
+!!! note Priority 1
+
+    Egress to CrewAI orchestrator and AI Models (including
+    Perplexity, Anthropic, and Others)
 
 ## 1. System Diagram
 
@@ -25,7 +30,7 @@ _DRAFT - Needs to be edited_
 
 ## 4. Privacy Risks
 
-### Risk 1...: [Brief description]
+### Risk 1: Egress to Orchestrator and AI Models
 
 - **Priority:** [High]
 - **Risk Category:** [model (please describe!)]

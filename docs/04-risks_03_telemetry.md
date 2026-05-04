@@ -1,6 +1,10 @@
-# AI System Privacy Audit: [System Name]
+# Risk level 3: Telemetry
 
-_DRAFT - Needs to be edited_
+**AI System Privacy Audit: Documentation Quality Compliance Checker**
+
+!!! note Priority 3
+
+    Telemetry for evaluation user workflow tracking
 
 ## 1. System Diagram
 
@@ -15,7 +19,7 @@ _DRAFT - Needs to be edited_
 
 ## 3. Sensitive Data
 
-### Sensitive Data Name: [Brief description]
+### Sensitive Data Name: Telemetry information
 
 - **Category:**
 - **Examples:**
@@ -25,9 +29,9 @@ _DRAFT - Needs to be edited_
 
 ## 4. Privacy Risks
 
-### Risk 1...: [Brief description]
+### Risk 3: Telemetry for evaluation workflow tracking
 
-- **Priority:** [Low/Medium/High]
+- **Priority:** [Medium]
 - **Risk Category:** [model/input/additional data/other (please describe!)]
 - **Potential Harm/Impact:** What happens if this risk isn't addressed?
 - **Ability to Implement Control:** [Low/Medium/High]

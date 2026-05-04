@@ -4,7 +4,6 @@
 
     Identify use cases and compose data flow diagrams for privacy.
 
-
 ## Use cases
 
 - 1: validate basic auth privacy controls (session cookie + no plain credentials persistence)

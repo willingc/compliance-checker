@@ -1,6 +1,10 @@
-# AI System Privacy Audit: [System Name]
+# Risk priority 4: Secrets, tokens, and keys
 
-_DRAFT - Needs to be edited_
+**AI System Privacy Audit: Documentation Quality Compliance Checker**
+
+!!! note Priority 4
+
+    Secrets, tokens, and keys
 
 ## 1. System Diagram
 
@@ -15,7 +19,7 @@ _DRAFT - Needs to be edited_
 
 ## 3. Sensitive Data
 
-### Sensitive Data Name: [Brief description]
+### Sensitive Data Name: Secrets, tokens, and keys
 
 - **Category:**
 - **Examples:**
@@ -25,7 +29,7 @@ _DRAFT - Needs to be edited_
 
 ## 4. Privacy Risks
 
-### Risk 1...: [Brief description]
+### Risk 1...: Secrets, tokens, and keys
 
 - **Priority:** [Low/Medium/High]
 - **Risk Category:** [model/input/additional data/other (please describe!)]

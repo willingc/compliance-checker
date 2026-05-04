@@ -36,4 +36,9 @@ nav:
   - 02-week1_use_cases.md
   - 03-week2_risk_model.md
   - 03-week2_use_cases_risks.md
-  - 04-example_template.md
+  - 04-risks_01_models.md
+  - 04-risks_02_access_control.md
+  - 04-risks_03_telemetry.md
+  - 04-risks_03_structured_logging.md
+  - 04-risks_04_secrets_tokens_keys.md
+
