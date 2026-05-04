@@ -20,27 +20,28 @@
 
 ## 3. Sensitive Data
 
-### Sensitive Data Name: [external model]
+### Sensitive Data Name: Document contents shared with models
 
-- **Category:**
-- **Examples:**
-- **Why Sensitive:**
-- **Current Protection:**
-- **Risk (or Harm) if Exposed:**
+- **Category:** Document contents
+- **Examples:** Information about people contained in documents to be checked
+- **Why Sensitive:** Documents are confidential and may contain health information
+- **Current Protection:** Sending a limit amount of document to a model in steps
+- **Risk (or Harm) if Exposed:** Company reputation risk and release of information about an individual
 
 ## 4. Privacy Risks
 
 ### Risk 1: Egress to Orchestrator and AI Models
 
 - **Priority:** [High]
-- **Risk Category:** [model (please describe!)]
-- **Potential Harm/Impact:** What happens if this risk isn't addressed?
-- **Ability to Implement Control:** [Low/Medium/High]
+- **Risk Category:** [model - shared information with Anthropic and Perplexity]
+- **Potential Harm/Impact:** What happens if this risk isn't addressed? Document
+  leaks could contain sensitive data. Regulatory impact, disclosures or penalties for a protocol breach.
+- **Ability to Implement Control:** [Medium]
 - **Recommended controls:**
   - usage of local model
   - evaluate models via model cards
   - quality management needs to be defined
-  - ....
+  - usage of a general orchestrator instead of an AI specific orchestrator
 
 ---
 
