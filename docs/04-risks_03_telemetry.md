@@ -157,3 +157,32 @@ Telemetry-relevant architecture facts used in this risk sheet:
 | `audit_events` append-only GDPR erasure conflict | Risk Sheet 2 (RBAC, Risk 3) | Access-decision audit log and the compliance audit trail face the same erasure-vs-retention tension — same selective redaction solution applies |
 | OTEL exporter data processor agreement | Risk Sheet 1 (Model Providers) | OTLP backend must appear in the same sub-processor register as external model API providers |
 | CSV export — uncontrolled copy | Risk Sheet 4 (Secrets/Tokens — pending) | Exported files containing model outputs should be treated under the same data handling classification as API responses containing model output |
+
+---
+
+## Additional information from the repo
+
+### OpenTelemetry and logs (request workflow)
+
+- **Tracing:** `configure_observability` in `observability.py` registers a `TracerProvider` when `tracing_enabled` is true (OTLP or console exporter, sampling via `tracing_sampling_ratio`). **HTTP middleware** in `main.py` starts a span per API request and attaches standard HTTP attributes.
+- **Logs:** Each request logs **`http_request`** with `method`, `path`, `status`, `duration_ms`, and optional **`trace_id`** when a valid span context exists.
+
+These mechanisms trace **API request execution**, not a separate end-user “clickstream” product analytics layer.
+
+### Tests as examples of evaluation workflows
+
+`tests/test_observability_api.py` demonstrates:
+
+- Posting observations with **`evaluation_dataset`** / **`evaluation_metric`** on non-evaluation aspects (still counted toward **`evaluation_observations`** in the summary when `evaluation_dataset` is set).
+- Posting **`aspect: "evaluation"`** with LLM fields in **`payload`** and retrieving them via **`/llm-traces`**.
+- Populating **workflow component breakdown** with multiple **`source_component`** values.
+
+### Configuration touchpoints
+
+- **Service name:** `TELEMETRY_SERVICE_NAME` (e.g. in `.env.example`) feeds OpenTelemetry **`service.name`**.
+- **Tracing/metrics flags and OTLP endpoint:** see `Settings` in `src/doc_quality/core/config.py` (tracing exporter, `tracing_otlp_endpoint`, `metrics_enabled`, etc.).
+
+### Related documentation
+
+- **`OBSERVABILITY_LOGGING_README.md`** — deeper operational logging and observability guide.
+- **`README.md`** — Admin Observability overview and RBAC for `/api/v1/observability/*`.
