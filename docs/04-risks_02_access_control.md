@@ -29,7 +29,7 @@
 
 ## 4. Privacy Risks
 
-### Risk 1...: [Brief description]
+### Risk 2: Role based access controls RBAC
 
 - **Priority:** [Low/Medium/High]
 - **Risk Category:** [model/input/additional data/other (please describe!)]
@@ -37,3 +37,23 @@
 - **Ability to Implement Control:** [Low/Medium/High]
 - **Recommended controls:**
   - (your first guess, ok to not know and leave blank)
+
+---
+
+## Additional information from the repo
+
+### What exists
+
+- **RBAC:** `require_roles(...)` gates API routes (e.g. documents, skills, research).
+- **Cookies:** Session cookie is `HttpOnly`, `SameSite=lax`, `Secure` enforced outside development (`session_auth.py`, `config.py`).
+- **`AuthenticatedUser`** includes `org` from session (`user_sessions.user_org`).
+- **`audit_events`**, **`audit_schedules`**, **`LogEventRequest`**: optional `tenant_id` / `org_id` fields for labeling.
+
+### document and HITL scope
+
+- **`SkillDocumentORM`** has **no** `org_id` or `tenant_id` column.
+- **`search_documents`** (`src/doc_quality/services/skills_service.py`) queries **all** `skill_documents` rows (filters: type, optional text search against `extracted_text` / filename), capped by `limit`.
+- **`GET /api/v1/documents`** uses `search_documents` with empty query → returns up to 100 documents for **any** authenticated user with an allowed role — **no filter by `user.org`**.
+- **HITL** (`hitl_workflow.py`): no org/tenant parameters in queries.
+
+**Conclusion:** The codebase matches a **single-tenant / shared-database** MVP: isolation is **role-based**, not organization-row-level. Multi-customer SaaS would need schema + query changes and consistent propagation of org from JWT/session into every read/write path.
