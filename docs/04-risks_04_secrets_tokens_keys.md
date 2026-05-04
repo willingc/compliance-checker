@@ -21,22 +21,25 @@
 
 ### Sensitive Data Name: Secrets, tokens, and keys
 
-- **Category:**
-- **Examples:**
-- **Why Sensitive:**
-- **Current Protection:**
-- **Risk (or Harm) if Exposed:**
+- **Category:** Access keys and passwords
+- **Examples:** Usernames and passwords, roles, API keys to external services
+- **Why Sensitive:** Sensitive because they can be used to gain access to personal information stored in the documents and databases
+- **Current Protection:** Best practices of handling authentication and authorization
+- **Risk (or Harm) if Exposed:** Personal information and user information may be accessed.
 
 ## 4. Privacy Risks
 
 ### Risk 4: Secrets, tokens, and keys
 
 - **Priority:** [Low]
-- **Risk Category:** [model/input/additional data/other (please describe!)]
+- **Risk Category:** [additional data related to access]
 - **Potential Harm/Impact:** What happens if this risk isn't addressed?
-- **Ability to Implement Control:** [Low/Medium/High]
+- **Ability to Implement Control:** [High]
 - **Recommended controls:**
-  - (your first guess, ok to not know and leave blank)
+  - Use principle of least privilege for all data access
+  - Revoke privileges when not needed or time-bound access
+  - Search the code for any committed secrets
+  - Educate users on the importance of password protection and sharing of data
 
 ---
 
