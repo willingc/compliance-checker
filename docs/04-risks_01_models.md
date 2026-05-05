@@ -14,16 +14,16 @@ Model-relevant architecture facts used in this risk sheet:
 
 ## 2. Data Flow Analysis
 
-| Data Flow | Source | Destination | Encrypted? | Logged? | Priority |
-| --- | --- | --- | --- | --- | --- |
-| User document/text submission (may include personal data) | Frontend user session | FastAPI API routes (`/documents/*`, workflow endpoints) | In-transit (HTTPS/TLS) | Request + audit metadata; selected payload fields in audit/observability paths | High |
-| Workflow context assembly for model call | FastAPI/Orchestrator | Model adapter layer | Internal service transport (TLS in deployment) | Yes (workflow/audit events) | High |
-| Prompt payload to model provider (current state) | Model adapter | External provider endpoint (Anthropic/OpenAI-compatible/Nemotron target) | In-transit (HTTPS/TLS) | Provider metadata and local audit/trace logs | High |
-| Model completion returned to service | External provider | Model adapter + orchestrator flow | In-transit (HTTPS/TLS) | Yes (quality traces, run/step events) | High |
-| Prompt/output pair persistence | Orchestrator/quality service | PostgreSQL observability/audit records | In-transit + at-rest DB controls | Yes (explicitly persisted) | High |
-| Quality telemetry view (provider, model, prompt/output, rich payload) | Backend observability endpoints | Admin UI (`/admin/observability`) | In-transit (HTTPS/TLS) | Access path is auditable | High |
-| On-prem target model invocation (target state) | Model adapter | Internal model gateway/cluster (private network) | In-transit (mTLS recommended) | Yes (internal trace + governance logs) | High |
-| Shadow evaluation during migration | Adapter dual-run mode | External + internal models (temporarily) | In-transit (TLS/mTLS) | Yes (comparison-only dataset, restricted retention) | Medium |
+| Data Flow | Source | Destination | Encrypted? | Logged? | Priority | Action Point | Implemtation |
+| --- | --- | --- | --- | --- | --- | --- | --- 
+| User document/text submission (may include personal data) | Frontend user session | FastAPI API routes (`/documents/*`, workflow endpoints) | In-transit (HTTPS/TLS) | Request + audit metadata; selected payload fields in audit/observability paths | High | 1. Document meta data (e.g. author, role, time of change, change topic ...).  use pseudonymization techniques on private data. Role based data exist in postgres db (mandatory profiles). Mask private data in change history meta data table depending on role and for final output. 2. Document content proof about PII data in text, images and link targets. | Yes |
+| Workflow context assembly for model call | FastAPI/Orchestrator | Model adapter layer | Internal service transport (TLS in deployment) | Yes (workflow/audit events) | High | 1. Orchestrator to block activities outside of the models sandbox. 2. Data schema for validation | Yes |
+| Prompt payload to model provider (current state) | Model adapter | External provider endpoint (Anthropic/OpenAI-compatible/Nemotron target) | In-transit (HTTPS/TLS) | Provider metadata and local audit/trace logs | High | local model sandbox / no external models | Yes |
+| Model completion returned to service | External provider | Model adapter + orchestrator flow | In-transit (HTTPS/TLS) | Yes (quality traces, run/step events) | High | like above | maybe |
+| Prompt/output pair persistence | Orchestrator/quality service | PostgreSQL observability/audit records | In-transit + at-rest DB controls | Yes (explicitly persisted) | High | Prompt check for PII data. | maybe |
+| Quality telemetry view (provider, model, prompt/output, rich payload) | Backend observability endpoints | Admin UI (`/admin/observability`) | In-transit (HTTPS/TLS) | Access path is auditable | High | Check tracing output for PII data. | no |
+| On-prem target model invocation (target state) | Model adapter | Internal model gateway/cluster (private network) | In-transit (mTLS recommended) | Yes (internal trace + governance logs) | High | Check tracing & logging output for PII data. | no |
+| Shadow evaluation during migration | Adapter dual-run mode | External + internal models (temporarily) | In-transit (TLS/mTLS) | Yes (comparison-only dataset, restricted retention) | Medium | Model in sandbox and usage of synthetic dataset. | no |
 
 ### Corrected interpretation for privacy
 
