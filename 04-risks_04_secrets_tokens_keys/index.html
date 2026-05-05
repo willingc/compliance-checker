@@ -1,0 +1,1674 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://willingc.github.io/compliance-checker/04-risks_04_secrets_tokens_keys/">
+      
+      
+        <link rel="prev" href="../04-risks_03_structured_logging/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>AI System Privacy Audit: Secrets, Tokens, and API Keys - Privacy audit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .glightbox-clean .gslide-media { -webkit-box-shadow: none; box-shadow: none; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ai-system-privacy-audit-secrets-tokens-and-api-keys" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Privacy audit" class="md-header__button md-logo" aria-label="Privacy audit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Privacy audit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AI System Privacy Audit: Secrets, Tokens, and API Keys
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Privacy audit" class="md-nav__button md-logo" aria-label="Privacy audit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    Privacy audit
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy audit of documentation quality compliance checker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-week1_use_cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identify use cases and data flows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-week2_risk_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Risk hunt and threat model the use cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-week2_use_cases_risks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Use cases and risk areas to investigate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-risks_01_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Model Provider Risks and Mitigations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-risks_02_access_control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Role-Based Access Controls and GDPR Compliance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-risks_03_telemetry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Application Telemetry and Workflow Tracing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-risks_03_structured_logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Structured Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Secrets, Tokens, and API Keys
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Secrets, Tokens, and API Keys
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#1-system-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. System Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-data-flow-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Data Flow Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Data Flow Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#corrected-interpretation-for-data-privacy-and-gdpr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Corrected interpretation for data privacy and GDPR
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sensitive-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sensitive Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Sensitive Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-secret_key-root-of-trust-session-hmac-and-service-api-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: SECRET_KEY — Root-of-Trust Session HMAC and Service API Secret
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-database_url-embedding-plaintext-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: DATABASE_URL Embedding Plaintext Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-anthropic_api_key-perplexity_api_key-external-provider-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: ANTHROPIC_API_KEY / PERPLEXITY_API_KEY — External Provider Credentials
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-postgres_password-postgres-hardcoded-in-docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: POSTGRES_PASSWORD: postgres Hardcoded in docker-compose.yml
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-recovery-token-debug-exposure-auth_recovery_debug_expose_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: Recovery Token Debug Exposure (auth_recovery_debug_expose_token)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-privacy-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Privacy Risks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Privacy Risks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#risk-1-secret_key-serves-dual-purpose-session-hmac-and-service-client-api-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 1: SECRET_KEY serves dual purpose — session HMAC and service-client API key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-2-no-startup-guard-prevents-use-of-default-secret_key-in-staging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 2: No startup guard prevents use of default SECRET_KEY in staging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-3-database_url-embeds-plaintext-database-password-in-a-config-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 3: DATABASE_URL embeds plaintext database password in a config string
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-4-hardcoded-postgres_password-postgres-committed-to-version-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 4: Hardcoded POSTGRES_PASSWORD: postgres committed to version control
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-5-recovery-token-debug-exposure-flag-risk-of-misuse-outside-development-sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 5: Recovery token debug exposure flag — risk of misuse outside development sandbox
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-6-no-api-key-scoping-rotation-or-per-client-identity-for-service-to-service-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 6: No API key scoping, rotation, or per-client identity for service-to-service authentication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-7-pbkdf2-password-hashing-is-a-custom-implementation-without-a-vetted-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 7: PBKDF2 password hashing is a custom implementation without a vetted library
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cross-sheet-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Cross-Sheet Consistency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-information-from-the-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional information from the repo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional information from the repo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables-main-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment variables (main API)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables-standalone-orchestrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment variables (standalone orchestrator)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-headers-runtime-secrets-not-in-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP headers (runtime secrets, not in repo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persisted-secrets-database-not-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persisted secrets (database, not environment)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ide-local-tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IDE / local tooling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#development-defaults-rotate-for-anything-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development defaults (rotate for anything real)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-fixtures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test fixtures
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#1-system-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. System Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-data-flow-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Data Flow Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Data Flow Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#corrected-interpretation-for-data-privacy-and-gdpr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Corrected interpretation for data privacy and GDPR
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sensitive-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sensitive Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Sensitive Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-secret_key-root-of-trust-session-hmac-and-service-api-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: SECRET_KEY — Root-of-Trust Session HMAC and Service API Secret
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-database_url-embedding-plaintext-password" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: DATABASE_URL Embedding Plaintext Password
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-anthropic_api_key-perplexity_api_key-external-provider-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: ANTHROPIC_API_KEY / PERPLEXITY_API_KEY — External Provider Credentials
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-postgres_password-postgres-hardcoded-in-docker-composeyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: POSTGRES_PASSWORD: postgres Hardcoded in docker-compose.yml
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-recovery-token-debug-exposure-auth_recovery_debug_expose_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: Recovery Token Debug Exposure (auth_recovery_debug_expose_token)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-privacy-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Privacy Risks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Privacy Risks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#risk-1-secret_key-serves-dual-purpose-session-hmac-and-service-client-api-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 1: SECRET_KEY serves dual purpose — session HMAC and service-client API key
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-2-no-startup-guard-prevents-use-of-default-secret_key-in-staging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 2: No startup guard prevents use of default SECRET_KEY in staging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-3-database_url-embeds-plaintext-database-password-in-a-config-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 3: DATABASE_URL embeds plaintext database password in a config string
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-4-hardcoded-postgres_password-postgres-committed-to-version-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 4: Hardcoded POSTGRES_PASSWORD: postgres committed to version control
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-5-recovery-token-debug-exposure-flag-risk-of-misuse-outside-development-sandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 5: Recovery token debug exposure flag — risk of misuse outside development sandbox
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-6-no-api-key-scoping-rotation-or-per-client-identity-for-service-to-service-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 6: No API key scoping, rotation, or per-client identity for service-to-service authentication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-7-pbkdf2-password-hashing-is-a-custom-implementation-without-a-vetted-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 7: PBKDF2 password hashing is a custom implementation without a vetted library
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cross-sheet-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Cross-Sheet Consistency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-information-from-the-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional information from the repo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional information from the repo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables-main-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment variables (main API)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables-standalone-orchestrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment variables (standalone orchestrator)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-headers-runtime-secrets-not-in-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP headers (runtime secrets, not in repo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persisted-secrets-database-not-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persisted secrets (database, not environment)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ide-local-tooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IDE / local tooling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#development-defaults-rotate-for-anything-real" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development defaults (rotate for anything real)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-fixtures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test fixtures
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ai-system-privacy-audit-secrets-tokens-and-api-keys">AI System Privacy Audit: Secrets, Tokens, and API Keys</h1>
+<p>System in scope: <code>doc_quality_compliance_check</code> — application secret management (<code>SECRET_KEY</code>, <code>DATABASE_URL</code>, <code>ANTHROPIC_API_KEY</code>, <code>PERPLEXITY_API_KEY</code>), session token lifecycle, password hashing, recovery token flow, bootstrap credential provisioning, and Docker Compose database credentials.</p>
+<h2 id="1-system-diagram">1. System Diagram</h2>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/raw/compliance-checker-2026-05-02.png" data-desc-position="bottom"><img alt="" src="../images/raw/compliance-checker-2026-05-02.png"></a></p>
+<p>Secrets-relevant architecture facts used in this risk sheet:</p>
+<ul>
+<li>All sensitive configuration values are loaded from environment variables via Pydantic <code>BaseSettings</code> (<code>config.py</code>); a <code>.env</code> file is supported for local development (<code>.gitignore</code>d).</li>
+<li><strong><code>SECRET_KEY</code></strong>: used as the HMAC secret for hashing session tokens and password recovery tokens. Default value is <code>"change-me-in-production"</code>. A <code>model_validator</code> in <code>Settings</code> raises <code>ValueError</code> if the default is detected in <code>environment == "production"</code> — but <strong>not</strong> in <code>staging</code>.</li>
+<li><strong><code>DATABASE_URL</code></strong>: embeds database username and password in a connection string; default contains <code>CHANGE_ME</code> placeholder. No secrets manager integration is implemented.</li>
+<li><strong><code>ANTHROPIC_API_KEY</code></strong> / <strong><code>PERPLEXITY_API_KEY</code></strong>: optional; empty string default means the LLM path is silently skipped when not configured. No key rotation, expiry check, or scoping mechanism is implemented.</li>
+<li><strong>Password storage</strong>: PBKDF2-HMAC-SHA256 with 240 000 iterations, random 16-byte salt per password, stored as <code>pbkdf2_sha256$&lt;iterations&gt;$&lt;salt_b64&gt;$&lt;hash_b64&gt;</code> — a sound custom implementation, but not using a vetted library (e.g., <code>passlib</code>, <code>argon2-cffi</code>).</li>
+<li><strong>Session tokens</strong>: generated with <code>secrets.token_urlsafe(48)</code>, HMAC-hashed (<code>SHA-256</code>) with <code>SECRET_KEY</code> before DB persistence; raw token sent to browser as HTTP-only cookie. Session table retains all rows (including revoked) indefinitely.</li>
+<li><strong>Recovery tokens</strong>: generated with <code>secrets.token_urlsafe(48)</code>, hashed with <code>SECRET_KEY</code> + <code>SHA-256</code>, stored in <code>password_recovery_tokens</code> table; a <strong>development debug flag</strong> (<code>auth_recovery_debug_expose_token</code>) returns the raw plaintext token in the API response body — conditional on <code>environment == "development"</code>.</li>
+<li><strong>Docker Compose</strong> (<code>docker-compose.yml</code>): PostgreSQL service uses <code>POSTGRES_PASSWORD: postgres</code> — a weak, hardcoded credential in a committed file.</li>
+<li><strong>Service-to-service API key</strong> (<code>X-API-Key</code> / <code>Authorization: Bearer</code>): validated against <code>SECRET_KEY</code> value — the same secret serves dual duty as both the session-token HMAC key and the service-client API key.</li>
+<li>No secrets manager (Vault, AWS Secrets Manager, Azure Key Vault) or secret rotation mechanism is implemented.</li>
+</ul>
+<h2 id="2-data-flow-analysis">2. Data Flow Analysis</h2>
+<table>
+<thead>
+<tr>
+<th>Data Flow</th>
+<th>Source</th>
+<th>Destination</th>
+<th>Encrypted?</th>
+<th>Logged?</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SECRET_KEY</code> loaded from env / <code>.env</code> file at startup</td>
+<td><code>.env</code> file or process environment</td>
+<td><code>Settings</code> singleton in memory → <code>session_auth.py</code>, <code>security.py</code>, <code>auth.py</code></td>
+<td>Process memory (no encryption at rest in env/file)</td>
+<td>Not logged; used as HMAC material</td>
+<td>High</td>
+</tr>
+<tr>
+<td><code>DATABASE_URL</code> (with embedded password) loaded at startup</td>
+<td><code>.env</code> file or process environment</td>
+<td>SQLAlchemy engine connection pool</td>
+<td>TLS in-transit to DB (depends on URL param); credential in plaintext in <code>DATABASE_URL</code> string</td>
+<td>Not logged directly; may appear in debug/error traces if SQLAlchemy prints the full URL</td>
+<td>High</td>
+</tr>
+<tr>
+<td><code>ANTHROPIC_API_KEY</code> / <code>PERPLEXITY_API_KEY</code> loaded at startup</td>
+<td><code>.env</code> file or process environment</td>
+<td><code>Settings</code> singleton → model adapter → external API call header</td>
+<td>In-transit (HTTPS/TLS); key never returned in API responses</td>
+<td>Not logged; could appear in provider SDK debug traces if <code>LOG_LEVEL=DEBUG</code></td>
+<td>High</td>
+</tr>
+<tr>
+<td>Raw session cookie issued to browser</td>
+<td><code>create_server_session()</code> → <code>set_session_cookie()</code></td>
+<td>Browser HTTP-only cookie</td>
+<td>In-transit (TLS); HTTP-only, <code>secure</code> flag enforced outside development</td>
+<td>Raw token not persisted; only <code>session_token_hash</code> stored in DB</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Session token hash stored in PostgreSQL</td>
+<td><code>session_auth.py</code></td>
+<td><code>user_sessions</code> table — <code>session_token_hash</code> column</td>
+<td>At-rest DB controls</td>
+<td>Not separately logged; row retained after expiry/revocation</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Service-client API key validated against <code>SECRET_KEY</code></td>
+<td><code>X-API-Key</code> or <code>Authorization: Bearer</code> header</td>
+<td><code>require_api_auth()</code> in <code>security.py</code> — constant-time comparison via <code>hmac.compare_digest</code></td>
+<td>In-transit (HTTPS/TLS)</td>
+<td>Not logged; single shared secret for all service clients — no per-client identity</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Raw recovery token returned in API response (development debug mode)</td>
+<td><code>auth.py</code> → <code>POST /api/v1/auth/recovery/request</code></td>
+<td>Response body: <code>{ "debug_token": "&lt;raw&gt;", "reset_url": "..." }</code></td>
+<td>In-transit (TLS in dev only if <code>localhost</code>); but raw secret in plaintext HTTP body</td>
+<td>Not logged to <code>audit_events</code>; only token hash and <code>expires_at</code> persisted</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Recovery token hash stored in DB</td>
+<td><code>auth.py</code></td>
+<td><code>password_recovery_tokens</code> table — <code>token_hash</code> column</td>
+<td>At-rest DB controls</td>
+<td><code>auth.recovery.requested</code> event in <code>audit_events</code></td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Bootstrap user credentials provisioned at startup</td>
+<td><code>AUTH_MVP_EMAIL</code>, <code>AUTH_MVP_PASSWORD</code> env vars → <code>AppUserORM</code> row</td>
+<td><code>app_users</code> table (password hashed with PBKDF2)</td>
+<td>Env var source; hash stored at-rest</td>
+<td>Startup event; plaintext password value is in env/config only</td>
+<td>High</td>
+</tr>
+<tr>
+<td><code>POSTGRES_PASSWORD: postgres</code> in committed <code>docker-compose.yml</code></td>
+<td>Repository source control</td>
+<td>Docker Compose → PostgreSQL container</td>
+<td>Not encrypted (dev Docker network); hardcoded in version-controlled file</td>
+<td>Committed to repository history</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corrected-interpretation-for-data-privacy-and-gdpr">Corrected interpretation for data privacy and GDPR</h3>
+<ul>
+<li>GDPR does not directly regulate secrets, but secret compromise directly enables data breaches, which must be reported under GDPR Art. 33. Every secret mismanagement risk in this sheet is therefore a potential GDPR breach enabler.</li>
+<li>The <code>SECRET_KEY</code> is a root-of-trust credential: if leaked, all existing session tokens can be forged (HMAC verification bypassed), all recovery tokens can be computed, and all service-client access can be replicated. This makes <code>SECRET_KEY</code> rotation the single highest-impact hardening action.</li>
+<li>The dual use of <code>SECRET_KEY</code> as both the session HMAC key and the service-client API key means a service-client credential leak also compromises session token integrity — and vice versa.</li>
+<li>The <code>DATABASE_URL</code> containing an embedded password is a known OWASP A02:2021 (Cryptographic Failures / Secret Exposure) pattern; if the URL appears in a stack trace, log file, or debug output it constitutes an unintended credential disclosure.</li>
+</ul>
+<h2 id="3-sensitive-data">3. Sensitive Data</h2>
+<h3 id="sensitive-data-secret_key-root-of-trust-session-hmac-and-service-api-secret">Sensitive Data: <code>SECRET_KEY</code> — Root-of-Trust Session HMAC and Service API Secret</h3>
+<ul>
+<li><strong>Category:</strong> Cryptographic secret / system credential</li>
+<li><strong>Examples:</strong> <code>SECRET_KEY=&lt;64-char hex&gt;</code> in <code>.env</code>; used in <code>_hash_session_token()</code>, <code>_hash_recovery_token()</code>, <code>require_api_auth()</code> — same value for all three purposes</li>
+<li><strong>Why Sensitive:</strong> Compromise enables session token forgery (full account takeover for any user), recovery token prediction (password reset for any user), and unauthorised service-client access to <code>skills/*</code> and <code>observability/*</code> endpoints</li>
+<li><strong>Current Protection:</strong> Env var / <code>.env</code> file (<code>.gitignore</code>d); production startup guard rejects default value; not logged</li>
+<li><strong>Risk (or Harm) if Exposed:</strong> Full system compromise; GDPR Art. 33 breach notification required; all user sessions must be invalidated; all recovery tokens must be rotated</li>
+</ul>
+<h3 id="sensitive-data-database_url-embedding-plaintext-password">Sensitive Data: <code>DATABASE_URL</code> Embedding Plaintext Password</h3>
+<ul>
+<li><strong>Category:</strong> Infrastructure credential / connection string</li>
+<li><strong>Examples:</strong> <code>postgresql+psycopg2://dbuser:CHANGE_ME@localhost:5432/doc_quality</code>; default in <code>config.py</code> with <code>nosec B105</code> suppression; also in <code>.env.example</code></li>
+<li><strong>Why Sensitive:</strong> Database credential grants direct read/write access to all personal data: <code>app_users</code>, <code>user_sessions</code>, <code>audit_events</code>, <code>quality_observations</code>, <code>bridge_human_reviews</code> — the full system data estate</li>
+<li><strong>Current Protection:</strong> <code>.env</code> file excluded from version control; <code>CHANGE_ME</code> placeholder in default; no rotation mechanism</li>
+<li><strong>Risk (or Harm) if Exposed:</strong> Direct database access bypassing all RBAC; bulk personal data exfiltration; modification or deletion of audit trail; GDPR Art. 33 major breach</li>
+</ul>
+<h3 id="sensitive-data-anthropic_api_key-perplexity_api_key-external-provider-credentials">Sensitive Data: <code>ANTHROPIC_API_KEY</code> / <code>PERPLEXITY_API_KEY</code> — External Provider Credentials</h3>
+<ul>
+<li><strong>Category:</strong> Third-party API credentials</li>
+<li><strong>Examples:</strong> <code>ANTHROPIC_API_KEY=sk-ant-...</code>; <code>PERPLEXITY_API_KEY=pplx-...</code></li>
+<li><strong>Why Sensitive:</strong> Compromise enables unauthorised model usage billed to the organisation; more critically, the API key is sent in the <code>Authorization</code> header of every model call — if an attacker can replay this key they can submit arbitrary prompts to the provider's API, potentially exfiltrating system prompts or bypassing rate limits</li>
+<li><strong>Current Protection:</strong> Env var / <code>.env</code> file; empty string default (LLM path disabled if not set); not logged at <code>INFO</code> level</li>
+<li><strong>Risk (or Harm) if Exposed:</strong> Unauthorised model API usage and cost; prompt injection via replayed API calls; no per-call or per-context scoping of the key</li>
+</ul>
+<h3 id="sensitive-data-postgres_password-postgres-hardcoded-in-docker-composeyml">Sensitive Data: <code>POSTGRES_PASSWORD: postgres</code> Hardcoded in <code>docker-compose.yml</code></h3>
+<ul>
+<li><strong>Category:</strong> Infrastructure credential committed to version control</li>
+<li><strong>Examples:</strong> <code>POSTGRES_PASSWORD: postgres</code> on line 12 of <code>docker-compose.yml</code></li>
+<li><strong>Why Sensitive:</strong> Hardcoded weak credential is committed to the repository; any person with repository read access has the development database password; if the same password is accidentally reused in staging or production (common operational error), database access is trivially compromised</li>
+<li><strong>Current Protection:</strong> Intended for local development only; Docker network not exposed beyond <code>localhost</code> in default config</li>
+<li><strong>Risk (or Harm) if Exposed:</strong> Credential reuse in non-development environments; repository access = database credential; OWASP A07:2021 (Identification and Authentication Failures)</li>
+</ul>
+<h3 id="sensitive-data-recovery-token-debug-exposure-auth_recovery_debug_expose_token">Sensitive Data: Recovery Token Debug Exposure (<code>auth_recovery_debug_expose_token</code>)</h3>
+<ul>
+<li><strong>Category:</strong> Authentication token exposed in API response body</li>
+<li><strong>Examples:</strong> <code>{ "debug_token": "&lt;raw_token_urlsafe_48&gt;", "reset_url": "http://localhost:3000/reset-access?token=..." }</code> returned by <code>POST /api/v1/auth/recovery/request</code> when <code>AUTH_RECOVERY_DEBUG_EXPOSE_TOKEN=true</code></li>
+<li><strong>Why Sensitive:</strong> A raw, single-use password-reset token returned in plaintext in an HTTP response body is a high-value target; if the flag is accidentally enabled outside a development sandbox (e.g., in a shared staging environment), any observer of the response (log aggregator, proxy, developer tooling) captures a live reset credential</li>
+<li><strong>Current Protection:</strong> Conditional on <code>environment == "development" AND auth_recovery_debug_expose_token == True</code>; default is <code>False</code></li>
+<li><strong>Risk (or Harm) if Exposed:</strong> Account takeover via captured recovery token; GDPR Art. 33 breach notification required if a real user's account is affected</li>
+</ul>
+<h2 id="4-privacy-risks">4. Privacy Risks</h2>
+<h3 id="risk-1-secret_key-serves-dual-purpose-session-hmac-and-service-client-api-key">Risk 1: <code>SECRET_KEY</code> serves dual purpose — session HMAC and service-client API key</h3>
+<ul>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Risk Category:</strong> Cryptographic key management and separation of concerns</li>
+<li><strong>GDPR Reference:</strong> Art. 32 — appropriate technical measures; Art. 33 — breach notification (key compromise = system-wide breach)</li>
+<li><strong>Potential Harm/Impact:</strong> A single leaked <code>SECRET_KEY</code> value simultaneously: (a) allows session token forgery for any user account, (b) allows recovery token prediction enabling password reset for any user, (c) grants service-client access to <code>skills/*</code> and <code>observability/*</code> endpoints. There is no way to rotate service-client credentials without also invalidating all active user sessions — no surgical incident response is possible</li>
+<li><strong>Ability to Implement Control:</strong> High</li>
+<li><strong>Recommended controls:</strong></li>
+<li>Introduce separate secrets: <code>SESSION_HMAC_KEY</code> (session token HMAC), <code>RECOVERY_HMAC_KEY</code> (recovery token HMAC), <code>SERVICE_API_KEY</code> (service-client authentication) — three independent values, independently rotatable.</li>
+<li>Add a <code>SECRET_KEY_VERSION</code> or key ID mechanism so that token hashes can identify which key generation they were produced with, enabling zero-downtime rotation.</li>
+<li>Document a key rotation runbook: how to rotate each key independently, what sessions are invalidated, and how service clients are notified.</li>
+</ul>
+<h3 id="risk-2-no-startup-guard-prevents-use-of-default-secret_key-in-staging">Risk 2: No startup guard prevents use of default <code>SECRET_KEY</code> in staging</h3>
+<ul>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Risk Category:</strong> Configuration hardening and environment parity</li>
+<li><strong>GDPR Reference:</strong> Art. 32 — security of processing; Art. 25 — data protection by design</li>
+<li><strong>Potential Harm/Impact:</strong> The <code>model_validator</code> in <code>Settings</code> only rejects the default <code>"change-me-in-production"</code> when <code>environment == "production"</code>. A staging environment with <code>environment = "staging"</code> and the default key is fully operational — all sessions are signed with a publicly known key value, making every user session trivially forgeable</li>
+<li><strong>Ability to Implement Control:</strong> High</li>
+<li><strong>Recommended controls:</strong></li>
+<li>Extend the <code>validate_security_defaults</code> validator to also reject default secret values when <code>environment in ("staging", "production")</code>.</li>
+<li>Add the same guard to <code>AUTH_MVP_PASSWORD</code> (<code>CHANGE_ME_BEFORE_USE</code>) and <code>DATABASE_URL</code> password (<code>CHANGE_ME</code>) for non-development environments.</li>
+<li>Consider a CI pre-deployment check that reads the environment's <code>SECRET_KEY</code> and fails the pipeline if it matches any known default.</li>
+</ul>
+<h3 id="risk-3-database_url-embeds-plaintext-database-password-in-a-config-string">Risk 3: <code>DATABASE_URL</code> embeds plaintext database password in a config string</h3>
+<ul>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Risk Category:</strong> Credential exposure in configuration — OWASP A02:2021</li>
+<li><strong>GDPR Reference:</strong> Art. 32 — appropriate technical measures; Art. 33 — breach enabler</li>
+<li><strong>Potential Harm/Impact:</strong> SQLAlchemy may include the full <code>DATABASE_URL</code> in exception messages and debug output; if <code>LOG_LEVEL=DEBUG</code> or an unhandled exception is logged, the database password appears in the log stream and potentially in the log aggregator (see Risk Sheet: Structured Logging, Risk 3); the placeholder <code>CHANGE_ME</code> in <code>config.py</code> and <code>.env.example</code> risks being reused directly</li>
+<li><strong>Ability to Implement Control:</strong> Medium</li>
+<li><strong>Recommended controls:</strong></li>
+<li>Use a secrets manager (Vault, AWS Secrets Manager, Azure Key Vault) to inject <code>DATABASE_URL</code> at runtime rather than sourcing from a <code>.env</code> file.</li>
+<li>As an intermediate measure, configure SQLAlchemy with <code>hide_parameters=True</code> on the engine to prevent credential exposure in exception output.</li>
+<li>Add a startup validator: if <code>DATABASE_URL</code> contains the literal string <code>CHANGE_ME</code>, reject startup with a clear error in all non-development environments.</li>
+<li>Use PostgreSQL's <code>PGPASSFILE</code> (<code>.pgpass</code>) or <code>PGPASSWORD</code> environment separation instead of embedding the password in the URL.</li>
+</ul>
+<h3 id="risk-4-hardcoded-postgres_password-postgres-committed-to-version-control">Risk 4: Hardcoded <code>POSTGRES_PASSWORD: postgres</code> committed to version control</h3>
+<ul>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Risk Category:</strong> Credential committed to source control — OWASP A07:2021</li>
+<li><strong>GDPR Reference:</strong> Art. 32 — security of processing</li>
+<li><strong>Potential Harm/Impact:</strong> Any developer or automated system (CI/CD, GitHub Actions, Dependabot) with repository read access has the development database credential; if this password is reused — even accidentally — in a non-development environment, the database is trivially accessible; the credential is also in repository history and cannot be removed without a full <code>git filter-branch</code> / BFG rewrite</li>
+<li><strong>Ability to Implement Control:</strong> High</li>
+<li><strong>Recommended controls:</strong></li>
+<li>Replace the hardcoded value with an environment variable reference in <code>docker-compose.yml</code>: <code>POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}</code> — keeping <code>postgres</code> as a local-only default that is never committed as a required credential.</li>
+<li>Add a <code>docker-compose.override.yml</code> or <code>.env.docker</code> file (both <code>.gitignore</code>d) for developer-specific values.</li>
+<li>Add a pre-commit hook or CI secret-scanning step (e.g., <code>trufflehog</code>, <code>gitleaks</code>) to prevent future hardcoded secrets from reaching the repository.</li>
+</ul>
+<h3 id="risk-5-recovery-token-debug-exposure-flag-risk-of-misuse-outside-development-sandbox">Risk 5: Recovery token debug exposure flag — risk of misuse outside development sandbox</h3>
+<ul>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Risk Category:</strong> Debug backdoor in authentication flow</li>
+<li><strong>GDPR Reference:</strong> Art. 32 — security of processing; Art. 33 — breach notification if exploited</li>
+<li><strong>Potential Harm/Impact:</strong> <code>AUTH_RECOVERY_DEBUG_EXPOSE_TOKEN=true</code> returns a live, single-use password-reset token in the HTTP response body. If set on a shared staging environment (shared with QA engineers, product reviewers, or frontend developers), any developer with access to browser developer tools or a shared proxy captures a live credential for any user who requests a password reset during that period</li>
+<li><strong>Ability to Implement Control:</strong> High</li>
+<li><strong>Recommended controls:</strong></li>
+<li>Add an additional guard: refuse to activate this flag if more than one user record exists in <code>app_users</code> (i.e., only safe in single-user bootstrap scenarios).</li>
+<li>Add a startup warning log entry when this flag is enabled: <code>logger.warning("SECURITY_WARNING: auth_recovery_debug_expose_token is enabled — DO NOT USE IN SHARED ENVIRONMENTS")</code>.</li>
+<li>Remove the flag from <code>.env.example</code> entirely so it is never accidentally copied into a shared environment configuration.</li>
+<li>Consider replacing this debug pattern with a test-only token endpoint that is compiled out of production builds.</li>
+</ul>
+<h3 id="risk-6-no-api-key-scoping-rotation-or-per-client-identity-for-service-to-service-authentication">Risk 6: No API key scoping, rotation, or per-client identity for service-to-service authentication</h3>
+<ul>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Risk Category:</strong> Service credential lifecycle and least-privilege</li>
+<li><strong>GDPR Reference:</strong> Art. 25 — data protection by design; Art. 32 — security of processing</li>
+<li><strong>Potential Harm/Impact:</strong> A single <code>SECRET_KEY</code>-based API key authenticates all service clients (CrewAI orchestrator, automation tools, test harnesses) with the <code>service</code> role. There is no per-client identity, no expiry, no revocation mechanism, and no audit trail distinguishing which service client made a given request. If the key is shared with a third-party integration or leaked from one service, all service clients are compromised simultaneously</li>
+<li><strong>Ability to Implement Control:</strong> Medium</li>
+<li><strong>Recommended controls:</strong></li>
+<li>Issue per-client API keys (e.g., <code>ORCHESTRATOR_API_KEY</code>, <code>AUTOMATION_API_KEY</code>) each stored separately; validate against a key registry rather than a single shared secret.</li>
+<li>Assign each service client a unique <code>actor_id</code> (e.g., <code>orchestrator-v1</code>, <code>ci-automation</code>) in the <code>require_api_auth</code> response so that service-client requests are attributable in <code>audit_events</code>.</li>
+<li>Add key expiry and a rotation schedule (e.g., 90-day rotation enforced via startup validator).</li>
+</ul>
+<h3 id="risk-7-pbkdf2-password-hashing-is-a-custom-implementation-without-a-vetted-library">Risk 7: PBKDF2 password hashing is a custom implementation without a vetted library</h3>
+<ul>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Risk Category:</strong> Cryptographic implementation risk</li>
+<li><strong>GDPR Reference:</strong> Art. 32 — appropriate technical measures</li>
+<li><strong>Potential Harm/Impact:</strong> The custom PBKDF2-HMAC-SHA256 implementation in <code>passwords.py</code> is functionally correct (240 000 iterations, 16-byte random salt, HMAC-based constant-time comparison), but custom cryptographic code carries implementation risk: iteration count is hardcoded (not configurable for future increases), there is no algorithm migration path if PBKDF2 needs to be replaced with Argon2id, and the format string <code>pbkdf2_sha256$...</code> mimics Django's format but is not interoperable with standard tools</li>
+<li><strong>Ability to Implement Control:</strong> High</li>
+<li><strong>Recommended controls:</strong></li>
+<li>Replace the custom implementation with <code>passlib</code> (with <code>argon2</code> backend) or <code>argon2-cffi</code> directly — both are vetted, actively maintained libraries with built-in migration support.</li>
+<li>If PBKDF2 must be retained, make <code>iterations</code> a configurable setting (<code>PASSWORD_HASH_ITERATIONS</code>) and add a startup validator that rejects values below 260 000 (the 2023 OWASP minimum).</li>
+<li>Add a password rehash-on-login path: when a user successfully logs in and their stored hash uses outdated parameters, silently re-hash with current parameters.</li>
+</ul>
+<h2 id="5-cross-sheet-consistency">5. Cross-Sheet Consistency</h2>
+<table>
+<thead>
+<tr>
+<th>Control Area</th>
+<th>Related Risk Sheet</th>
+<th>Alignment Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SECRET_KEY</code> rotation impacts all active sessions</td>
+<td>Risk Sheet 2 (RBAC, Risk 2)</td>
+<td>Session table purge (recommended in sheet 2) must be coordinated with key rotation — revoke all sessions before rotating <code>SECRET_KEY</code></td>
+</tr>
+<tr>
+<td><code>DATABASE_URL</code> password in log traces</td>
+<td>Risk Sheet 3b (Structured Logging, Risk 2)</td>
+<td>DEBUG log guard must cover SQLAlchemy engine initialisation path to prevent URL (with password) from appearing in debug output</td>
+</tr>
+<tr>
+<td><code>ANTHROPIC_API_KEY</code> / <code>PERPLEXITY_API_KEY</code> in provider SDK debug output</td>
+<td>Risk Sheet 3b (Structured Logging, Risk 2)</td>
+<td>Provider SDK log suppression must cover API key header values</td>
+</tr>
+<tr>
+<td>Service-client API key — single shared secret</td>
+<td>Risk Sheet 2 (RBAC, Risk 5)</td>
+<td>Per-client API keys enable attribution of service-client access to <code>observability/*</code> (Risk 5 sheet 2) — dependent fix</td>
+</tr>
+<tr>
+<td>Recovery token debug flag</td>
+<td>Risk Sheet 3b (Structured Logging)</td>
+<td>If <code>debug_token</code> is ever accidentally logged (e.g., by a request-body logger middleware), it constitutes a credential exposure in the log stream — body logging must never capture auth endpoint responses</td>
+</tr>
+<tr>
+<td><code>POSTGRES_PASSWORD</code> in docker-compose</td>
+<td>Risk Sheet 1 (Model Providers, Risk 1)</td>
+<td>On-prem model migration requires a private network DB configuration — the same docker-compose pattern must not be used for production DB connectivity</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="additional-information-from-the-repo">Additional information from the repo</h2>
+<p>Brief inventory of <strong>sensitive configuration and credential surfaces</strong> in this repository. <strong>Do not commit real values</strong>; use <code>.env</code> (gitignored) or your platform’s secret store. Defaults in example files and <code>docker-compose.yml</code> are for local development only.</p>
+<h3 id="environment-variables-main-api">Environment variables (main API)</h3>
+<p>Loaded via <code>src/doc_quality/core/config.py</code> (<code>Settings</code>) and <code>.env.example</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SECRET_KEY</code></td>
+<td>Session signing, cookie security context, and <strong>API auth</strong> for routes using <code>require_api_auth</code> (<code>X-API-Key</code> or <code>Authorization: Bearer …</code> must match this value).</td>
+</tr>
+<tr>
+<td><code>DATABASE_URL</code></td>
+<td>DB connection string; embeds DB user <strong>password</strong> in the URL.</td>
+</tr>
+<tr>
+<td><code>AUTH_MVP_EMAIL</code> / <code>AUTH_MVP_PASSWORD</code></td>
+<td>MVP bootstrap user (dev/demo); password must meet app policy (≥12 chars in production paths).</td>
+</tr>
+<tr>
+<td><code>AUTH_MVP_ROLES</code> / <code>AUTH_MVP_ORG</code></td>
+<td>RBAC/org binding for the MVP user (not cryptographic secrets, but identity policy).</td>
+</tr>
+<tr>
+<td><code>ANTHROPIC_API_KEY</code></td>
+<td>Optional LLM provider key for document enrichment paths.</td>
+</tr>
+<tr>
+<td><code>PERPLEXITY_API_KEY</code></td>
+<td>Optional key for live regulatory research (<code>research_service</code>, MCP).</td>
+</tr>
+</tbody>
+</table>
+<p>Related non-secret toggles that affect exposure of recovery material: <code>AUTH_RECOVERY_DEBUG_EXPOSE_TOKEN</code> (must stay off outside development).</p>
+<h3 id="environment-variables-standalone-orchestrator">Environment variables (standalone orchestrator)</h3>
+<p>Loaded via <code>services/orchestrator/src/doc_quality_orchestrator/config.py</code> (<code>OrchestratorSettings</code>).</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>API_SECRET_KEY</code></td>
+<td>Protects orchestrator HTTP endpoints (<code>X-API-Key</code> / <code>Bearer</code>); empty disables enforcement (see orchestrator <code>main.py</code>).</td>
+</tr>
+<tr>
+<td><code>ANTHROPIC_API_KEY</code></td>
+<td>Provider key for crew/scaffold LLM calls in the orchestrator process.</td>
+</tr>
+<tr>
+<td><code>NEMOTRON_API_KEY</code></td>
+<td>Optional key when Nemotron endpoints are configured.</td>
+</tr>
+<tr>
+<td><code>BACKEND_BASE_URL</code></td>
+<td>Not a secret by itself, but must align with how the main API expects orchestrator callbacks; avoid leaking internal URLs in client-facing configs.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="http-headers-runtime-secrets-not-in-repo">HTTP headers (runtime secrets, not in repo)</h3>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>X-API-Key</code></td>
+<td>Same value as <code>SECRET_KEY</code> (API) or <code>API_SECRET_KEY</code> (orchestrator), depending on service.</td>
+</tr>
+<tr>
+<td><code>Authorization: Bearer &lt;token&gt;</code></td>
+<td>Alternate form of the same shared secrets above.</td>
+</tr>
+<tr>
+<td><code>X-Request-ID</code> / <code>X-Correlation-ID</code> / <code>X-Trace-ID</code></td>
+<td>Correlation identifiers (not secrets; listed in observability docs).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="persisted-secrets-database-not-environment">Persisted secrets (database, not environment)</h3>
+<table>
+<thead>
+<tr>
+<th>Surface</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Session cookies (<code>dq_session</code>)</td>
+<td>Opaque cookie; server stores <strong>hashed</strong> session token (<code>UserSessionORM.session_token_hash</code>).</td>
+</tr>
+<tr>
+<td>User passwords</td>
+<td>Stored as <strong>hashes</strong> only (<code>AppUserORM.password_hash</code>).</td>
+</tr>
+<tr>
+<td>Password recovery</td>
+<td>Single-use recovery flow uses <strong>hashed</strong> tokens in <code>password_recovery_tokens</code> (raw token only sent to user, not stored).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ide-local-tooling">IDE / local tooling</h3>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th>Secret</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.vscode/mcp.json</code></td>
+<td>References <code>${env:PERPLEXITY_API_KEY}</code> for the Perplexity MCP server (key stays in the shell environment, not in the file).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="frontend">Frontend</h3>
+<p><code>frontend/.env.local.example</code> defines <strong>public</strong> origins (<code>NEXT_PUBLIC_*</code>) only—no API keys. The browser authenticates with <strong>httpOnly cookies</strong> issued by the backend after login.</p>
+<h3 id="development-defaults-rotate-for-anything-real">Development defaults (rotate for anything real)</h3>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>What</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docker-compose.yml</code></td>
+<td><code>POSTGRES_PASSWORD=postgres</code> for the local Postgres container.</td>
+</tr>
+<tr>
+<td><code>Settings</code> / <code>OrchestratorSettings</code> code defaults</td>
+<td>Placeholder <code>change-me-in-production</code> strings; production startup fails if <code>SECRET_KEY</code> is left at the API default.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="test-fixtures">Test fixtures</h3>
+<p><code>.env.test</code> contains <strong>intentionally weak, committed test-only</strong> values (e.g. <code>SECRET_KEY=test-api-key</code>). Use only under pytest, never in deployed environments.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.indexes"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": false, "loop": false, "zoomable": true, "draggable": false, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "none"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

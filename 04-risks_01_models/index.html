@@ -1,0 +1,1381 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://willingc.github.io/compliance-checker/04-risks_01_models/">
+      
+      
+        <link rel="prev" href="../03-week2_use_cases_risks/">
+      
+      
+        <link rel="next" href="../04-risks_02_access_control/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>AI System Privacy Audit: Model Provider Risks and Mitigations - Privacy audit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .glightbox-clean .gslide-media { -webkit-box-shadow: none; box-shadow: none; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ai-system-privacy-audit-model-provider-risks-and-mitigations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Privacy audit" class="md-header__button md-logo" aria-label="Privacy audit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Privacy audit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AI System Privacy Audit: Model Provider Risks and Mitigations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Privacy audit" class="md-nav__button md-logo" aria-label="Privacy audit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    Privacy audit
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy audit of documentation quality compliance checker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-week1_use_cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identify use cases and data flows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-week2_risk_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Risk hunt and threat model the use cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-week2_use_cases_risks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Use cases and risk areas to investigate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Model Provider Risks and Mitigations
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Model Provider Risks and Mitigations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#1-system-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. System Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-data-flow-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Data Flow Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Data Flow Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#corrected-interpretation-for-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Corrected interpretation for privacy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sensitive-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sensitive Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Sensitive Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-prompt-context-and-model-output-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: Prompt Context and Model Output Content
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-providermodel-telemetry-and-rich-trace-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: Provider/Model Telemetry and Rich Trace Payload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-model-credentials-and-routing-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: Model Credentials and Routing Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-privacy-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Privacy Risks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Privacy Risks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#risk-1-external-model-transfer-of-potentially-personal-promptoutput-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 1: External model transfer of potentially personal prompt/output data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-2-over-collection-and-over-retention-in-model-observability-traces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 2: Over-collection and over-retention in model observability traces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-3-hallucinated-model-output-impacts-compliance-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 3: Hallucinated model output impacts compliance decisions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-4-modelversion-drift-reduces-reproducibility-and-explainability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 4: Model/version drift reduces reproducibility and explainability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-5-migration-to-on-prem-models-may-degrade-quality-if-unmanaged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 5: Migration to on-prem models may degrade quality if unmanaged
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-on-prem-migration-plan-quality-preserving" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. On-Prem Migration Plan (Quality-Preserving)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-information-from-the-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional information from the repo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional information from the repo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perplexity-srcdoc_qualityservicesresearch_servicepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Perplexity (src/doc_quality/services/research_service.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#research-api-persistence-srcdoc_qualityapiroutesresearchpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research API persistence (src/doc_quality/api/routes/research.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anthropic-risk-template-ai-suggest-srcdoc_qualityapiroutesrisk_templatespy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anthropic — risk template AI suggest (src/doc_quality/api/routes/risk_templates.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anthropic-document-analysis-agent-srcdoc_qualityagentsdoc_check_agentpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anthropic — document analysis agent (src/doc_quality/agents/doc_check_agent.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compliance-agent-srcdoc_qualityagentscompliance_agentpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compliance agent (src/doc_quality/agents/compliance_agent.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orchestrator-service-servicesorchestrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orchestrator service (services/orchestrator/)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subprocessor-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subprocessor summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-risks_02_access_control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Role-Based Access Controls and GDPR Compliance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-risks_03_telemetry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Application Telemetry and Workflow Tracing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-risks_03_structured_logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Structured Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-risks_04_secrets_tokens_keys/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Secrets, Tokens, and API Keys
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#1-system-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. System Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-data-flow-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Data Flow Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Data Flow Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#corrected-interpretation-for-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Corrected interpretation for privacy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sensitive-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sensitive Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Sensitive Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-prompt-context-and-model-output-content" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: Prompt Context and Model Output Content
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-providermodel-telemetry-and-rich-trace-payload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: Provider/Model Telemetry and Rich Trace Payload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-model-credentials-and-routing-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: Model Credentials and Routing Configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-privacy-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Privacy Risks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Privacy Risks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#risk-1-external-model-transfer-of-potentially-personal-promptoutput-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 1: External model transfer of potentially personal prompt/output data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-2-over-collection-and-over-retention-in-model-observability-traces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 2: Over-collection and over-retention in model observability traces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-3-hallucinated-model-output-impacts-compliance-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 3: Hallucinated model output impacts compliance decisions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-4-modelversion-drift-reduces-reproducibility-and-explainability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 4: Model/version drift reduces reproducibility and explainability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-5-migration-to-on-prem-models-may-degrade-quality-if-unmanaged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 5: Migration to on-prem models may degrade quality if unmanaged
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-on-prem-migration-plan-quality-preserving" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. On-Prem Migration Plan (Quality-Preserving)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-information-from-the-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional information from the repo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional information from the repo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perplexity-srcdoc_qualityservicesresearch_servicepy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Perplexity (src/doc_quality/services/research_service.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#research-api-persistence-srcdoc_qualityapiroutesresearchpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Research API persistence (src/doc_quality/api/routes/research.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anthropic-risk-template-ai-suggest-srcdoc_qualityapiroutesrisk_templatespy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anthropic — risk template AI suggest (src/doc_quality/api/routes/risk_templates.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anthropic-document-analysis-agent-srcdoc_qualityagentsdoc_check_agentpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Anthropic — document analysis agent (src/doc_quality/agents/doc_check_agent.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compliance-agent-srcdoc_qualityagentscompliance_agentpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compliance agent (src/doc_quality/agents/compliance_agent.py)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orchestrator-service-servicesorchestrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orchestrator service (services/orchestrator/)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subprocessor-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subprocessor summary
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ai-system-privacy-audit-model-provider-risks-and-mitigations">AI System Privacy Audit: Model Provider Risks and Mitigations</h1>
+<p>System in scope: <code>doc_quality_compliance_check</code> (backend + orchestrator + observability).</p>
+<h2 id="1-system-diagram">1. System Diagram</h2>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/raw/compliance-checker-2026-05-02.png" data-desc-position="bottom"><img alt="" src="../images/raw/compliance-checker-2026-05-02.png"></a></p>
+<p>Model-relevant architecture facts used in this risk sheet:</p>
+<ul>
+<li>The backend/orchestrator uses a model adapter layer (Anthropic, OpenAI-compatible, Nemotron target/scaffold).</li>
+<li>Prompt/output traces are exposed and persisted for observability and audit workflows.</li>
+<li>The product already includes anti-hallucination signals and a validator stage, but model outputs can still be wrong or overconfident.</li>
+</ul>
+<h2 id="2-data-flow-analysis">2. Data Flow Analysis</h2>
+<table>
+<thead>
+<tr>
+<th>Data Flow</th>
+<th>Source</th>
+<th>Destination</th>
+<th>Encrypted?</th>
+<th>Logged?</th>
+<th>Priority</th>
+<th>Action Point</th>
+<th>Implemtation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User document/text submission (may include personal data)</td>
+<td>Frontend user session</td>
+<td>FastAPI API routes (<code>/documents/*</code>, workflow endpoints)</td>
+<td>In-transit (HTTPS/TLS)</td>
+<td>Request + audit metadata; selected payload fields in audit/observability paths</td>
+<td>High</td>
+<td>1. Document meta data (e.g. author, role, time of change, change topic ...).  use pseudonymization techniques on private data. Role based data exist in postgres db (mandatory profiles). Mask private data in change history meta data table depending on role and for final output. 2. Document content proof about PII data in text, images and link targets.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Workflow context assembly for model call</td>
+<td>FastAPI/Orchestrator</td>
+<td>Model adapter layer</td>
+<td>Internal service transport (TLS in deployment)</td>
+<td>Yes (workflow/audit events)</td>
+<td>High</td>
+<td>1. Orchestrator to block activities outside of the models sandbox. 2. Data schema for validation</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Prompt payload to model provider (current state)</td>
+<td>Model adapter</td>
+<td>External provider endpoint (Anthropic/OpenAI-compatible/Nemotron target)</td>
+<td>In-transit (HTTPS/TLS)</td>
+<td>Provider metadata and local audit/trace logs</td>
+<td>High</td>
+<td>local model sandbox / no external models</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Model completion returned to service</td>
+<td>External provider</td>
+<td>Model adapter + orchestrator flow</td>
+<td>In-transit (HTTPS/TLS)</td>
+<td>Yes (quality traces, run/step events)</td>
+<td>High</td>
+<td>like above</td>
+<td>maybe</td>
+</tr>
+<tr>
+<td>Prompt/output pair persistence</td>
+<td>Orchestrator/quality service</td>
+<td>PostgreSQL observability/audit records</td>
+<td>In-transit + at-rest DB controls</td>
+<td>Yes (explicitly persisted)</td>
+<td>High</td>
+<td>Prompt check for PII data.</td>
+<td>maybe</td>
+</tr>
+<tr>
+<td>Quality telemetry view (provider, model, prompt/output, rich payload)</td>
+<td>Backend observability endpoints</td>
+<td>Admin UI (<code>/admin/observability</code>)</td>
+<td>In-transit (HTTPS/TLS)</td>
+<td>Access path is auditable</td>
+<td>High</td>
+<td>Check tracing output for PII data.</td>
+<td>no</td>
+</tr>
+<tr>
+<td>On-prem target model invocation (target state)</td>
+<td>Model adapter</td>
+<td>Internal model gateway/cluster (private network)</td>
+<td>In-transit (mTLS recommended)</td>
+<td>Yes (internal trace + governance logs)</td>
+<td>High</td>
+<td>Check tracing &amp; logging output for PII data.</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Shadow evaluation during migration</td>
+<td>Adapter dual-run mode</td>
+<td>External + internal models (temporarily)</td>
+<td>In-transit (TLS/mTLS)</td>
+<td>Yes (comparison-only dataset, restricted retention)</td>
+<td>Medium</td>
+<td>Model in sandbox and usage of synthetic dataset.</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corrected-interpretation-for-privacy">Corrected interpretation for privacy</h3>
+<ul>
+<li>The critical privacy boundary is not only frontend-to-backend, but backend/orchestrator-to-model-provider.</li>
+<li>The highest-risk payload is the full prompt context plus model output, because both may contain direct or indirect personal data.</li>
+<li>Observability improves governance but increases privacy exposure if traces are over-retained or insufficiently redacted.</li>
+</ul>
+<h2 id="3-sensitive-data">3. Sensitive Data</h2>
+<h3 id="sensitive-data-prompt-context-and-model-output-content">Sensitive Data: Prompt Context and Model Output Content</h3>
+<ul>
+<li><strong>Category:</strong> Input/output content containing direct or inferred personal data</li>
+<li><strong>Examples:</strong> Names, emails, stakeholder assignments, reviewer identifiers, document passages copied into prompts, generated summaries that may restate personal data</li>
+<li><strong>Why Sensitive:</strong> Leaves the primary application context during model inference (current external-provider path)</li>
+<li><strong>Current Protection:</strong> Session auth, RBAC, TLS, audit events, optional graceful fallback without external model key</li>
+<li><strong>Risk (or Harm) if Exposed:</strong> Unauthorized disclosure, regulatory non-compliance (GDPR purpose limitation/data minimization), reputational harm</li>
+</ul>
+<h3 id="sensitive-data-providermodel-telemetry-and-rich-trace-payload">Sensitive Data: Provider/Model Telemetry and Rich Trace Payload</h3>
+<ul>
+<li><strong>Category:</strong> Metadata linked to actors, workflows, and potentially sensitive content fingerprints</li>
+<li><strong>Examples:</strong> <code>provider</code>, <code>model_used</code>, <code>trace_id</code>, <code>correlation_id</code>, latency/tokens, rich payload entries, prompt/output snapshots</li>
+<li><strong>Why Sensitive:</strong> Enables reconstruction of who triggered what model action and when; can become re-identifiable when combined with audit tables</li>
+<li><strong>Current Protection:</strong> Backend-protected endpoints, role checks, PostgreSQL persistence</li>
+<li><strong>Risk (or Harm) if Exposed:</strong> Excessive internal visibility, inference attacks, unauthorized profiling of users/reviewers</li>
+</ul>
+<h3 id="sensitive-data-model-credentials-and-routing-configuration">Sensitive Data: Model Credentials and Routing Configuration</h3>
+<ul>
+<li><strong>Category:</strong> Secrets and control-plane configuration</li>
+<li><strong>Examples:</strong> API keys, adapter routing flags, provider selection settings</li>
+<li><strong>Why Sensitive:</strong> Compromise enables data exfiltration or unauthorized model usage</li>
+<li><strong>Current Protection:</strong> Environment-based secret configuration and backend auth controls</li>
+<li><strong>Risk (or Harm) if Exposed:</strong> Account abuse, data leakage, loss of integrity of compliance decisions</li>
+</ul>
+<h2 id="4-privacy-risks">4. Privacy Risks</h2>
+<h3 id="risk-1-external-model-transfer-of-potentially-personal-promptoutput-data">Risk 1: External model transfer of potentially personal prompt/output data</h3>
+<ul>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Risk Category:</strong> Model data transfer and residency</li>
+<li><strong>Potential Harm/Impact:</strong> Data leaves controlled environment; third-party processing and cross-border concerns</li>
+<li><strong>Ability to Implement Control:</strong> Medium</li>
+<li><strong>Recommended controls:</strong></li>
+<li>Replace external inference path with internal on-prem model gateway as default.</li>
+<li>Keep adapter interface stable so provider swap does not change business logic.</li>
+<li>Enforce strict egress policy: only approved internal model endpoints from production.</li>
+</ul>
+<h3 id="risk-2-over-collection-and-over-retention-in-model-observability-traces">Risk 2: Over-collection and over-retention in model observability traces</h3>
+<ul>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Risk Category:</strong> Logging/telemetry minimization</li>
+<li><strong>Potential Harm/Impact:</strong> Prompt/output traces may store unnecessary personal data for too long</li>
+<li><strong>Ability to Implement Control:</strong> High</li>
+<li><strong>Recommended controls:</strong></li>
+<li>Apply pre-persistence redaction policy for prompt/output trace fields.</li>
+<li>Separate "operational" vs "audit-evidence" retention classes with explicit TTLs.</li>
+<li>Restrict raw trace visibility to least-privilege roles and log all access.</li>
+</ul>
+<h3 id="risk-3-hallucinated-model-output-impacts-compliance-decisions">Risk 3: Hallucinated model output impacts compliance decisions</h3>
+<ul>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Risk Category:</strong> Model output reliability and decision integrity</li>
+<li><strong>Potential Harm/Impact:</strong> Wrong legal/compliance guidance, missed obligations, false audit confidence</li>
+<li><strong>Ability to Implement Control:</strong> Medium</li>
+<li><strong>Recommended controls:</strong></li>
+<li>Keep mandatory validator stage and add citation-required answer format.</li>
+<li>Add grounding checks against rule packs before output is accepted.</li>
+<li>Require HITL approval for high-impact outputs.</li>
+</ul>
+<h3 id="risk-4-modelversion-drift-reduces-reproducibility-and-explainability">Risk 4: Model/version drift reduces reproducibility and explainability</h3>
+<ul>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Risk Category:</strong> Governance and traceability</li>
+<li><strong>Potential Harm/Impact:</strong> Same input yields diverging output without clear reason; weak audit defensibility</li>
+<li><strong>Ability to Implement Control:</strong> Medium</li>
+<li><strong>Recommended controls:</strong></li>
+<li>Persist model version, adapter version, prompt template version, and config hash for every run.</li>
+<li>Freeze approved model release sets per environment.</li>
+<li>Run periodic regression suite on reference compliance tasks.</li>
+</ul>
+<h3 id="risk-5-migration-to-on-prem-models-may-degrade-quality-if-unmanaged">Risk 5: Migration to on-prem models may degrade quality if unmanaged</h3>
+<ul>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Risk Category:</strong> Migration and model quality assurance</li>
+<li><strong>Potential Harm/Impact:</strong> Quality drop or hidden failure modes could shift risk from privacy to governance failure</li>
+<li><strong>Ability to Implement Control:</strong> High</li>
+<li><strong>Recommended controls:</strong></li>
+<li>Build a benchmark set from real workflows (privacy-scrubbed), including hallucination-sensitive cases.</li>
+<li>Use shadow mode (external vs on-prem) with acceptance thresholds before cutover.</li>
+<li>Define release gates: factuality, citation correctness, latency, and refusal behavior.</li>
+</ul>
+<h2 id="5-on-prem-migration-plan-quality-preserving">5. On-Prem Migration Plan (Quality-Preserving)</h2>
+<p>Target objective: remove external GenAI dependency for production personal-data paths while maintaining or improving compliance-output quality.</p>
+<ol>
+<li><strong>Adapter-first migration:</strong> keep orchestration and API contracts unchanged; switch routing in adapter layer.</li>
+<li><strong>Dual-run validation:</strong> run external and on-prem in parallel for a controlled period on the same scrubbed inputs.</li>
+<li><strong>Quality gate:</strong> promote on-prem only when benchmark thresholds are met (accuracy, hallucination rate, explainability/citations, latency).</li>
+<li><strong>Privacy hardening:</strong> enforce prompt minimization, redaction, and retention classes before and after cutover.</li>
+<li><strong>Operational fallback:</strong> if on-prem model confidence/validator checks fail, route to deterministic rules + HITL instead of external provider.</li>
+</ol>
+<p>This sequence preserves output quality while reducing privacy exposure and external model dependency.</p>
+<hr>
+<h2 id="additional-information-from-the-repo">Additional information from the repo</h2>
+<p>Subprocessor egress — Anthropic and Perplexity</p>
+<h3 id="perplexity-srcdoc_qualityservicesresearch_servicepy">Perplexity (<code>src/doc_quality/services/research_service.py</code>)</h3>
+<p><strong>When:</strong> <code>PERPLEXITY_API_KEY</code> is non-empty.</p>
+<p><strong>Prompt content:</strong> Built from <code>ResearchRequest</code>: <code>domain</code>, <code>description</code>, <code>target_market</code>, and optional <code>custom_query</code> (or default research question) via <code>prompts/research_prompt_v1.txt</code>.</p>
+<p><strong>When key is empty:</strong> Static fallback; <strong>no</strong> HTTP call to Perplexity (still builds <code>query</code> string for <code>ResearchResult</code>).</p>
+<h3 id="research-api-persistence-srcdoc_qualityapiroutesresearchpy">Research API persistence (<code>src/doc_quality/api/routes/research.py</code>)</h3>
+<p>When <code>result.provider == "perplexity"</code>, the API calls <code>create_quality_observation</code> with <code>payload</code> containing:</p>
+<ul>
+<li><code>llm_prompt</code> (full built prompt),</li>
+<li><code>llm_output</code> (full model answer),</li>
+<li>provider metadata and citation counts.</li>
+</ul>
+<p>These are stored in <strong><code>quality_observations.payload</code></strong> (<code>src/doc_quality/services/quality_service.py</code>). This duplicates potentially sensitive user text <strong>on disk</strong> in addition to sending it to Perplexity.</p>
+<h3 id="anthropic-risk-template-ai-suggest-srcdoc_qualityapiroutesrisk_templatespy">Anthropic — risk template AI suggest (<code>src/doc_quality/api/routes/risk_templates.py</code>)</h3>
+<p><strong>When:</strong> <code>ANTHROPIC_API_KEY</code> set; route <code>ai-suggest</code>.</p>
+<p><strong>Sent to Anthropic:</strong> System prompt (FMEA vs RMF), optional <code>request.context</code> (product/system context), <code>partial_row</code> as JSON, and instructions. <strong>Not</strong> full documents unless <code>context</code> or row fields contain them.</p>
+<h3 id="anthropic-document-analysis-agent-srcdoc_qualityagentsdoc_check_agentpy">Anthropic — document analysis agent (<code>src/doc_quality/agents/doc_check_agent.py</code>)</h3>
+<p><strong>Implementation:</strong> Sends up to <strong>2000 characters</strong> of document <code>content</code> plus <code>document_type</code> and rule-based <code>issues</code> in the user message.</p>
+<p><strong>Wiring:</strong> <code>DocumentCheckAgent</code> is <strong>not referenced</strong> elsewhere in the Python tree (only defined in this file). The live <strong><code>analyze_document</code></strong> path uses <strong><code>document_analyzer.analyze_document</code></strong> only — <strong>rule-based, no LLM</strong> in current API flows. Treat as dead integration risk if something imports it later.</p>
+<h3 id="compliance-agent-srcdoc_qualityagentscompliance_agentpy">Compliance agent (<code>src/doc_quality/agents/compliance_agent.py</code>)</h3>
+<p>Creates an Anthropic client when a key exists but <strong><code>check_compliance</code></strong> delegates to <strong><code>compliance_checker</code></strong> only (no Anthropic messages observed in <code>compliance_checker.py</code>).</p>
+<h3 id="orchestrator-service-servicesorchestrator">Orchestrator service (<code>services/orchestrator/</code>)</h3>
+<p>Separate process; <code>AnthropicAdapter</code> is scaffold-style. Boundary review: whatever workflows you enable may forward document fragments to backends — trace per workflow when operating this service.</p>
+<h3 id="subprocessor-summary">Subprocessor summary</h3>
+<table>
+<thead>
+<tr>
+<th>Vendor</th>
+<th>Trigger</th>
+<th>Typical data categories</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Perplexity</strong></td>
+<td><code>/api/v1/research/regulations</code> with API key</td>
+<td>Product domain, description, markets, optional free-text query → <strong>also persisted</strong> in DB as prompt+answer.</td>
+</tr>
+<tr>
+<td><strong>Anthropic</strong></td>
+<td>Risk template <code>ai-suggest</code></td>
+<td>Free-text context + partial row JSON.</td>
+</tr>
+<tr>
+<td><strong>Anthropic</strong></td>
+<td><code>DocumentCheckAgent</code></td>
+<td>First 2k chars of document + issues — <strong>not</strong> used by default document routes today.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.indexes"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": false, "loop": false, "zoomable": true, "draggable": false, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "none"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

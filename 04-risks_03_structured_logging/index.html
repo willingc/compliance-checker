@@ -1,0 +1,1476 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://willingc.github.io/compliance-checker/04-risks_03_structured_logging/">
+      
+      
+        <link rel="prev" href="../04-risks_03_telemetry/">
+      
+      
+        <link rel="next" href="../04-risks_04_secrets_tokens_keys/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>AI System Privacy Audit: Structured Logging - Privacy audit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .glightbox-clean .gslide-media { -webkit-box-shadow: none; box-shadow: none; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ai-system-privacy-audit-structured-logging" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Privacy audit" class="md-header__button md-logo" aria-label="Privacy audit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Privacy audit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AI System Privacy Audit: Structured Logging
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Privacy audit" class="md-nav__button md-logo" aria-label="Privacy audit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    Privacy audit
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy audit of documentation quality compliance checker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-week1_use_cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identify use cases and data flows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-week2_risk_model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Risk hunt and threat model the use cases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-week2_use_cases_risks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Use cases and risk areas to investigate
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-risks_01_models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Model Provider Risks and Mitigations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-risks_02_access_control/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Role-Based Access Controls and GDPR Compliance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-risks_03_telemetry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Application Telemetry and Workflow Tracing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Structured Logging
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Structured Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#1-system-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. System Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-data-flow-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Data Flow Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Data Flow Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#corrected-interpretation-for-gdpr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Corrected interpretation for GDPR
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sensitive-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sensitive Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Sensitive Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-user-email-in-actor_id-of-auth-audit-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: User Email in actor_id of Auth Audit Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-ip-address-in-rate-limit-and-lockout-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: IP Address in Rate-Limit and Lockout Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-document-and-entity-identifiers-in-http-path-log-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: Document and Entity Identifiers in HTTP Path Log Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-service-level-log-fields-with-reviewer-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: Service-Level Log Fields with Reviewer Identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-privacy-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Privacy Risks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Privacy Risks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#risk-1-no-pii-redaction-processor-in-structlog-chain-personal-data-emitted-in-plaintext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 1: No PII redaction processor in structlog chain — personal data emitted in plaintext
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-2-debug-log-level-may-expose-full-request-context-model-outputs-and-provider-sdk-traces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 2: DEBUG log level may expose full request context, model outputs, and provider SDK traces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-3-log-output-destination-and-retention-are-fully-infrastructure-delegated-with-no-application-level-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 3: Log output destination and retention are fully infrastructure-delegated with no application-level policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-4-ip-address-handling-in-rate-limit-events-is-undocumented-for-gdpr-purposes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 4: IP address handling in rate-limit events is undocumented for GDPR purposes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-5-structlog-and-audit_events-serve-overlapping-but-inconsistent-purposes-risk-of-duplication-and-compliance-confusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 5: Structlog and audit_events serve overlapping but inconsistent purposes — risk of duplication and compliance confusion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cross-sheet-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Cross-Sheet Consistency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-information-from-the-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional information from the repo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional information from the repo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stack-and-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack and configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-scoped-context-correlating-http-to-downstream-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request-scoped context (correlating HTTP to downstream work)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow-tracking-orchestrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow tracking (orchestrator)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-level-execution-limits-and-crew-bookkeeping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-level execution (limits and crew bookkeeping)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-domain-workflows-skills-api-and-hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend domain workflows (Skills API and HITL)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conventions-for-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conventions for operators
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-pointers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source pointers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-risks_04_secrets_tokens_keys/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI System Privacy Audit: Secrets, Tokens, and API Keys
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#1-system-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. System Diagram
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-data-flow-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Data Flow Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Data Flow Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#corrected-interpretation-for-gdpr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Corrected interpretation for GDPR
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-sensitive-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Sensitive Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Sensitive Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-user-email-in-actor_id-of-auth-audit-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: User Email in actor_id of Auth Audit Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-ip-address-in-rate-limit-and-lockout-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: IP Address in Rate-Limit and Lockout Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-document-and-entity-identifiers-in-http-path-log-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: Document and Entity Identifiers in HTTP Path Log Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-data-service-level-log-fields-with-reviewer-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive Data: Service-Level Log Fields with Reviewer Identity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-privacy-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Privacy Risks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Privacy Risks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#risk-1-no-pii-redaction-processor-in-structlog-chain-personal-data-emitted-in-plaintext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 1: No PII redaction processor in structlog chain — personal data emitted in plaintext
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-2-debug-log-level-may-expose-full-request-context-model-outputs-and-provider-sdk-traces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 2: DEBUG log level may expose full request context, model outputs, and provider SDK traces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-3-log-output-destination-and-retention-are-fully-infrastructure-delegated-with-no-application-level-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 3: Log output destination and retention are fully infrastructure-delegated with no application-level policy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-4-ip-address-handling-in-rate-limit-events-is-undocumented-for-gdpr-purposes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 4: IP address handling in rate-limit events is undocumented for GDPR purposes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#risk-5-structlog-and-audit_events-serve-overlapping-but-inconsistent-purposes-risk-of-duplication-and-compliance-confusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risk 5: Structlog and audit_events serve overlapping but inconsistent purposes — risk of duplication and compliance confusion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cross-sheet-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Cross-Sheet Consistency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-information-from-the-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional information from the repo
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional information from the repo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stack-and-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack and configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-scoped-context-correlating-http-to-downstream-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request-scoped context (correlating HTTP to downstream work)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workflow-tracking-orchestrator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workflow tracking (orchestrator)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-level-execution-limits-and-crew-bookkeeping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step-level execution (limits and crew bookkeeping)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-domain-workflows-skills-api-and-hitl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Backend domain workflows (Skills API and HITL)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conventions-for-operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conventions for operators
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-pointers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source pointers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ai-system-privacy-audit-structured-logging">AI System Privacy Audit: Structured Logging</h1>
+<p>System in scope: <code>doc_quality_compliance_check</code> — structlog-based application logging layer, HTTP request middleware log output, service-level log events, and the relationship between application logs and the persisted <code>audit_events</code> compliance trail.</p>
+<h2 id="1-system-diagram">1. System Diagram</h2>
+<p><a class="glightbox" data-type="image" data-width="100%" data-height="auto" href="../images/raw/compliance-checker-2026-05-02.png" data-desc-position="bottom"><img alt="" src="../images/raw/compliance-checker-2026-05-02.png"></a></p>
+<p>Structured-logging-relevant architecture facts used in this risk sheet:</p>
+<ul>
+<li>The application uses <strong>structlog ≥ 24.1.0</strong> configured via <code>core/logging_config.py</code>, with <code>PrintLoggerFactory</code> writing to stdout in JSON (production) or console (development) format.</li>
+<li>Log format is controlled by <code>LOG_FORMAT</code> env var (<code>json</code> for production); log level by <code>LOG_LEVEL</code> (default <code>INFO</code>).</li>
+<li>The <strong>HTTP request middleware</strong> in <code>api/main.py</code> binds <code>request_id</code>, <code>correlation_id</code>, and <code>trace_id</code> as context variables and logs every request with <code>method</code>, <code>path</code>, <code>status</code>, <code>duration_ms</code>.</li>
+<li>Service-level loggers (<code>get_logger(__name__)</code>) emit structured events at key decision points: HITL review lifecycle, report generation, research requests, template loading.</li>
+<li>The <strong>auth route</strong> writes <code>auth.login_success</code> / <code>auth.login_failure</code> events to <code>audit_events</code> (PostgreSQL) via the <code>log_event</code> service — not to the structlog stream — but login-related events appear in both surfaces.</li>
+<li>Rate-limiting signals (login throttle, recovery throttle) are tracked in-memory per email/IP; abuse events are logged.</li>
+<li><strong>No PII redaction processor</strong> is present in the structlog processor chain (<code>shared_processors</code> contains only <code>merge_contextvars</code>, <code>add_log_level</code>, <code>TimeStamper</code>, and a renderer).</li>
+<li>Structlog output goes to stdout; downstream retention, rotation, and access control depend entirely on infrastructure (e.g., Docker log driver, Kubernetes log aggregator, cloud logging service).</li>
+</ul>
+<h2 id="2-data-flow-analysis">2. Data Flow Analysis</h2>
+<table>
+<thead>
+<tr>
+<th>Data Flow</th>
+<th>Source</th>
+<th>Destination</th>
+<th>Encrypted?</th>
+<th>Logged?</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP request log entry emitted per request</td>
+<td>FastAPI middleware</td>
+<td>stdout (structlog) → log aggregator</td>
+<td>Depends on infrastructure transport</td>
+<td>Every request: <code>method</code>, <code>path</code>, <code>status</code>, <code>duration_ms</code>, <code>request_id</code>, <code>correlation_id</code>, <code>trace_id</code></td>
+<td>High</td>
+</tr>
+<tr>
+<td>Auth login event (success / failure)</td>
+<td><code>POST /api/v1/auth/login</code></td>
+<td><code>audit_events</code> PostgreSQL table <strong>and</strong> structlog stream</td>
+<td>In-transit + at-rest DB controls</td>
+<td>Email visible as <code>actor_id</code> in <code>audit_events</code>; login outcome logged in structlog</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Rate-limit / lockout event</td>
+<td><code>core/rate_limit.py</code>, auth route</td>
+<td>structlog stream</td>
+<td>Depends on infrastructure</td>
+<td>IP address and email appear as identifiers in throttle/lockout events</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Service lifecycle events (HITL, reports, research)</td>
+<td>Service layer (<code>hitl_workflow.py</code>, <code>report_generator.py</code>, <code>research_service.py</code>)</td>
+<td>structlog stream</td>
+<td>Depends on infrastructure</td>
+<td><code>review_id</code>, <code>document_id</code>, <code>report_id</code>, <code>domain</code>, <code>model</code>, <code>error</code> fields in log lines</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Research API error with domain and model</td>
+<td><code>research_service.py</code></td>
+<td>structlog stream</td>
+<td>Depends on infrastructure</td>
+<td><code>domain</code>, <code>model</code>, <code>error</code>, <code>status_code</code> logged on Perplexity API failure — domain may be business-sensitive</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Application startup / shutdown</td>
+<td><code>api/main.py</code>, orchestrator <code>main.py</code></td>
+<td>structlog stream</td>
+<td>Depends on infrastructure</td>
+<td><code>app_version</code>, <code>environment</code> logged; no credential values in default config</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>DEBUG-level log output (if <code>LOG_LEVEL=DEBUG</code>)</td>
+<td>Any service logger</td>
+<td>structlog stream</td>
+<td>Depends on infrastructure</td>
+<td>May include full request context, raw Pydantic model dumps, provider SDK debug output containing prompts/responses</td>
+<td>High</td>
+</tr>
+<tr>
+<td>structlog output to log aggregator / SIEM</td>
+<td>stdout (container runtime)</td>
+<td>Log aggregator (e.g., Loki, CloudWatch, Datadog)</td>
+<td>Depends on infrastructure configuration</td>
+<td>Entire log stream; third-party processor if SaaS aggregator — GDPR Art. 28 applies</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+<h3 id="corrected-interpretation-for-gdpr">Corrected interpretation for GDPR</h3>
+<ul>
+<li>The HTTP middleware logs <code>path</code> for every request — document paths like <code>/api/v1/documents/doc-abc</code> embed document identifiers; stakeholder paths embed profile IDs. These are personal-data-adjacent fields under GDPR if combined with a timestamp and user identity.</li>
+<li>The structlog stream does <strong>not</strong> log user identity on regular requests (no <code>user_email</code> field in the HTTP middleware), which is a positive privacy-by-design property. However, service-level loggers emit <code>reviewer_email</code> or <code>actor_id</code> in specific events.</li>
+<li>IP address appears implicitly in rate-limit and lockout enforcement — whether it is emitted to the log stream needs verification; IP is personal data under GDPR (CJEU <em>Breyer</em> ruling).</li>
+<li>If a SaaS log aggregator is used (Datadog, Splunk Cloud, CloudWatch), the entire log stream — including any personal data fields — constitutes a transfer to a data processor, requiring a GDPR Art. 28 Data Processing Agreement.</li>
+</ul>
+<h2 id="3-sensitive-data">3. Sensitive Data</h2>
+<h3 id="sensitive-data-user-email-in-actor_id-of-auth-audit-events">Sensitive Data: User Email in <code>actor_id</code> of Auth Audit Events</h3>
+<ul>
+<li><strong>Category:</strong> Personal data (identified natural person) — GDPR Art. 4(1)</li>
+<li><strong>Examples:</strong> <code>actor_id = "user@example.com"</code> in <code>auth.login_success</code>, <code>auth.login_failure</code>, <code>auth.recovery.requested</code> events written to <code>audit_events</code> and referenced in structlog entries</li>
+<li><strong>Why Sensitive:</strong> Directly identifies users; combined with <code>event_type</code>, <code>event_time</code>, and <code>payload.roles</code> creates a profile of user authentication behaviour; stored in the long-retention audit trail</li>
+<li><strong>Current Protection:</strong> <code>audit_events</code> table is role-gated; structlog output to stdout (downstream controls depend on infrastructure)</li>
+<li><strong>Risk (or Harm) if Exposed:</strong> Profiling of user login frequency and role assignments; breach of GDPR Art. 5(1)(f) confidentiality if log stream is accessible beyond authorised operators</li>
+</ul>
+<h3 id="sensitive-data-ip-address-in-rate-limit-and-lockout-events">Sensitive Data: IP Address in Rate-Limit and Lockout Events</h3>
+<ul>
+<li><strong>Category:</strong> Online identifier — GDPR Art. 4(1); personal data per CJEU <em>Breyer</em> ruling</li>
+<li><strong>Examples:</strong> IP address used as key in per-IP login throttle (<code>auth_login_rate_limit</code>) and recovery throttle; emitted as identifier in abuse-detection log entries</li>
+<li><strong>Why Sensitive:</strong> IP addresses are personal data under GDPR; stored in-memory rate-limit state and potentially emitted to log stream; if logged to a persistent aggregator, retention must comply with data minimisation obligations</li>
+<li><strong>Current Protection:</strong> In-memory rate-limit state (no DB persistence observed); log output depends on infrastructure</li>
+<li><strong>Risk (or Harm) if Exposed:</strong> GDPR breach if IP addresses are logged to long-retention aggregators without a legal basis and retention policy; enables correlation of individual users across sessions via IP linkage</li>
+</ul>
+<h3 id="sensitive-data-document-and-entity-identifiers-in-http-path-log-fields">Sensitive Data: Document and Entity Identifiers in HTTP Path Log Fields</h3>
+<ul>
+<li><strong>Category:</strong> Indirect personal data (pseudonymous identifiers linkable to persons)</li>
+<li><strong>Examples:</strong> <code>/api/v1/documents/{document_id}</code>, <code>/api/v1/stakeholders/{profile_id}</code>, <code>/api/v1/bridge/{run_id}</code> — all logged as <code>path</code> in every HTTP request entry</li>
+<li><strong>Why Sensitive:</strong> Document IDs and stakeholder profile IDs are pseudonymous references to personal data records; combined with timestamp and source IP they can reconstruct a user's activity trail</li>
+<li><strong>Current Protection:</strong> HTTP log entry does not include user email or session ID (positive control); HTTPS in transit</li>
+<li><strong>Risk (or Harm) if Exposed:</strong> Re-identification of user activity from log records; access pattern reconstruction; GDPR Art. 5(2) accountability gap if logs are not access-controlled</li>
+</ul>
+<h3 id="sensitive-data-service-level-log-fields-with-reviewer-identity">Sensitive Data: Service-Level Log Fields with Reviewer Identity</h3>
+<ul>
+<li><strong>Category:</strong> Personal data embedded in operational log events</li>
+<li><strong>Examples:</strong> <code>reviewer_email</code> in HITL workflow log entries (<code>review_created</code>, <code>review_status_updated</code>); <code>actor_id</code> (email) in Skills API skill event log; <code>domain</code> in research service error logs</li>
+<li><strong>Why Sensitive:</strong> Reviewer email directly identifies a natural person and is logged alongside document IDs and review decisions; persists in log stream for as long as logs are retained</li>
+<li><strong>Current Protection:</strong> Structlog output to stdout; no PII redaction processor in chain; retention and access depend on infrastructure</li>
+<li><strong>Risk (or Harm) if Exposed:</strong> Reviewer identity linked to specific document review decisions in log records; GDPR violation if logs are retained beyond operational need or shared with third-party aggregators without a DPA</li>
+</ul>
+<h2 id="4-privacy-risks">4. Privacy Risks</h2>
+<h3 id="risk-1-no-pii-redaction-processor-in-structlog-chain-personal-data-emitted-in-plaintext">Risk 1: No PII redaction processor in structlog chain — personal data emitted in plaintext</h3>
+<ul>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Risk Category:</strong> Logging minimisation and PII scrubbing</li>
+<li><strong>GDPR Reference:</strong> Art. 5(1)(c) — data minimisation; Art. 25 — privacy by design; Art. 32 — security of processing</li>
+<li><strong>Potential Harm/Impact:</strong> Emails, document IDs, and reviewer identifiers flow through the structlog processor chain without any scrubbing or pseudonymisation; any consumer of the log stream (log aggregator, on-call engineer, third-party SIEM) receives plaintext personal data; no technical mechanism prevents accidental inclusion of additional sensitive fields in future log entries</li>
+<li><strong>Ability to Implement Control:</strong> High</li>
+<li><strong>Recommended controls:</strong></li>
+<li>Add a custom structlog processor (between <code>TimeStamper</code> and renderer) that redacts or pseudonymises known sensitive field names: <code>reviewer_email</code>, <code>actor_id</code> (if email), <code>user_email</code>, <code>email</code>, and optionally <code>actor_id</code> values matching an email pattern.</li>
+<li>Publish a list of permitted log field names in the project coding standards; add a linting rule or test that checks log call sites do not introduce new unlisted PII fields.</li>
+<li>For audit-grade events that require the email (e.g., <code>auth.login_success</code>), route them exclusively to <code>audit_events</code> (DB, role-gated) rather than the structlog stream.</li>
+</ul>
+<h3 id="risk-2-debug-log-level-may-expose-full-request-context-model-outputs-and-provider-sdk-traces">Risk 2: DEBUG log level may expose full request context, model outputs, and provider SDK traces</h3>
+<ul>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Risk Category:</strong> Log-level governance and environment hardening</li>
+<li><strong>GDPR Reference:</strong> Art. 5(1)(c) — data minimisation; Art. 32 — security of processing</li>
+<li><strong>Potential Harm/Impact:</strong> <code>LOG_LEVEL=DEBUG</code> is the natural development setting; if accidentally applied to staging or production it exposes full Pydantic model dumps, raw provider API responses (which may contain prompt/output content), and internal service state including personal data; this has occurred in real incidents at comparable systems</li>
+<li><strong>Ability to Implement Control:</strong> High</li>
+<li><strong>Recommended controls:</strong></li>
+<li>Add a startup assertion: if <code>environment == "production"</code> and <code>log_level == "DEBUG"</code>, fail application startup with a clear error message.</li>
+<li>Default <code>LOG_LEVEL</code> to <code>WARNING</code> or <code>INFO</code> in production environment configuration; require an explicit override with a documented justification for any temporary <code>DEBUG</code> activation in production.</li>
+<li>Ensure provider SDK (Anthropic, Perplexity) debug output is suppressed independently of the application's log level by setting their respective logger levels explicitly to <code>WARNING</code> in <code>configure_logging()</code>.</li>
+</ul>
+<h3 id="risk-3-log-output-destination-and-retention-are-fully-infrastructure-delegated-with-no-application-level-policy">Risk 3: Log output destination and retention are fully infrastructure-delegated with no application-level policy</h3>
+<ul>
+<li><strong>Priority:</strong> High</li>
+<li><strong>Risk Category:</strong> Log retention governance and GDPR storage limitation</li>
+<li><strong>GDPR Reference:</strong> Art. 5(1)(e) — storage limitation; Art. 30 — record of processing; Art. 28 — data processor (if SaaS aggregator)</li>
+<li><strong>Potential Harm/Impact:</strong> <code>PrintLoggerFactory</code> writes to stdout; all retention, rotation, access control, and deletion are delegated to whatever log aggregator is configured at deployment time; there is no application-level policy that says "structured logs must not be retained for more than N days" or "access to log streams is restricted to operator role Y"; if a SaaS aggregator is used (Datadog, Splunk Cloud, CloudWatch), the entire log stream is processed by a third party without a mandatory GDPR Art. 28 agreement in the current implementation</li>
+<li><strong>Ability to Implement Control:</strong> Medium</li>
+<li><strong>Recommended controls:</strong></li>
+<li>Define a maximum log retention period (e.g., 30 days for operational logs; <code>audit_events</code> DB trail serves long-term compliance needs) in the deployment runbook and enforce it in the log aggregator configuration.</li>
+<li>Document the log aggregator vendor(s) in the GDPR Record of Processing Activities as data processors; ensure a signed DPA is in place before sending logs to any SaaS service.</li>
+<li>Add log stream access control to the infrastructure design: restrict log query access to the same roles that can access the <code>audit_events</code> API (<code>qm_lead</code>, <code>auditor</code>, <code>riskmanager</code>).</li>
+</ul>
+<h3 id="risk-4-ip-address-handling-in-rate-limit-events-is-undocumented-for-gdpr-purposes">Risk 4: IP address handling in rate-limit events is undocumented for GDPR purposes</h3>
+<ul>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Risk Category:</strong> Online identifier data governance</li>
+<li><strong>GDPR Reference:</strong> Art. 4(1) — definition of personal data (IP as online identifier); Art. 5(1)(e) — storage limitation</li>
+<li><strong>Potential Harm/Impact:</strong> Login and recovery rate-limit logic uses IP address as a throttle key; if the IP is included in structlog event fields (e.g., in a <code>client_ip</code> or <code>remote_addr</code> field on abuse events), it becomes part of the log stream and is subject to GDPR; in-memory storage means no persistence but also no audit of abuse patterns; unclear if IP is emitted to persistent log aggregator</li>
+<li><strong>Ability to Implement Control:</strong> High</li>
+<li><strong>Recommended controls:</strong></li>
+<li>Review all log call sites in <code>auth.py</code> and <code>rate_limit.py</code> to confirm whether <code>client_ip</code> or equivalent is emitted; if so, hash it (SHA-256 with a service-specific salt) before logging.</li>
+<li>Document the IP address processing in the GDPR Record of Processing Activities: purpose (abuse prevention), legal basis (legitimate interest), retention (in-memory only — no persistence), and minimisation measure (hashed if logged).</li>
+</ul>
+<h3 id="risk-5-structlog-and-audit_events-serve-overlapping-but-inconsistent-purposes-risk-of-duplication-and-compliance-confusion">Risk 5: Structlog and <code>audit_events</code> serve overlapping but inconsistent purposes — risk of duplication and compliance confusion</h3>
+<ul>
+<li><strong>Priority:</strong> Medium</li>
+<li><strong>Risk Category:</strong> Audit trail governance and data duplication</li>
+<li><strong>GDPR Reference:</strong> Art. 5(2) — accountability; Art. 30 — record of processing</li>
+<li><strong>Potential Harm/Impact:</strong> Some events (e.g., login success, review lifecycle) appear in both the structlog stream and <code>audit_events</code> PostgreSQL table. This creates two sources of truth with different schemas, retention periods, and access controls; inconsistency between them complicates GDPR breach investigation, subject access requests, and external audit responses; structlog entries may contain more detail than <code>audit_events</code> or vice versa</li>
+<li><strong>Ability to Implement Control:</strong> High</li>
+<li><strong>Recommended controls:</strong></li>
+<li>Define a clear event routing rule: compliance-critical events (auth, document actions, review decisions, workflow completions) go exclusively to <code>audit_events</code> (DB, structured, role-gated); operational events (latency, retry, routing mode, startup) go to structlog stream only.</li>
+<li>Remove or suppress the structlog emission of events that are already persisted to <code>audit_events</code> to eliminate dual-stream confusion.</li>
+<li>Document the routing rule in the OBSERVABILITY_LOGGING_README and enforce via a code review checklist item.</li>
+</ul>
+<h2 id="5-cross-sheet-consistency">5. Cross-Sheet Consistency</h2>
+<table>
+<thead>
+<tr>
+<th>Control Area</th>
+<th>Related Risk Sheet</th>
+<th>Alignment Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PII in log fields</td>
+<td>Risk Sheet 3 (Telemetry)</td>
+<td>Same redaction-processor approach applies to both structlog stream and pre-write quality observation service</td>
+</tr>
+<tr>
+<td>Log aggregator SaaS DPA</td>
+<td>Risk Sheet 3 (Telemetry)</td>
+<td>OTLP backend and log aggregator must both appear in the GDPR Art. 28 processor register</td>
+</tr>
+<tr>
+<td><code>audit_events</code> dual-write from structlog</td>
+<td>Risk Sheet 2 (RBAC, Risk 3)</td>
+<td>Access-decision log (recommended in sheet 2) should route to <code>audit_events</code>, not to the structlog stream, to benefit from role-gated access</td>
+</tr>
+<tr>
+<td>DEBUG mode in production</td>
+<td>Risk Sheet 1 (Model Providers)</td>
+<td>DEBUG output from provider SDKs could expose full prompt/output content — startup guard must cover SDK-level loggers as well</td>
+</tr>
+<tr>
+<td>IP address logging</td>
+<td>Risk Sheet 2 (RBAC, Risk 4)</td>
+<td>Bootstrap credential brute-force protection relies on IP throttle; IP handling must be consistent across auth and rate-limit code paths</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="additional-information-from-the-repo">Additional information from the repo</h2>
+<p>Brief summary of how this repository uses <strong>structlog</strong> for JSON-friendly, field-oriented logs, with emphasis on <strong>document review and orchestration workflows</strong> (not IDE “coding” sessions).</p>
+<h3 id="stack-and-configuration">Stack and configuration</h3>
+<ul>
+<li><strong>Library:</strong> <a href="https://www.structlog.org/">structlog</a> (see <code>pyproject.toml</code> for the pinned version).</li>
+<li><strong>Central setup:</strong> <code>src/doc_quality/core/logging_config.py</code> — <code>configure_logging(log_level, log_format)</code> merges context variables, adds log level and ISO timestamps, then renders either <strong>JSON</strong> (<code>LOG_FORMAT=json</code>) or a <strong>console</strong> dev renderer (<code>LOG_FORMAT=console</code>, default).</li>
+<li><strong>Bootstrap:</strong> the main FastAPI app calls <code>configure_logging</code> in its lifespan hook (<code>src/doc_quality/api/main.py</code>). The standalone orchestrator (<code>services/orchestrator/</code>) uses <code>structlog.get_logger(__name__)</code> for workflow services; it does not currently reuse <code>logging_config.configure_logging</code> in its lifespan (startup still emits structured <code>orchestrator_starting</code> / <code>orchestrator_stopping</code> events).</li>
+</ul>
+<p>For full observability (OTel, metrics, audit tables), see <code>OBSERVABILITY_LOGGING_README.md</code> at the repo root.</p>
+<h3 id="request-scoped-context-correlating-http-to-downstream-work">Request-scoped context (correlating HTTP to downstream work)</h3>
+<p>HTTP middleware in <code>src/doc_quality/api/main.py</code> clears and binds <strong>structlog context variables</strong> per request:</p>
+<ul>
+<li><code>request_id</code> — from <code>X-Request-ID</code> or a new UUID.</li>
+<li><code>correlation_id</code> — from <code>X-Correlation-ID</code> or the same as <code>request_id</code>.</li>
+<li><code>trace_id</code> — OpenTelemetry trace hex when tracing is active, then merged into context before the access log line.</li>
+</ul>
+<p>Each request logs a single structured event, <code>http_request</code>, with <code>method</code>, <code>path</code>, <code>status</code>, <code>duration_ms</code>, and <code>trace_id</code>. Those context vars are merged into subsequent log lines from the same request when code uses the shared processor chain (see <code>merge_contextvars</code> in <code>logging_config.py</code>).</p>
+<h3 id="workflow-tracking-orchestrator">Workflow tracking (orchestrator)</h3>
+<p>The <strong>document review flow</strong> (<code>services/orchestrator/src/doc_quality_orchestrator/flows/document_review_flow.py</code>) logs orchestration decisions and outcomes with stable <strong>event names</strong> and IDs:</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>crewai_not_available_forced_fallback</code> / <code>crewai_kill_switch_active</code></td>
+<td>Routing warnings when CrewAI path is unavailable or disabled</td>
+</tr>
+<tr>
+<td><code>workflow_run_timeout</code></td>
+<td>Global run timeout with <code>run_id</code> and limit</td>
+</tr>
+<tr>
+<td><code>crew_workflow_starting</code> / <code>crew_workflow_completed</code></td>
+<td>Crew path: <code>run_id</code>, <code>trace_id</code>, <code>workflow_id</code>, optional <code>document_id</code>, verifier and validator summary fields</td>
+</tr>
+<tr>
+<td><code>scaffold_workflow_completed</code></td>
+<td>Single-agent fallback path completion with <code>run_id</code>, <code>trace_id</code>, <code>workflow_id</code>, <code>provider</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dual trail:</strong> the flow also posts structured payloads to the backend <strong>Skills audit</strong> API (<code>skills_api.log_event</code>) for events such as <code>workflow_routing_decision</code>, <code>crew_workflow_completed</code>, and <code>workflow_run_completed</code>. Those rows support compliance-style audit; structlog lines support live operations and log aggregation.</p>
+<h3 id="step-level-execution-limits-and-crew-bookkeeping">Step-level execution (limits and crew bookkeeping)</h3>
+<p><code>services/orchestrator/src/doc_quality_orchestrator/runtime_limits.py</code> implements <code>RuntimeLimitEnforcer</code>, which logs:</p>
+<ul>
+<li><code>step_limit_exceeded</code> / <code>token_limit_exceeded</code> — limit breaches with <code>reason</code> and <code>run_id</code></li>
+<li><code>step_execution_recorded</code> — each recorded step with <code>step_id</code>, <code>agent_id</code>, <code>step_number</code>, <code>attempt</code>, <code>status</code>, <code>duration_seconds</code>, <code>tokens_consumed</code></li>
+</ul>
+<p>Together with flow-level events, this gives a <strong>granular timeline</strong> of agent/tool steps inside a workflow run.</p>
+<h3 id="backend-domain-workflows-skills-api-and-hitl">Backend domain workflows (Skills API and HITL)</h3>
+<p>Structured logs in <code>src/doc_quality/services/skills_service.py</code> track the document pipeline: e.g. <code>skill_document_persisted</code>, <code>skill_document_workflow_status_updated</code>, <code>skill_text_extracted</code>, <code>skill_finding_written</code>, and <code>skill_event_logged</code> (mirrors persisted audit events).</p>
+<p>Human-in-the-loop state changes are logged in <code>src/doc_quality/services/hitl_workflow.py</code> (<code>review_created</code>, <code>review_not_found</code>, <code>review_status_updated</code>). Document analysis and compliance paths use similarly named events in <code>document_analyzer.py</code>, <code>compliance_checker.py</code>, etc.</p>
+<h3 id="conventions-for-operators">Conventions for operators</h3>
+<ol>
+<li>Prefer <strong>keyword arguments</strong> on log calls (<code>logger.info("event_name", key=value)</code>) so JSON output has queryable fields.</li>
+<li>Correlate cross-service behavior with <strong><code>run_id</code> / <code>trace_id</code></strong> from orchestrator logs and <strong><code>request_id</code> / <code>correlation_id</code></strong> from API middleware.</li>
+<li>Use <strong><code>LOG_FORMAT=json</code></strong> in production so log platforms can index <code>event</code>, <code>timestamp</code>, and custom fields without regex parsing.</li>
+</ol>
+<h3 id="source-pointers">Source pointers</h3>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logging setup</td>
+<td><code>src/doc_quality/core/logging_config.py</code></td>
+</tr>
+<tr>
+<td>HTTP + contextvars</td>
+<td><code>src/doc_quality/api/main.py</code></td>
+</tr>
+<tr>
+<td>Flow + crew/scaffold</td>
+<td><code>services/orchestrator/.../flows/document_review_flow.py</code></td>
+</tr>
+<tr>
+<td>Step limits</td>
+<td><code>services/orchestrator/.../runtime_limits.py</code></td>
+</tr>
+<tr>
+<td>Skills + audit mirror</td>
+<td><code>src/doc_quality/services/skills_service.py</code></td>
+</tr>
+<tr>
+<td>HITL</td>
+<td><code>src/doc_quality/services/hitl_workflow.py</code></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.indexes"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": false, "loop": false, "zoomable": true, "draggable": false, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "none"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
