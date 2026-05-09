@@ -18,7 +18,7 @@ This repo holds information related to a privacy audit.
 ## Contribute to the documentation
 
 - Add a document page in markdown in the `docs` folder.
-- Add the document to the `nav` section in the `mkdocs.yaml` file.
+- Add the document to the `nav` section in the `zensical.toml` file.
 - Add images to the `docs/images` folder.
 
 ### Build and run docs locally
