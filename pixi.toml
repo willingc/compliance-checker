@@ -6,8 +6,7 @@ platforms = ["osx-arm64"]
 version = "0.1.0"
 
 [tasks]
-serve = "mkdocs serve"
+serve = "zensical serve"
 
 [dependencies]
-mkdocs-glightbox = ">=0.5.2,<0.6"
-mkdocs-material = ">=9.7.6,<10"
+zensical = ">=0.0.40,<0.0.41"
