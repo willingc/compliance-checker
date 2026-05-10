@@ -2,7 +2,9 @@
 
 !!! note "Week 3"
 
-    Feedback on risk threat modeling.
+    Feedback from kjam on risk threat modeling.
+
+    Action plan: Responses are in-line or marked as TODO
 
 ## Kudos
 
