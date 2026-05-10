@@ -126,9 +126,24 @@ Target objective: remove external GenAI dependency for production personal-data 
 
 This sequence preserves output quality while reducing privacy exposure and external model dependency.
 
+### Mitigations and Controls
+
+| Risk | Mitigation or Control | Review | Reduction or Impact Change | Implement? (y/n) |
+|------|-----------------------|--------|----------------------------|------------------|
+| Risk 1: External model transfer of potentially personal prompt/output data | On-prem migration plan | We analyzed substituting local models. | Risk of sensitive data exposure to 3rd parties reduced | y |
+| Risk 1: External model transfer of potentially personal prompt/output data | Run parallel on-prem and external models on the same scrubbed inputs | We will analyze what differences are observed in leakage of data between the two solutions. | Risk of sensitive dara leakage by external quantitative estimate relative to on-prem | y |
+| Risk 1: Quality gate: promote on-prem only when benchmark thresholds are met (accuracy, hallucination rate, explainability/citations, latency). | Use external provider only when on-prem is insufficient | We will analyze conditions where external models meaningfully outperform on-prem. | Risk of sensitive data exposure by reducing reliance on external models | y |
+| Risk 1: External model transfer of potentially personal prompt/output data | Operational fallback to human in the loop (HITL) | We analyzed conditions where human review is necessary. | Risk of sensitive data exposure to 3rd parties reduced | y |
+| Risk 2: Over-collection and over-retention in model observability traces |||| n |
+| Risk 3: Hallucinated model output |||| n |
+| Risk 4: Model/version drift |||| n |
+| Risk 5: Migration to on-prem models may degrade quality if unmanaged |||| n |
+
 ---
 
-## Additional information from the repo
+## Appendix
+
+Additional information from the repo source code
 
 Subprocessor egress — Anthropic and Perplexity
 
