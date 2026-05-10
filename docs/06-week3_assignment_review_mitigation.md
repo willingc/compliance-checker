@@ -27,5 +27,6 @@ Please submit to Use Case Submissions channel or via DM/Email.
 
 ## 5. Mitigations and Controls
 
-| Risk | Mitigation or Control| Review | Reduction or Impact Change | Implement? (y/n) |
+| Risk | Mitigation or Control | Review | Reduction or Impact Change | Implement? (y/n) |
+|------|-----------------------|--------|----------------------------|------------------|
 | Risk 1 | Pseudonymization of User Input | We analyzed... | Risk of sensitive data exposure to 3rd parties reduced | y |
