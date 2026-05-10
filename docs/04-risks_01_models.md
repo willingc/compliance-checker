@@ -1,4 +1,4 @@
-# AI System Privacy Audit: Model Provider Risks and Mitigations
+# :lucide-triangle-alert: AI System Privacy Audit: Model Provider Risks and Mitigations
 
 System in scope: `doc_quality_compliance_check` (backend + orchestrator + observability).
 

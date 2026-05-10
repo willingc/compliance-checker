@@ -46,12 +46,12 @@ Copyright &copy; 2026 Carol, Ilona, Wiebke.
 # Read more: https://zensical.org/docs/setup/navigation/
 nav = [
   {"Overview" ="index.md"},
-  {"Use cases:" = [
+  {"Use cases" = [
     "02-week1_use_cases.md",
     "03-week2_risk_model.md",
     "03-week2_use_cases_risks.md",
   ]},
-  {"Risks:" = [
+  {"Risks" = [
     "04-risks_01_models.md",
     "04-risks_02_access_control.md",
     "04-risks_03_telemetry.md",
@@ -282,8 +282,8 @@ features = [
 # - https://zensical.org/docs/setup/logo-and-icons
 # - https://github.com/zensical/ui/tree/master/dist/.icons
 # ----------------------------------------------------------------------------
-#[project.theme.icon]
-#logo = "lucide/smile"
+[project.theme.icon]
+logo = "lucide/eye-off"
 
 # ----------------------------------------------------------------------------
 # In the "font" subsection you can configure the fonts used. By default, fonts
