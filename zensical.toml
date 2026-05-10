@@ -61,8 +61,8 @@ nav = [
   ]},
   {"Assignments" = [
     "06-week3_assignment_review_mitigation.md",
-    "07-week3_assignment_red_team.md",
-    "08-week4_assignment_archictecture_update_guardrails.md"
+    "07-week3_assignment_red_teaming.md",
+    "08-week4_assignment_architecture_update_guardrails.md"
   ]}
 ]
 
