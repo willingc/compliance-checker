@@ -59,6 +59,10 @@ nav = [
     "04-risks_04_secrets_tokens_keys.md",
     "05-week3_feedback.md",
   ]},
+  {"Assignments" = [
+    "06-week3_assignment_review_mitigation.md",
+    "07-week3_assignment_red_team.md",
+  ]}
 ]
 
 # With the "extra_css" option you can add your own CSS styling to customize
