@@ -20,6 +20,8 @@
 
 1. For your #2 prioritized risk in the 04-risks_01_models.md table, what exactly do you mean by: Data schema for validation?
 
+   > Use pydantic/FastAPI library to validate the data meets the required schema
+
 2. Risk #3 in the area below the data flows is about hallucination in compliance decisions and Risk #4 is about robustness of those decisions.
 - Does this have a privacy impact?
 - Can you explain it a bit more in depth? (In my mind maybe this falls under reliability, security and robustness, but maybe I am missing something.)
