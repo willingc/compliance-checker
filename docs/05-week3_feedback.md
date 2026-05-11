@@ -22,8 +22,10 @@ Although information security controls (like user management, passwords, secrets
 
 Since you are operating under GDPR principles, it might help to also review what data is required for your operating proceedures, especially for regulatory audit purposes or for legitimate interest (https://gdpr-info.eu/art-6-gdpr/ (see b, c, e, f)). For example, if you need to track actor_id as a part of your business operations, so long as you do so responsibly, you are usually OK to do so. :)
 
-- **TODO: REVIEW**
-- Next action: review GDPR docs. Determine what data needs to be tracked.
+- That is true.
+- if a name is mentioned as it is mandatory for the governance docs used for audits, we need the written statement of the person to agree about it.
+- I think, it would be better to add a comment to the admin profile part of having stored that statement.
+- Solution would be a role based concept.
 
 ## Questions
 
