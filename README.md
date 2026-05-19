@@ -31,3 +31,21 @@ pixi run serve
 ```
 
 3. Navigate to http://127.0.0.1:8000/compliance-checker in your browser to view the documentation.
+
+---
+
+## Capstone presentation
+
+In `docs/capstone-presentation.md`
+
+To work on the presentation:
+
+1. In vscode, open Marp for VSCode extension
+
+2. Open the `docs/capstone-presentation.md` file.
+
+3. Preview the document and you should see the slides.
+
+![](docs/images/image.png)
+
+There is also a [marp](https://marp.app/)
