@@ -40,7 +40,7 @@ In `docs/capstone-presentation.md`
 
 To work on the presentation:
 
-1. In vscode, open Marp for VSCode extension
+1. In vscode, add Marp for VSCode extension
 
 2. Open the `docs/capstone-presentation.md` file.
 
