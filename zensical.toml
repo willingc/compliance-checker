@@ -63,7 +63,10 @@ nav = [
     "06-week3_assignment_review_mitigation.md",
     "07-week3_assignment_red_teaming.md",
     "08-week4_assignment_architecture_update_guardrails.md"
-  ]}
+  ]},
+  {"Capstone" = [
+    "09-week5_capstone_instructions.md",
+  ]},
 ]
 
 # With the "extra_css" option you can add your own CSS styling to customize
