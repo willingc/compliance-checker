@@ -54,6 +54,32 @@ Tips:
 -->
 
 ---
+*1.1*
+**High-level architecture**
+
+- Human operator
+- NextJS frontend
+- FastAPI backend
+- Postgres database
+- Orchestrator and agents
+
+![bg right:60% width:720](images/raw/simple-architecture.png)
+
+---
+
+*1.2*
+
+### Real-world use case
+
+Problem solved
+
+---
+
+*1.3*
+
+### Privacy matters
+
+---
 
 *2.0*
 
