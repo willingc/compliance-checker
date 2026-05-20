@@ -48,4 +48,8 @@ To work on the presentation:
 
 ![](docs/images/image.png)
 
-There is also a [marp](https://marp.app/)
+There is also a [marp](https://marp.app/).
+
+### More marp info
+
+There are three themes: default, gaia, and uncover. Set in the header block at top of file.

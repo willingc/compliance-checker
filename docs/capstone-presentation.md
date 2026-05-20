@@ -7,8 +7,6 @@ theme: gaia
 
 ## Documentation Quality Compliance Checker
 
-https://github.com/IloBe/doc_quality_compliance_check
-
 ### Ilona Brinkmeier, Wiebke, Carol Willing
 
 May 2026
@@ -21,7 +19,10 @@ Title slide speaker notes
 
 *1.0*
 
-# Use case
+# Audit subject and use case
+
+Subject: https://github.com/IloBe/doc_quality_compliance_check
+Detailed privacy audit: https://willingc.github.io/compliance-checker/
 
 ## Problem solved
 
