@@ -3,6 +3,7 @@ marp: true
 theme: gaia
 backgroundColor: #F8F6F0
 footer: "AI Privacy Capstone - May 2026"
+paginate: true
 ---
 
 ![bg left:33%](images/pexels-pixabay-207580.jpg)

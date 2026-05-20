@@ -53,3 +53,23 @@ There is also a [marp](https://marp.app/).
 ### More marp info
 
 There are three themes: default, gaia, and uncover. Set in the header block at top of file.
+
+To convert md file to html:
+
+```sh
+marp docs/capstone-presentation.md -o docs/capstone-presentation.html
+```
+
+To present, either:
+
+`open docs/captone-presentation.html`
+
+or
+
+`python3 -m http.server` and navigate to `localhost:8000/docs/capstone-presentation.html`
+
+To convert md file to pdf:
+
+```sh
+marp --pdf --allow-local-files docs/capstone-presentation.md
+```
