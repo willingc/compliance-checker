@@ -1,19 +1,28 @@
 ---
 marp: true
 theme: gaia
+backgroundColor: #F8F6F0
+footer: "AI Privacy Capstone - May 2026"
 ---
 
-# AI Privacy Capstone
+![bg left:33%](images/pexels-pixabay-207580.jpg)
 
-## Documentation Quality Compliance Checker
+# Documentation Quality Compliance Checker
 
-### Ilona Brinkmeier, Wiebke, Carol Willing
+Ilona Brinkmeier
+Wiebke
+Carol Willing
 
-May 2026
+---
 
 <!--
-Title slide speaker notes
+backgroundColor:  #3A7D7B
+color: #F8F6F0
 -->
+
+*1.*
+
+# Documentation Quality Compliance Checker
 
 ---
 
@@ -23,14 +32,6 @@ Title slide speaker notes
 
 Subject: https://github.com/IloBe/doc_quality_compliance_check
 Detailed privacy audit: https://willingc.github.io/compliance-checker/
-
-## Problem solved
-
-Insert brief description of the problem solved
-
-## Privacy matters
-
-Insert brief list of why privacy matters
 
 <!--
 ## 1. Introduce your Use Case (~2 min)
@@ -54,6 +55,7 @@ Tips:
 -->
 
 ---
+
 *1.1*
 **High-level architecture**
 
@@ -69,15 +71,27 @@ Tips:
 
 *1.2*
 
-### Real-world use case
+### Real-world problem
 
-Problem solved
+Insert brief description of the problem solved
 
 ---
 
 *1.3*
 
 ### Privacy matters
+
+Insert brief list of why privacy matters
+
+---
+
+<!--
+backgroundColor: #C66B3D
+-->
+
+*2.*
+
+# Privacy risks
 
 ---
 
@@ -154,6 +168,17 @@ Sensitive data:
 
 ---
 
+<!--
+backgroundColor: #3D5A80
+color: #F7F0EA
+-->
+
+*3.*
+
+# Mitigations and controls
+
+---
+
 *3.0*
 
 # Mitigations and controls
@@ -208,9 +233,20 @@ Tips:
 
 ---
 
+<!--
+backgroundColor: #7D5A7D
+color: #F7F0EA
+-->
+
+*4.*
+
+# Recommendations
+
+---
+
 *4.0*
 
-# Recommendation
+# Recommendations
 
 ## Top priority
 
@@ -243,10 +279,17 @@ Tips:
 
 ---
 
+<!--
+backgroundColor: #F8F6F0
+color:
+-->
+
+![bg left:30%](images/pexels-ozum-afsar-1430297-7908609.jpg)
+
 *5.0*
 
 # Questions and answers
 
 Thank you!
 
-Ilona, Wiebke, Carol
+### Ilona, Wiebke, Carol
