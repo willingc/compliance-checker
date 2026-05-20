@@ -52,15 +52,38 @@ Tips:
 
 ---
 
-## Risk 1
+## Risk Area 1 - Egress traffic flow data to orchestrator and models
+
+Sensitive data:
+
+- External model: transfer of potentially personal prompt/output data
+  // -- write down sensitivity reason or leave it to tell?
+- Over-collection and -retention in model observability traces
+  //
+- Model credentials and routing configuration
+  //
 
 ---
 
-## Risk 2
+## Risk Area 2 - Application telemetry and workflow tracing
+
+Sensitive data:
+
+- Raw LLM promp and output in quality_observations.payload
+- Audit event payload in audits_events.payload
+- OTEL (open telemetry) span attributes (exporter config)
+- Frontend CSV export of prompt/output pairs
 
 ---
 
-## Risk 3
+## Risk Area 3 - Role-based access controls and GDPR compliance
+
+Sensitive data:
+
+- User identity in session store
+- Role assignments and permission scope
+- Bootstrap/MVP credentials in environment configuration
+- Access decision and audit context not separately persisted
 
 ---
 
