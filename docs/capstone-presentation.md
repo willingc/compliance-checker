@@ -11,7 +11,7 @@ paginate: true
 # Documentation Quality Compliance Checker
 
 Ilona Brinkmeier
-Wiebke
+Wiebke Meyer
 Carol Willing
 
 ---
@@ -135,7 +135,7 @@ Tips:
 Sensitive data:
 
 - External model: transfer of potentially personal prompt/output data
-  // -- write down sensitivity reason or leave it to tell?
+  // -- _write down sensitivity reason or leave it to tell?_
 - Over-collection and -retention in model observability traces
 - Model credentials and routing configuration
 
