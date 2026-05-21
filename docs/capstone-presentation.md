@@ -21,13 +21,13 @@ backgroundColor:  #3A7D7B
 color: #F8F6F0
 -->
 
-*1.*
+_1._
 
 # Documentation Quality Compliance Checker
 
 ---
 
-*1.0*
+_1.0_
 
 # Audit subject and use case
 
@@ -57,7 +57,7 @@ Tips:
 
 ---
 
-*1.1*
+_1.1_
 **High-level architecture**
 
 - Human operator
@@ -70,7 +70,7 @@ Tips:
 
 ---
 
-*1.2*
+_1.2_
 
 ### Real-world problem
 
@@ -78,7 +78,7 @@ Insert brief description of the problem solved
 
 ---
 
-*1.3*
+_1.3_
 
 ### Privacy matters
 
@@ -90,13 +90,13 @@ Insert brief list of why privacy matters
 backgroundColor: #C66B3D
 -->
 
-*2.*
+_2._
 
 # Privacy risks
 
 ---
 
-*2.0*
+_2.0_
 
 # Top privacy risks
 
@@ -127,7 +127,7 @@ Tips:
 
 ---
 
-*2.1*
+_2.1_
 **Risk Area 1**
 
 ### Egress traffic flow data to orchestrator and models
@@ -135,13 +135,24 @@ Tips:
 Sensitive data:
 
 - External model: transfer of potentially personal prompt/output data
-  // -- _write down sensitivity reason or leave it to tell?_
-- Over-collection and -retention in model observability traces
-- Model credentials and routing configuration
+  - **Data**: Names, emails, stakeholder assignments, reviewer identifiers, document passages copied into prompts, generated summaries that may restate personal data
+  - **Why Sensitive**: Leaves the primary application context during model inference (current external-provider path)
 
 ---
 
-*2.2*
+- Over-collection and -retention in model observability traces
+  - **Data**: provider, model_used, trace_id, correlation_id, latency/tokens, rich payload entries, prompt/output snapshots
+  - **Why Sensitive**: Enables reconstruction of who triggered what model action and when; can become re-identifiable when combined with audit tables
+
+---
+
+- Model credentials and routing configuration
+  - **Data**: API keys, adapter routing flags, provider selection settings
+  - **Why Sensitive**: Compromise enables data exfiltration or unauthorized model usage
+
+---
+
+_2.2_
 **Risk Area 2**
 
 ### Application telemetry and workflow tracing
@@ -149,13 +160,51 @@ Sensitive data:
 Sensitive data:
 
 - Raw LLM promp and output in quality_observations.payload
-- Audit event payload in audits_events.payload
-- OTEL (open telemetry) span attributes (exporter config)
-- Frontend CSV export of prompt/output pairs
+  - **Data**: payload.provider, payload.model_used, payload.llm_temperature
+  - payload.llm_prompt (document text submitted by user, stakeholder names, reviewer assignments)
+  - payload.llm_output (generated compliance summaries restating personal context)
 
 ---
 
-*2.3*
+- **Why Sensitive**:
+  - Prompt context is assembled from user-submitted documents which routinely contain names, emails, project identifiers, and business-sensitive content
+  - the output may restate or summarise that content
+  - both are persisted to a queryable table
+
+---
+
+- Audit event payload in audits_events.payload
+  - **Data**: payload.roles (user role at login), payload.remember_me flag, event-specific context fields, any free-form data inserted by orchestrator or Skills API callers
+  - **Why Sensitive**:
+    - Append-only and intended for long retention;
+    - no technical control prevents a caller from writing personal data into the payload column
+    - combined with actor_id (user email) it forms a rich personal profile
+
+---
+
+**Risk Area 2**
+
+- OTEL (open telemetry) span attributes (exporter config)
+  - **Data**: HTTP path attribute (e.g., /api/v1/documents/doc-abc123 — document ID in path), user_agent, http.method, http.status_code, trace_id / span_id (linkable back to session)
+  - **Why Sensitive**:
+    - When TRACING_EXPORTER=otlp span data is sent to an external collector,
+      - path values can embed document or session identifiers;
+      - user-agent can contribute to fingerprinting
+
+---
+
+**Risk Area 2**
+
+- Frontend CSV export of prompt/output pairs
+  - **Data**: Exported observability*prompt_output_pairs*\*.csv file containing prompt, output, source_component, trace_id, timestamps
+  - **Why Sensitive**:
+    - Created on the user's local filesystem;
+    - outside system access controls, retention policy, and audit log;
+    - may contain personal data from documents processed during the export window
+
+---
+
+_2.3_
 **Risk Area 3**
 
 ### Role-based access controls and GDPR compliance
@@ -174,13 +223,13 @@ backgroundColor: #3D5A80
 color: #F7F0EA
 -->
 
-*3.*
+_3._
 
 # Mitigations and controls
 
 ---
 
-*3.0*
+_3.0_
 
 # Mitigations and controls
 
@@ -213,21 +262,21 @@ Tips:
 
 ---
 
-*3.1*
+_3.1_
 **Mitigating Risk 1**
 
 ### Egress traffic flow data to orchestrator and models
 
 ---
 
-*3.2*
+_3.2_
 **Mitigating Risk 2**
 
 ### Application telemetry and workflow tracing
 
 ---
 
-*3.3*
+_3.3_
 **Mitigating Risk 3**
 
 ### Role-based access controls and GDPR compliance
@@ -239,13 +288,13 @@ backgroundColor: #7D5A7D
 color: #F7F0EA
 -->
 
-*4.*
+_4._
 
 # Recommendations
 
 ---
 
-*4.0*
+_4.0_
 
 # Recommendations
 
@@ -287,7 +336,7 @@ color:
 
 ![bg left:30%](images/pexels-ozum-afsar-1430297-7908609.jpg)
 
-*5.0*
+_5.0_
 
 # Questions and answers
 
