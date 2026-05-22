@@ -356,12 +356,12 @@ Tips:
 
 <!-- class: sec5 -->
 
-![bg left:30%](images/pexels-ozum-afsar-1430297-7908609.jpg)
+![bg right:30%](images/pexels-ozum-afsar-1430297-7908609.jpg)
 
-_5.0_
+# Questions
 
-# Questions and answers
+## Audit
 
-Thank you!
+<https://willingc.github.io/compliance_checker>
 
-### Ilona, Wiebke, Carol
+by Ilona, Wiebke, Carol
