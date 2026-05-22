@@ -10,7 +10,9 @@ paginate: true
 
 # Documentation Quality Compliance Checker
 
-Ilona Brinkmeier Wiebke Meyer Carol Willing
+Ilona Brinkmeier
+Wiebke Meyer
+Carol Willing
 
 ---
 
@@ -131,26 +133,30 @@ _2.1_ **Risk Area 1**
 Sensitive data:
 
 - External model: transfer of potentially personal prompt/output data
-  - **Data**: Names, emails, stakeholder assignments, reviewer identifiers,
-    document passages copied into prompts, generated summaries that may restate
-    personal data
-  - **Why Sensitive**: Leaves the primary application context during model
-    inference (current external-provider path)
+  - **Data**:
+    - Names, emails, stakeholder assignments, reviewer identifiers, document passages copied into prompts, generated summaries that may restate personal data
+  - **Why Sensitive**:
+    - Leaves the primary application context during model inference (current external-provider path)
 
 ---
 
 - Over-collection and -retention in model observability traces
-  - **Data**: provider, model_used, trace_id, correlation_id, latency/tokens,
-    rich payload entries, prompt/output snapshots
-  - **Why Sensitive**: Enables reconstruction of who triggered what model action
-    and when; can become re-identifiable when combined with audit tables
+  - **Data**:
+    - provider, model_used, trace_id, correlation_id, latency/tokens,
+      rich payload entries, prompt/output snapshots
+  - **Why Sensitive**:
+    - Enables reconstruction of _who_ triggered _what_ model action
+      and _when_
+    - can become re-identifiable when combined with audit tables
 
 ---
 
 - Model credentials and routing configuration
-  - **Data**: API keys, adapter routing flags, provider selection settings
-  - **Why Sensitive**: Compromise enables data exfiltration or unauthorized
-    model usage
+  - **Data**:
+    - API keys, adapter routing flags, provider selection settings
+  - **Why Sensitive**:
+    - Compromise enables data exfiltration or unauthorized
+      model usage
 
 ---
 
@@ -160,44 +166,43 @@ _2.2_ **Risk Area 2**
 
 Sensitive data:
 
-- Raw LLM promp and output in quality_observations.payload
-  - **Data**: payload.provider, payload.model_used, payload.llm_temperature
-  - payload.llm_prompt (document text submitted by user, stakeholder names,
-    reviewer assignments)
-  - payload.llm_output (generated compliance summaries restating personal
-    context)
+- Raw LLM promp and output in _quality_observations.payload_
+  - **Data**:
+    - _payload.provider, payload.model_used, payload.llm_temperature_
+    - _payload.llm_prompt_ (document text submitted by user, stakeholder names,
+      reviewer assignments)
+    - _payload.llm_output_ (generated compliance summaries restating personal
+      context)
 
 ---
 
-- **Why Sensitive**:
-  - Prompt context is assembled from user-submitted documents which routinely
-    contain names, emails, project identifiers, and business-sensitive content
-  - the output may restate or summarise that content
-  - both are persisted to a queryable table
+- - **Why Sensitive**:
+    - Prompt context is assembled from user-submitted documents which routinely
+      contain names, emails, project identifiers, and business-sensitive content
+    - The output may restate or summarise that content
+    - Both are persisted to a queryable table
 
 ---
 
 - Audit event payload in audits_events.payload
-  - **Data**: payload.roles (user role at login), payload.remember_me flag,
-    event-specific context fields, any free-form data inserted by orchestrator
-    or Skills API callers
+  - **Data**:
+    - payload.roles (user role at login), payload.remember_me flag,
+      event-specific context fields, any free-form data inserted by orchestrator or Skills API callers
   - **Why Sensitive**:
-    - Append-only and intended for long retention;
-    - no technical control prevents a caller from writing personal data into the
-      payload column
-    - combined with actor_id (user email) it forms a rich personal profile
+    - Append-only and intended for long retention
+    - No technical control prevents a caller from writing personal data into the payload column
+    - Combined with actor_id (user email) it forms a rich personal profile
 
 ---
 
 **Risk Area 2**
 
 - OTEL (open telemetry) span attributes (exporter config)
-  - **Data**: HTTP path attribute (e.g., /api/v1/documents/doc-abc123 — document
-    ID in path), user_agent, http.method, http.status_code, trace_id / span_id
-    (linkable back to session)
+  - **Data**:
+    - HTTP path attribute (e.g., _/api/v1/documents/doc-abc123_ — document ID in path), user_agent, http.method, http.status_code, trace_id / span_id (linkable back to session)
   - **Why Sensitive**:
     - When TRACING_EXPORTER=otlp span data is sent to an external collector,
-      - path values can embed document or session identifiers;
+      - path values can embed document or session identifiers
       - user-agent can contribute to fingerprinting
 
 ---
@@ -205,8 +210,8 @@ Sensitive data:
 **Risk Area 2**
 
 - Frontend CSV export of prompt/output pairs
-  - **Data**: Exported observability*prompt_output_pairs*\*.csv file containing
-    prompt, output, source_component, trace_id, timestamps
+  - **Data**:
+    - Exported observability _prompt_output_pairs.csv_ file containing prompt, output, source_component, trace_id, timestamps
   - **Why Sensitive**:
     - Created on the user's local filesystem;
     - outside system access controls, retention policy, and audit log;
@@ -223,19 +228,16 @@ Sensitive data:
 
 - User identity in session store
   - **Data**:
-    - user_email (primary identifier), user_org, session session_id, expires_at,
-      last_seen_at
+    - user_email (primary identifier), user_org, session session_id, expires_at, last_seen_at
   - **Why Sensitive**:
-    - Directly identifies users and links their organisational role to access
-      patterns and audit trails
+    - Directly identifies users and links their organisational role to access patterns and audit trails
     - Retained in PostgreSQL with no visible TTL-based purge policy
 
 ---
 
 - Role assignments and permission scope
   - **Data**:
-    - user_roles array per session row (e.g., ["qm_lead"], ["auditor"]), org
-      isolation field user_org
+    - user_roles array per session row (e.g., ["qm_lead"], ["auditor"]), org isolation field user_org
   - **Why Sensitive**:
     - Reveals organisational responsibilities and access privileges
     - Can be used for social engineering or targeted attacks
@@ -245,11 +247,10 @@ Sensitive data:
 
 - Bootstrap/MVP credentials in environment configuration
   - **Data**:
-    - AUTH_MVP_EMAIL, AUTH_MVP_PASSWORD, AUTH_MVP_ROLES, AUTH_MVP_ORG (env
-      vars); SECRET_KEY (API key secret)
+    - AUTH_MVP_EMAIL, AUTH_MVP_PASSWORD, AUTH_MVP_ROLES, AUTH_MVP_ORG (env vars)
+    - SECRET_KEY (API key secret)
   - **Why sensitive**:
-    - Compromise of bootstrap credentials gives attacker a fully provisioned
-      account with configurable roles
+    - Compromise of bootstrap credentials gives attacker a fully provisioned account with configurable roles
     - SECRET_KEY grants service-client access to skills and observability
 
 ---
@@ -260,10 +261,8 @@ Sensitive data:
     - 403 access denials
     - service-client route usage with payload summary
   - **Why sensitive**:
-    - Absence of access-decision audit log prevents retrospective investigation
-      of data-access incidents
-    - Required for GDPR Art. 30 record of processing activities and breach
-      response
+    - Absence of access-decision audit log prevents retrospective investigation of data-access incidents
+    - Required for GDPR Art. 30 record of processing activities and breach response
 
 ---
 
