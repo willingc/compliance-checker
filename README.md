@@ -12,7 +12,6 @@ This repo holds information related to a privacy audit.
 
 [Website](https://willingc.github.io/compliance-checker/)
 
-
 ---
 
 ## Contribute to the documentation
@@ -23,14 +22,14 @@ This repo holds information related to a privacy audit.
 
 ### Build and run docs locally
 
-1. Install pixi if needed: https://pixi.prefix.dev/v0.19.0/#installation
+1. Install pixi if needed: <https://pixi.prefix.dev/v0.19.0/#installation>
 2. Using pixi from the terminal. At the root of the repo, run:
 
-```sh
-pixi run serve
-```
+    ```sh
+    pixi run serve
+    ```
 
-3. Navigate to http://127.0.0.1:8000/compliance-checker in your browser to view the documentation.
+3. Navigate to <http://127.0.0.1:8000/compliance-checker> in your browser to view the documentation.
 
 ---
 
@@ -38,9 +37,9 @@ pixi run serve
 
 In `docs/capstone-presentation.md`
 
-To work on the presentation:
+### Set up marp extension
 
-1. In vscode, add Marp for VSCode extension
+1. In vscode, add Marp for VSCode extension.
 
 2. Open the `docs/capstone-presentation.md` file.
 
@@ -48,11 +47,33 @@ To work on the presentation:
 
 ![](docs/images/image.png)
 
-There is also a [marp](https://marp.app/).
+### Add and use themes
+
+There are three built-in themes: default, gaia, and uncover. Set in the header block at top of file.
+
+To use the `rose-pine` custom theme:
+
+1. Check if you have a `.vscode` directory at the root of your repo.
+
+    - If no, create the `.vscode` directory. Then go to Step 2.
+    - If yes, go to step 2.
+
+2. You will need to create and/or edit a `settings.json` file in the `.vscode` directory.
+3. Add the following to `settings.json`:
+
+    ```json
+    {
+    "markdown.marp.themes": [
+        "./themes/rose-pine.css",
+        "./themes/rose-pine-moon.css",
+        "./themes/rose-pine-dawn.css"
+    ]
+    }
+    ```
+
+4. You should now be able to use `rose-pine`, `rose-pine-dawn`, and `rose-pine-moon` as themes.
 
 ### More marp info
-
-There are three themes: default, gaia, and uncover. Set in the header block at top of file.
 
 To convert md file to html:
 
@@ -73,3 +94,5 @@ To convert md file to pdf:
 ```sh
 marp --pdf --allow-local-files docs/capstone-presentation.md
 ```
+
+There is also a [marp app](https://marp.app/) and a marp-cli.

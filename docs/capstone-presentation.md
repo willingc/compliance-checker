@@ -1,7 +1,6 @@
 ---
 marp: true
-theme: gaia
-backgroundColor: #F8F6F0
+theme: rose-pine
 footer: "AI Privacy Capstone - May 2026"
 paginate: true
 ---
@@ -15,11 +14,6 @@ Wiebke Meyer
 Carol Willing
 
 ---
-
-<!--
-backgroundColor:  #3A7D7B
-color: #F8F6F0
--->
 
 _1._
 
@@ -84,10 +78,6 @@ _1.3_
 Insert brief list of why privacy matters
 
 ---
-
-<!--
-backgroundColor: #C66B3D
--->
 
 _2._
 
@@ -266,11 +256,6 @@ Sensitive data:
 
 ---
 
-<!--
-backgroundColor: #3D5A80
-color: #F7F0EA
--->
-
 _3._
 
 # Mitigations and controls
@@ -328,11 +313,6 @@ _3.3_ **Mitigating Risk 3**
 
 ---
 
-<!--
-backgroundColor: #7D5A7D
-color: #F7F0EA
--->
-
 _4._
 
 # Recommendations
@@ -373,11 +353,6 @@ Tips:
 -->
 
 ---
-
-<!--
-backgroundColor: #F8F6F0
-color:
--->
 
 ![bg left:30%](images/pexels-ozum-afsar-1430297-7908609.jpg)
 
