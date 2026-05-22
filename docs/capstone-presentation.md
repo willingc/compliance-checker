@@ -5,7 +5,9 @@ footer: "AI Privacy Capstone - May 2026"
 paginate: true
 ---
 
-![bg left:33%](images/pexels-pixabay-207580.jpg)
+<!-- class: sec1 -->
+
+![bg left:20%](images/pexels-pixabay-207580.jpg)
 
 # Documentation Quality Compliance Checker
 
@@ -15,13 +17,9 @@ Carol Willing
 
 ---
 
-_1._
-
 # Documentation Quality Compliance Checker
 
 ---
-
-_1.0_
 
 # Audit subject and use case
 
@@ -51,7 +49,7 @@ Tips:
 
 ---
 
-_1.1_ **High-level architecture**
+### High-level architecture
 
 - Human operator
 - NextJS frontend
@@ -63,21 +61,19 @@ _1.1_ **High-level architecture**
 
 ---
 
-_1.2_
-
 ### Real-world problem
 
 Insert brief description of the problem solved
 
 ---
 
-_1.3_
-
 ### Privacy matters
 
 Insert brief list of why privacy matters
 
 ---
+
+<!-- class: sec2 -->
 
 _2._
 
@@ -256,6 +252,8 @@ Sensitive data:
 
 ---
 
+<!-- class: sec3 -->
+
 _3._
 
 # Mitigations and controls
@@ -313,6 +311,8 @@ _3.3_ **Mitigating Risk 3**
 
 ---
 
+<!-- class: sec4 -->
+
 _4._
 
 # Recommendations
@@ -353,6 +353,8 @@ Tips:
 -->
 
 ---
+
+<!-- class: sec5 -->
 
 ![bg left:30%](images/pexels-ozum-afsar-1430297-7908609.jpg)
 

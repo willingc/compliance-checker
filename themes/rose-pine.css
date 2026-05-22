@@ -136,3 +136,30 @@ marp-pre {
 .hljs-meta {
     color: var(--subtle);
 }
+
+/* ---- Section banner ---- */
+section[class*="sec"] {
+  padding-top: 74px;   /* clears the banner */
+}
+
+section[class*="sec"]::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 46px;
+  line-height: 46px;
+  padding: 0 40px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #e0def4;                    /* rose-pine text */
+  background-color: #1f1d2e;         /* rose-pine surface */
+  border-bottom: 2px solid #c4a7e7;  /* rose-pine iris */
+}
+
+section.sec1::before { content: "1 · Project & Use Case"; }
+section.sec2::before { content: "2 · Privacy Risks"; }
+section.sec3::before { content: "3 · Mitigations & Controls"; }
+section.sec4::before { content: "4 · Recommendations"; }
+section.sec5::before { content: "5 · Questions & Answers"; }
