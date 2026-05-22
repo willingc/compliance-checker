@@ -1,7 +1,7 @@
 ---
 marp: true
-theme: rose-pine
-footer: "AI Privacy Capstone - May 2026"
+theme: rose-pine-dawn
+footer: "Documentation Quality Compliance Checker · AI Privacy Capstone · May 2026"
 paginate: true
 ---
 
@@ -17,26 +17,33 @@ Carol Willing
 
 ---
 
-# Documentation Quality Compliance Checker
+# Real-world problem
+
+Develop an efficient, accurate software system to review technical documents
+
+- audit document quality
+- measure compliance with legal standards
+- submit results to external agencies
+- ensure the automation's behavior and provide human oversight
 
 ---
 
-# Audit subject and use case
+# The present solution
 
-Subject: https://github.com/IloBe/doc_quality_compliance_check Detailed privacy
-audit: https://willingc.github.io/compliance-checker/
+![width:900 left:80%](images/raw/simple-architecture.png)
+
+<!--
+### Architecture
+- Human operator
+- NextJS frontend
+- FastAPI backend
+- Postgres database
+- Orchestrator and agents
+-->
 
 <!--
 ## 1. Introduce your Use Case (~2 min)
 
-Goal: Give everyone a holistic view of your use case as it stands today.
-
----
-
-Include:
-
-- Use Case: high-level explainer (1-2 sentences)
-- The problem your software/system solves (1-2 sentences)
 - Why privacy matters for this specific use case (1-2 sentences)
 
 Tips:
@@ -49,25 +56,11 @@ Tips:
 
 ---
 
-### High-level architecture
-
-- Human operator
-- NextJS frontend
-- FastAPI backend
-- Postgres database
-- Orchestrator and agents
-
-![bg right:60% width:720](images/raw/simple-architecture.png)
+![bg width:1000](images/raw/simple-architecture.png)
 
 ---
 
-### Real-world problem
-
-Insert brief description of the problem solved
-
----
-
-### Privacy matters
+# Why privacy matters
 
 Insert brief list of why privacy matters
 
@@ -313,17 +306,11 @@ _3.3_ **Mitigating Risk 3**
 
 <!-- class: sec4 -->
 
-_4._
-
 # Recommendations
 
 ---
 
-_4.0_
-
-# Recommendations
-
-## Top priority
+# Top priority
 
 - Insert what it is
 - Insert why it is important
