@@ -5,8 +5,6 @@ footer: "Documentation Quality Compliance Checker · AI Privacy Capstone · May 
 paginate: true
 ---
 
-<!-- class: sec1 -->
-
 ![bg left:20%](images/pexels-pixabay-207580.jpg)
 
 # Documentation Quality Compliance Checker
@@ -16,6 +14,8 @@ Wiebke Meyer
 Carol Willing
 
 ---
+
+<!-- class: sec1 -->
 
 # Real-world problem
 
@@ -349,6 +349,6 @@ Tips:
 
 ## Audit
 
-<https://willingc.github.io/compliance_checker>
+<https://willingc.github.io/compliance-checker>
 
 by Ilona, Wiebke, Carol

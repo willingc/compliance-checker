@@ -153,9 +153,9 @@ section[class*="sec"]::before {
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: #e0def4;                    /* rose-pine text */
-  background-color: #1f1d2e;         /* rose-pine surface */
-  border-bottom: 2px solid #c4a7e7;  /* rose-pine iris */
+  color: var(--text);
+  background-color: var(--surface);
+  border-bottom: 2px solid var(--iris);
 }
 
 section.sec1::before { content: "1 · Project & Use Case"; }
