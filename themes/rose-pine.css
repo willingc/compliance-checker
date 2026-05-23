@@ -238,7 +238,20 @@ section.divider {
 }
 section.divider h1 {
   font-size: 60px;
-  margin-bottom: 4mm;
+  margin-bottom: 8mm;
+}
+section.divider ul {
+  margin-top: 0;
+  padding-left: 0;
+  list-style-position: inside;
+  line-height: 2;
+  text-align: center;
+}
+section.divider li {
+  margin-bottom: 0.75em;
+}
+section.divider li:last-child {
+  margin-bottom: 0;
 }
 section.divider::before {
   border-bottom-color: var(--iris);

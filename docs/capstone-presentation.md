@@ -369,13 +369,23 @@ Tips:
 ---
 
 <!-- class: sec5 -->
+<!-- _class: sec5 divider -->
 
-![bg left:30%](images/pexels-ozum-afsar-1430297-7908609.jpg)
+# Questions & answers
 
-_5.0_
+- Audit scope and findings
+- Risk prioritization and trade-offs
+- Mitigations and open items
 
-# Questions and answers
+---
 
-Thank you!
+<!-- _class: sec5 -->
 
-### Ilona, Wiebke, Carol
+![bg right:30%](images/pexels-ozum-afsar-1430297-7908609.jpg)
+
+# Thank you
+
+Ilona Brinkmeier · Wiebke Meyer · Carol Willing
+
+**Privacy audit**  
+https://willingc.github.io/compliance-checker/
