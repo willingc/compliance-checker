@@ -1,9 +1,11 @@
 ---
 marp: true
 theme: rose-pine
-footer: "Documentation Quality Compliance Checker · AI Privacy Capstone · May 2026"
+footer: "AI Privacy Capstone - May 2026"
 paginate: true
 ---
+
+<!-- class: sec1 -->
 
 ![bg left:20%](images/pexels-pixabay-207580.jpg)
 
@@ -15,35 +17,30 @@ Carol Willing
 
 ---
 
-<!-- class: sec1 -->
+1. Project and use case
 
-# Real-world problem
-
-Develop an efficient, accurate software system to review technical documents
-
-- audit document quality
-- measure compliance with legal standards
-- submit results to external agencies
-- ensure the automation's behavior and provide human oversight
+# Documentation Quality Compliance Checker
 
 ---
 
-# The present solution
+_1.0_
 
-![width:900 left:80%](images/raw/simple-architecture.png)
+# Audit subject and use case
 
-<!--
-### Architecture
-- Human operator
-- NextJS frontend
-- FastAPI backend
-- Postgres database
-- Orchestrator and agents
--->
+Subject: https://github.com/IloBe/doc_quality_compliance_check Detailed privacy
+audit: https://willingc.github.io/compliance-checker/
 
 <!--
 ## 1. Introduce your Use Case (~2 min)
 
+Goal: Give everyone a holistic view of your use case as it stands today.
+
+---
+
+Include:
+
+- Use Case: high-level explainer (1-2 sentences)
+- The problem your software/system solves (1-2 sentences)
 - Why privacy matters for this specific use case (1-2 sentences)
 
 Tips:
@@ -56,17 +53,36 @@ Tips:
 
 ---
 
-![bg width:1000](images/raw/simple-architecture.png)
+_1.1_ **High-level architecture**
+
+- Human operator
+- NextJS frontend
+- FastAPI backend
+- Postgres database
+- Orchestrator and agents
+
+![bg right:60% width:720](images/raw/simple-architecture.png)
 
 ---
 
-# Why privacy matters
+_1.2_
+
+### Real-world problem
+
+Insert brief description of the problem solved
+
+---
+
+_1.3_
+
+### Privacy matters
 
 Insert brief list of why privacy matters
 
 ---
 
-<!-- class: sec2 -->
+<!-- class: sec2 dense -->
+<!-- _class: sec2 divider -->
 
 _2._
 
@@ -246,6 +262,7 @@ Sensitive data:
 ---
 
 <!-- class: sec3 -->
+<!-- _class: sec3 divider -->
 
 _3._
 
@@ -305,12 +322,19 @@ _3.3_ **Mitigating Risk 3**
 ---
 
 <!-- class: sec4 -->
+<!-- _class: sec4 divider -->
+
+_4._
 
 # Recommendations
 
 ---
 
-# Top priority
+_4.0_
+
+# Recommendations
+
+## Top priority
 
 - Insert what it is
 - Insert why it is important
@@ -343,12 +367,12 @@ Tips:
 
 <!-- class: sec5 -->
 
-![bg right:30%](images/pexels-ozum-afsar-1430297-7908609.jpg)
+![bg left:30%](images/pexels-ozum-afsar-1430297-7908609.jpg)
 
-# Questions
+_5.0_
 
-## Audit
+# Questions and answers
 
-<https://willingc.github.io/compliance-checker>
+Thank you!
 
-by Ilona, Wiebke, Carol
+### Ilona, Wiebke, Carol

@@ -163,3 +163,126 @@ section.sec2::before { content: "2 · Privacy Risks"; }
 section.sec3::before { content: "3 · Mitigations & Controls"; }
 section.sec4::before { content: "4 · Recommendations"; }
 section.sec5::before { content: "5 · Questions & Answers"; }
+
+/* ===================================================== */
+/* Layout enhancements                                   */
+/* ===================================================== */
+
+/* Consistent breathing room on every slide.
+   Banner slides need extra top padding; see override below. */
+section {
+  padding: 60px 70px 56px 70px;
+  font-size: 26px;
+}
+
+/* Banner slides keep clearance for the 46px top bar */
+section[class*="sec"] {
+  padding-top: 74px;
+}
+
+/* Type scale — deliberate hierarchy */
+h1 {
+  font-size: 46px;
+  line-height: 1.15;
+}
+h2 {
+  font-size: 34px;
+  line-height: 1.2;
+}
+h3 {
+  font-size: 26px;
+  line-height: 1.25;
+  color: var(--iris);
+}
+
+/* Calmer lists for dense content */
+ul {
+  line-height: 1.5;
+}
+li {
+  margin-bottom: 0.4em;
+}
+li::marker {
+  color: var(--iris);
+}
+
+/* Quiet, professional footer and pagination */
+section footer {
+  font-size: 13px;
+  color: var(--muted);
+}
+section::after {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ---- Section-divider ("chapter") slides ---- */
+section.divider {
+  background-color: var(--surface);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+section.divider h1 {
+  font-size: 60px;
+  margin-bottom: 4mm;
+}
+section.divider::before {
+  border-bottom-color: var(--iris);
+}
+
+/* ---- Dense slides: slightly smaller body text ---- */
+section.dense {
+  font-size: 22px;
+}
+section.dense ul {
+  line-height: 1.4;
+}
+
+/* ---- Two-column split layout (optional, for any slide) ---- */
+section.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-content: start;
+}
+
+/* ===================================================== */
+/* Accessibility — contrast boosts (WCAG AA)             */
+/* ===================================================== */
+/* Targeted overrides so the named palette stays intact, */
+/* while the lowest-contrast on-screen text clears 4.5x. */
+
+:root {
+  /* higher-contrast aliases, used only below */
+  --muted-aa: #908caa;   /* was 3.42x -> 5.48x */
+  --pine-aa:  #569fba;   /* was 3.38x -> 5.94x */
+  --subtle-aa:#a8a3c4;   /* was 5.48x -> 7.32x */
+}
+
+/* Footer and page numbers: lift off near-invisible muted */
+section footer,
+section::after {
+  color: var(--muted-aa);
+}
+
+/* List text — the most-read content on dense slides */
+ul,
+li {
+  color: var(--subtle-aa);
+}
+
+/* Code-block keywords: pine was below AA at small sizes */
+.hljs-keyword {
+  color: var(--pine-aa);
+}
+.hljs-comment {
+  color: var(--muted-aa);  /* comments also lifted off muted */
+}
+
+/* Slightly heavier body text reads better when projected */
+p {
+  font-weight: 600;
+}
