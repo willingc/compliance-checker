@@ -74,9 +74,20 @@ To use the `rose-pine` custom theme:
 
 4. You should now be able to use `rose-pine`, `rose-pine-dawn`, and `rose-pine-moon` as themes.
 
-### More marp info
+### Present using marp
 
-To convert md file to html:
+Conversions:
+
+- `pixi run to_html` - convert md to html
+- `pixi run to_pdf` - convert md to pdf
+- `pixi run serve-presentation` - run the html presentation
+
+Open the resulting HTML file in a browser.
+Press `P` to open presenter mode — this gives you the current slide, next slide, your speaker notes (the <!-- comment --> blocks in your markdown), and a timer, all in a separate window you can put on your laptop while the main slides go to the projector.
+
+### Use cli
+
+Alternatively, use cli to convert md file to html:
 
 ```sh
 marp docs/capstone-presentation.md -o docs/capstone-presentation.html
@@ -97,7 +108,3 @@ marp --pdf --allow-local-files docs/capstone-presentation.md
 ```
 
 There is also a [marp app](https://marp.app/) and a marp-cli.
-
-### Presenting using marp
-
-Open the resulting HTML file in a browser and press P to open presenter mode — this gives you the current slide, next slide, your speaker notes (the <!-- comment --> blocks in your markdown), and a timer, all in a separate window you can put on your laptop while the main slides go to the projector.

@@ -7,6 +7,9 @@ version = "0.1.0"
 
 [tasks]
 serve = "zensical serve"
+to_html = "npx @marp-team/marp-cli docs/capstone-presentation.md --theme themes/rose-pine.css --html -o docs/capstone-presentation.html"
+to_pdf = "npx @marp-team/marp-cli --allow-local-files docs/capstone-presentation.md --theme themes/rose-pine.css -o docs/capstone-presentation.pdf"
+serve-presentation = "python3 -m http.server 8000 --directory . & sleep 1 && open http://localhost:8000/docs/capstone-presentation.html"
 
 [dependencies]
 zensical = ">=0.0.40,<0.0.41"

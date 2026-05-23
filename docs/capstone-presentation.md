@@ -1,6 +1,6 @@
 ---
 marp: true
-theme: rose-pine-dawn
+theme: rose-pine
 footer: "Documentation Quality Compliance Checker · AI Privacy Capstone · May 2026"
 paginate: true
 ---
