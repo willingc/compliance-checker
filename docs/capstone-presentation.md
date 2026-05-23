@@ -100,9 +100,11 @@ Tips:
 <!-- class: sec2 dense -->
 <!-- _class: sec2 divider -->
 
-_2._
-
 # Privacy risks
+
+- Top privacy risks
+- Risk areas in depth
+- Prioritization and trade-offs
 
 ---
 
@@ -280,9 +282,11 @@ Sensitive data:
 <!-- class: sec3 -->
 <!-- _class: sec3 divider -->
 
-_3._
+# Mitigations & controls
 
-# Mitigations and controls
+- Mitigation per top risk
+- Technical approach and trade-offs
+- Outcomes and learnings
 
 ---
 
@@ -340,9 +344,12 @@ _3.3_ **Mitigating Risk 3**
 <!-- class: sec4 -->
 <!-- _class: sec4 divider -->
 
-_4._
-
 # Recommendations
+
+- Top priority going forward
+- Why it matters
+- Fit with company and risk strategy
+- Value created
 
 ---
 
