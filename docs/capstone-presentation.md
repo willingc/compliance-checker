@@ -7,7 +7,7 @@ paginate: true
 
 <!-- _class: title -->
 
-![bg left:20%](images/pexels-pixabay-207580.jpg)
+![bg left:20% cover](images/pexels-pixabay-207580.jpg)
 
 # Documentation Quality Compliance Checker
 
@@ -29,12 +29,17 @@ Carol Willing
 
 ---
 
-# Audit subject and use case
+![bg left:58% contain](images/raw/compliance-checker-2026-05-02.png)
+
+# What we audited
+
+**In scope**  
+Documentation quality compliance checker — AI-assisted QM audits of technical docs
 
 **Subject repo**  
 https://github.com/IloBe/doc_quality_compliance_check
 
-**Privacy audit**  
+**This audit**  
 https://willingc.github.io/compliance-checker/
 
 <!--
@@ -60,27 +65,35 @@ Tips:
 
 ---
 
+![bg left:58% contain](images/raw/simple-architecture.png)
+
 ### High-level architecture
 
 - Human operator
-- NextJS frontend
+- Next.js frontend
 - FastAPI backend
-- Postgres database
+- PostgreSQL database
 - Orchestrator and agents
 
-![bg right:60% width:720](images/raw/simple-architecture.png)
-
 ---
+
+![bg left:58% contain](images/raw/compliance-checker-2026-05-02.png)
 
 ### Real-world problem
 
-Insert brief description of the problem solved
+- Teams must prove documentation meets quality and regulatory expectations
+- Manual QM review is slow, inconsistent, and hard to scale
+- AI agents can help — but introduce new privacy and data-flow risks
 
 ---
 
+![bg left:58% contain](images/PII-CollectionAndPrivacy-2026-04-26.svg)
+
 ### Privacy matters
 
-Insert brief list of why privacy matters
+- User accounts, roles, and session data (GDPR-relevant)
+- Document content and audit trails may contain sensitive business data
+- Egress to LLM providers and telemetry expand the trust boundary
 
 ---
 
