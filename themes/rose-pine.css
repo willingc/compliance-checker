@@ -138,6 +138,17 @@ marp-pre {
 }
 
 /* ---- Section banner ---- */
+section.title::before,
+section.lead::before {
+  content: none;
+  display: none;
+}
+
+section.title,
+section.lead {
+  padding-top: 60px;
+}
+
 section[class*="sec"] {
   padding-top: 74px;   /* clears the banner */
 }
@@ -176,7 +187,7 @@ section {
 }
 
 /* Banner slides keep clearance for the 46px top bar */
-section[class*="sec"] {
+section[class*="sec"]:not(.title):not(.lead) {
   padding-top: 74px;
 }
 

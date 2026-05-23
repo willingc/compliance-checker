@@ -5,7 +5,7 @@ footer: "AI Privacy Capstone - May 2026"
 paginate: true
 ---
 
-<!-- class: sec1 -->
+<!-- _class: title -->
 
 ![bg left:20%](images/pexels-pixabay-207580.jpg)
 
@@ -16,6 +16,8 @@ Wiebke Meyer
 Carol Willing
 
 ---
+
+<!-- class: sec1 -->
 
 1. Project and use case
 
