@@ -18,19 +18,24 @@ Carol Willing
 ---
 
 <!-- class: sec1 -->
+<!-- _class: sec1 divider -->
 
-1. Project and use case
+# Project & use case
 
-# Documentation Quality Compliance Checker
+- What we audited
+- Architecture at a glance
+- Problem solved
+- Why privacy matters
 
 ---
 
-_1.0_
-
 # Audit subject and use case
 
-Subject: https://github.com/IloBe/doc_quality_compliance_check Detailed privacy
-audit: https://willingc.github.io/compliance-checker/
+**Subject repo**  
+https://github.com/IloBe/doc_quality_compliance_check
+
+**Privacy audit**  
+https://willingc.github.io/compliance-checker/
 
 <!--
 ## 1. Introduce your Use Case (~2 min)
@@ -55,8 +60,6 @@ Tips:
 
 ---
 
-_1.1_
-
 ### High-level architecture
 
 - Human operator
@@ -69,15 +72,11 @@ _1.1_
 
 ---
 
-_1.2_
-
 ### Real-world problem
 
 Insert brief description of the problem solved
 
 ---
-
-_1.3_
 
 ### Privacy matters
 
