@@ -23,23 +23,26 @@ Carol Willing
 # Project & use case
 
 - What we audited
-- Architecture at a glance
 - Problem solved
+- Architecture at a glance
 - Why privacy matters
 
 ---
 
-![bg left:58% contain](images/raw/compliance-checker-2026-05-02.png)
+![bg left:45% contain](images/PII-CollectionAndPrivacy-2026-04-26.svg)
 
-# What we audited
+### What we audited
 
-**In scope**  
-Documentation quality compliance checker — AI-assisted QM audits of technical docs
+*Scope*
 
-**Subject repo**  
+Documentation quality compliance checker performs AI-assisted QM audits of technical docs
+
+*Repo*
+
 https://github.com/IloBe/doc_quality_compliance_check
 
-**This audit**  
+*Audit*
+
 https://willingc.github.io/compliance-checker/
 
 <!--
@@ -67,6 +70,16 @@ Tips:
 
 ![bg left:58% contain](images/raw/simple-architecture.png)
 
+### Problem solved
+
+- Teams must prove documentation meets quality and regulatory expectations
+- Manual QM review is slow, inconsistent, and hard to scale
+- AI agents can help — but introduce new privacy and data-flow risks
+
+---
+
+![bg left:58% contain](images/raw/simple-architecture.png)
+
 ### High-level architecture
 
 - Human operator
@@ -77,17 +90,7 @@ Tips:
 
 ---
 
-![bg left:58% contain](images/raw/compliance-checker-2026-05-02.png)
-
-### Real-world problem
-
-- Teams must prove documentation meets quality and regulatory expectations
-- Manual QM review is slow, inconsistent, and hard to scale
-- AI agents can help — but introduce new privacy and data-flow risks
-
----
-
-![bg left:58% contain](images/PII-CollectionAndPrivacy-2026-04-26.svg)
+![bg left:58% contain](images/raw/simple-architecture.png)
 
 ### Privacy matters
 
@@ -407,5 +410,5 @@ Tips:
 
 Ilona Brinkmeier · Wiebke Meyer · Carol Willing
 
-**Privacy audit**  
+**Privacy audit**
 https://willingc.github.io/compliance-checker/
