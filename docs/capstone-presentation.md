@@ -53,7 +53,9 @@ Tips:
 
 ---
 
-_1.1_ **High-level architecture**
+_1.1_
+
+### High-level architecture
 
 - Human operator
 - NextJS frontend
@@ -334,7 +336,7 @@ _4.0_
 
 # Recommendations
 
-## Top priority
+### Top priority
 
 - Insert what it is
 - Insert why it is important
