@@ -341,16 +341,9 @@ _3.3_ **Mitigating Risk 3**
 
 ---
 
-_4.0_
+### Top priority going forward
 
-# Recommendations
-
-### Top priority
-
-- Insert what it is
-- Insert why it is important
-- Insert why it matters to company and risk strategy
-- Insert what value does it create
+- Insert what the top priority is
 
 <!--
 ## 4. Top Next Priority and Why (~3 min)
@@ -373,6 +366,24 @@ Tips:
 - Show you understand prioritization and budgets. not everything is a fire
 
 -->
+
+---
+
+### Why it matters
+
+- Insert why it is important (ROI, risk reduction, user impact, compliance, security)
+
+---
+
+### Fit with company and risk strategy
+
+- Insert how it fits the broader company and risk strategy
+
+---
+
+### Value created
+
+- Insert what value it creates for the organization
 
 ---
 
