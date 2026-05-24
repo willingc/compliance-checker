@@ -350,8 +350,6 @@ _3.3_ **Mitigating Risk 3**
 
 Goal: Practice executive communication: Convince your boss (or your boss's boss :) ).
 
----
-
 Include:
 
 - What's your #1 priority going forward?
