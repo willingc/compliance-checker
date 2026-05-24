@@ -31,7 +31,7 @@ Ilona Brinkmeier · Wiebke Meyer · Carol Willing
 
 ### What we audited
 
-- **Scope:** Documentation quality compliance checker performs AI-assisted QM audits of technical docs
+- **Scope:** Documentation quality compliance checker performs AI-assisted QM audits of technical docs and governance docs (SOPs)
 - **Repo:** https://github.com/IloBe/doc_quality_compliance_check
 - **Audit:** https://willingc.github.io/compliance-checker/
 
