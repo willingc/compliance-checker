@@ -170,6 +170,49 @@ Sensitive data:
 
 ---
 
+_3.0_
+
+# _---> this seems to be weird now-maybe delete it_
+
+# Mitigations and controls
+
+- Mitigation implemented
+- Technical details
+- Selected approach vs. alternatives
+- Outcome and learnings
+
+<!--
+## 3. How You Addressed Them (Mitigations + Controls) (~4 min)
+
+Goal: Demonstrate your technical competence and decision-making.
+
+---
+
+Include:
+
+- For each top risk: what mitigation you implemented
+- Technical details: tools, frameworks, specific implementations
+- Why you chose these approaches over alternatives
+- What worked, what didn't, what you'd change
+
+Tips:
+
+- Be specific — mention concrete tools, parameters, configurations
+- Explain your trade-offs — nothing is perfect
+- Show you tested your solutions (red teaming, evaluations, etc.)
+
+-->
+
+---
+
+_3.1_ **Mitigating Risk 1**
+
+### Egress traffic flow data to orchestrator and models
+
+---
+
+---
+
 _2.2_ **Risk Area 2**
 
 ### Application telemetry and workflow tracing
@@ -187,8 +230,7 @@ Sensitive data:
 ---
 
 - - **Why Sensitive**:
-    - Prompt context is assembled from user-submitted documents which routinely
-      contain names, emails, project identifiers, and business-sensitive content
+    - Prompt context is assembled from user-submitted documents which routinely contain names, emails, project identifiers, and business-sensitive content
     - The output may restate or summarise that content
     - Both are persisted to a queryable table
 
@@ -196,8 +238,7 @@ Sensitive data:
 
 - Audit event payload in audits_events.payload
   - **Data**:
-    - payload.roles (user role at login), payload.remember_me flag,
-      event-specific context fields, any free-form data inserted by orchestrator or Skills API callers
+    - payload.roles (user role at login), payload.remember_me flag, event-specific context fields, any free-form data inserted by orchestrator or Skills API callers
   - **Why Sensitive**:
     - Append-only and intended for long retention
     - No technical control prevents a caller from writing personal data into the payload column
@@ -227,6 +268,18 @@ Sensitive data:
     - outside system access controls, retention policy, and audit log;
     - may contain personal data from documents processed during the export
       window
+
+---
+
+![](images/raw/risk-area-2.png)
+
+---
+
+_3.2_ **Mitigating Risk 2**
+
+### Application telemetry and workflow tracing
+
+---
 
 ---
 
@@ -276,8 +329,22 @@ Sensitive data:
 
 ---
 
+![](images/raw/risk-area-3.png)
+
+---
+
+_3.3_ **Mitigating Risk 3**
+
+### Role-based access controls and GDPR compliance
+
+---
+
+---
+
 <!-- class: sec3 -->
 <!-- _class: sec3 divider -->
+
+# _--->maybe we don't need that anymore_
 
 # Mitigations & controls
 
@@ -286,55 +353,6 @@ Sensitive data:
 - Outcomes and learnings
 
 ---
-
-_3.0_
-
-# Mitigations and controls
-
-- Mitigation implemented
-- Technical details
-- Selected approach vs. alternatives
-- Outcome and learnings
-
-<!--
-## 3. How You Addressed Them (Mitigations + Controls) (~4 min)
-
-Goal: Demonstrate your technical competence and decision-making.
-
----
-
-Include:
-
-- For each top risk: what mitigation you implemented
-- Technical details: tools, frameworks, specific implementations
-- Why you chose these approaches over alternatives
-- What worked, what didn't, what you'd change
-
-Tips:
-
-- Be specific — mention concrete tools, parameters, configurations
-- Explain your trade-offs — nothing is perfect
-- Show you tested your solutions (red teaming, evaluations, etc.)
-
--->
-
----
-
-_3.1_ **Mitigating Risk 1**
-
-### Egress traffic flow data to orchestrator and models
-
----
-
-_3.2_ **Mitigating Risk 2**
-
-### Application telemetry and workflow tracing
-
----
-
-_3.3_ **Mitigating Risk 3**
-
-### Role-based access controls and GDPR compliance
 
 ---
 
@@ -397,7 +415,7 @@ Tips:
 
 ### Value created
 
-- Being audit 
+- Being audit
 
 ---
 
