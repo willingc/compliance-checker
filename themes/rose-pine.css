@@ -283,6 +283,17 @@ section.sec1[data-marpit-advanced-background] [data-marpit-advanced-background-c
   padding: 12px 16px;
 }
 
+/* ---- Light body: normal weight for paragraph-heavy slides ---- */
+section.light-body p,
+section.light-body li {
+  font-weight: 400;
+}
+section.light-body em,
+section.light-body strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
 /* ---- Dense slides: slightly smaller body text ---- */
 section.dense {
   font-size: 22px;

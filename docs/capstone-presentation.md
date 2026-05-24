@@ -11,9 +11,7 @@ paginate: true
 
 # Documentation Quality Compliance Checker
 
-Ilona Brinkmeier
-Wiebke Meyer
-Carol Willing
+Ilona Brinkmeier · Wiebke Meyer · Carol Willing
 
 ---
 
@@ -29,40 +27,27 @@ Carol Willing
 
 ---
 
+<!-- _class: light-body -->
+
 ![bg left:45% contain](images/PII-CollectionAndPrivacy-2026-04-26.svg)
 
 ### What we audited
 
-*Scope*
-
-Documentation quality compliance checker performs AI-assisted QM audits of technical docs
-
-*Repo*
-
-https://github.com/IloBe/doc_quality_compliance_check
-
-*Audit*
-
-https://willingc.github.io/compliance-checker/
+- **Scope:** Documentation quality compliance checker performs AI-assisted QM audits of technical docs
+- **Repo:** https://github.com/IloBe/doc_quality_compliance_check
+- **Audit:** https://willingc.github.io/compliance-checker/
 
 <!--
 ## 1. Introduce your Use Case (~2 min)
 
 Goal: Give everyone a holistic view of your use case as it stands today.
 
----
-
-Include:
-
-- Use Case: high-level explainer (1-2 sentences)
 - The problem your software/system solves (1-2 sentences)
+- Use Case: high-level explainer (1-2 sentences)
 - Why privacy matters for this specific use case (1-2 sentences)
-
-Tips:
 
 - Start with the problem the use case solves
 - Why is privacy relevant?
-- Keep it under 2 minutes
 
 -->
 
