@@ -131,6 +131,9 @@ _2.1_ **Risk Area 1**
 
 ### Egress traffic flow data to orchestrator and models
 
+![bg left:40% contain](images/raw/claude_1.png)
+![bg left:40% contain](images/raw/claude_1.1.png)
+
 Sensitive data:
 
 - External model: transfer of potentially personal prompt/output data
@@ -140,6 +143,8 @@ Sensitive data:
     - Leaves the primary application context during model inference (current external-provider path)
 
 ---
+
+![bg left:40% contain](images/raw/claude_2.jpg)
 
 - Over-collection and -retention in model observability traces
   - **Data**:
@@ -152,12 +157,18 @@ Sensitive data:
 
 ---
 
+![bg left:40% contain](images/raw/claude_3.jpg)
+
 - Model credentials and routing configuration
   - **Data**:
     - API keys, adapter routing flags, provider selection settings
   - **Why Sensitive**:
     - Compromise enables data exfiltration or unauthorized
       model usage
+
+---
+
+![](images/raw/risk-area-1.png)
 
 ---
 
