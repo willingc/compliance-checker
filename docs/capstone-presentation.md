@@ -27,8 +27,6 @@ Ilona Brinkmeier · Wiebke Meyer · Carol Willing
 
 ---
 
-<!-- _class: light-body -->
-
 ![bg left:50% contain](images/PII-CollectionAndPrivacy-2026-04-26.svg)
 
 ### What we audited
