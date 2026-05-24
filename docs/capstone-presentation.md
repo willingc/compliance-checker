@@ -29,7 +29,7 @@ Ilona Brinkmeier · Wiebke Meyer · Carol Willing
 
 <!-- _class: light-body -->
 
-![bg left:45% contain](images/PII-CollectionAndPrivacy-2026-04-26.svg)
+![bg left:50% contain](images/PII-CollectionAndPrivacy-2026-04-26.svg)
 
 ### What we audited
 
@@ -53,7 +53,7 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 
 ---
 
-![bg left:58% contain](images/raw/simple-architecture.png)
+![bg left:50% contain](images/edited/simple-architecture.png)
 
 ### Problem solved
 
@@ -63,7 +63,7 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 
 ---
 
-![bg left:58% contain](images/raw/simple-architecture.png)
+![bg left:50% contain](images/edited/simple-architecture.png)
 
 ### High-level architecture
 
@@ -75,7 +75,7 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 
 ---
 
-![bg left:58% contain](images/raw/simple-architecture.png)
+![bg left:50% contain](images/raw/simple-architecture.png)
 
 ### Privacy matters
 

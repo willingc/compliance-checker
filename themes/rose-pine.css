@@ -274,13 +274,27 @@ section.title[data-marpit-advanced-background] [data-marpit-advanced-background-
   padding: 0;
 }
 
-/* Section 1 content slides: use full width of the image panel */
-section.sec1[data-marpit-advanced-background] figure {
-  background-size: 100% auto !important;
+/* Section 1 split slides: image panel ≤50%, vertically aligned with text column */
+section.sec1[data-marpit-advanced-background]:not(.divider):not(.title)
+  [data-marpit-advanced-background-container] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 74px 20px 56px 20px; /* match sec* content padding (below banner, above footer) */
+  box-sizing: border-box;
 }
 
-section.sec1[data-marpit-advanced-background] [data-marpit-advanced-background-container] {
-  padding: 12px 16px;
+section.sec1[data-marpit-advanced-background]:not(.divider):not(.title) figure {
+  position: relative !important;
+  top: unset !important;
+  flex: 1 1 auto;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100%;
+  min-height: 0;
+  background-size: contain !important;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 /* ---- Light body: normal weight for paragraph-heavy slides ---- */
