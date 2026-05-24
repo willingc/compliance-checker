@@ -352,7 +352,8 @@ _3.3_ **Mitigating Risk 3**
 
 ### Top priority going forward
 
-- Insert what the top priority is
+- Meet the standard directives and too much to do manually
+- Maintain tool for efficiency
 
 <!--
 ## 4. Top Next Priority and Why (~3 min)
@@ -379,18 +380,24 @@ Tips:
 ### Why it matters
 
 - Insert why it is important (ROI, risk reduction, user impact, compliance, security)
+- Too much for any one human to analyze 1000 page document
+- Time for weeks and months for a document
+- Changes if directives change
+- Expensive specialists
+- Basic insights, what has changed, where changed, policies affected
 
 ---
 
 ### Fit with company and risk strategy
 
-- Insert how it fits the broader company and risk strategy
+- GDPR / BSI in Germany regulations for software rules
+- Main points are addressed for external audits
 
 ---
 
 ### Value created
 
-- Insert what value it creates for the organization
+- Being audit 
 
 ---
 
