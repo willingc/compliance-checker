@@ -232,6 +232,12 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 
 ### Application telemetry and workflow tracing
 
+- Recommend following [OpenTelemetry best practices for handling sensitive data](https://opentelemetry.io/docs/security/handling-sensitive-data/)
+- Follow the principle of data minimization, where possible.
+- While it may not be optimal, try hashing user information and id and delete unhashed data.
+- Consider using OTel's `redaction` processor between collection and export
+- Apply similar principles to audit logs and reports
+
 ---
 
 <!-- _class: sec32 risk-diagram -->
