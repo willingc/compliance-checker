@@ -328,52 +328,34 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 
 ### Top priority going forward
 
-- Meet the standard directives and too much to do manually
-- Maintain tool for efficiency
-
-<!--
-## 4. Top Next Priority and Why (~3 min)
-
-Goal: Practice executive communication: Convince your boss (or your boss's boss :) ).
-
-Include:
-
-- What's your #1 priority going forward?
-- Why is it important? (ROI, risk reduction, user impact, compliance, security, etc...)
-- How does it fit into the broader company and risk strategy?
-- What value does it create?
-
-Tips:
-
-- This is management pitch practice. Think about how a company around this might evaluate ROI and risk.
-- Connect to business/operational outcomes, not just technical improvements
-- Show you understand prioritization and budgets. not everything is a fire
-
--->
+- Continue to refine the automation and human interaction
+- Focus on reducing manual work while meeting the standard
+- Maintain and enhance the tool for furthre efficiency gains and respond to regulatory changes
 
 ---
 
 ### Why it matters
 
-- Insert why it is important (ROI, risk reduction, user impact, compliance, security)
 - Too much for any one human to analyze 1000 page document
-- Time for weeks and months for a document
-- Changes if directives change
-- Expensive specialists
-- Basic insights, what has changed, where changed, policies affected
+- Reduces time to analyze document from weeks and months
+- Flexibility to implement changes if directives change
+- Reduces the need for expensive specialists to work on repetitive tasks
+- Offers basic insights on what has changed, where changed, and policies affected
 
 ---
 
 ### Fit with company and risk strategy
 
-- GDPR / BSI in Germany regulations for software rules
-- Main points are addressed for external audits
+- Complies with GDPR / BSI in Germany regulations for software rules
+- Main regulatory points are addressed in workflow and prepares for external audits
 
 ---
 
 ### Value created
 
-- Being audit
+- Company is prepared for being audited by external agencies
+- Cost savings from moving to internal models instead of using external services
+- Maximize the human's impact for Human-in-the-loop by reducing toil and increasing time to focus on complex business cases
 
 ---
 
