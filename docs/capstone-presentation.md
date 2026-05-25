@@ -82,6 +82,8 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 <div>
 
+### Priorities
+
 - Egress traffic flow data to director and external models
 - Application telemetry and workflow tracing
 - Role-based access controls and GDPR compliance

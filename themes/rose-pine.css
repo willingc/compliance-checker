@@ -292,12 +292,21 @@ section.risks-overview h1 {
 
 section.risks-overview .risks-overview-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 56px;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 0;
   width: 100%;
   max-width: 1040px;
   margin: 0 auto;
   text-align: left;
+}
+
+section.risks-overview .risks-overview-grid > div {
+  padding: 0 36px 0 40px;
+}
+
+section.risks-overview .risks-overview-grid > div + div {
+  border-left: 1px solid var(--highlight-high);
+  padding: 0 40px 0 40px;
 }
 
 section.risks-overview .risks-overview-grid h3 {
