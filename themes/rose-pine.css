@@ -385,6 +385,68 @@ section[data-marpit-advanced-background]:not(.title):not(.divider) figure {
   background-repeat: no-repeat;
 }
 
+/* Split-panel text columns: readable layout (slides 3, 5, etc.) */
+section.privacy-audit[data-marpit-advanced-background="content"],
+section.solution-intro[data-marpit-advanced-background="content"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 23px;
+  padding-right: 52px;
+}
+
+section.privacy-audit[data-marpit-advanced-background="content"] h3,
+section.solution-intro[data-marpit-advanced-background="content"] h3 {
+  margin: 0 0 0.45em;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+section.solution-intro[data-marpit-advanced-background="content"] h3 + p {
+  margin: 0 0 1em;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--text);
+  font-weight: 400;
+}
+
+section.solution-intro.light-body[data-marpit-advanced-background="content"] h3 + p strong {
+  color: var(--rose);
+  font-weight: 600;
+}
+
+section.privacy-audit[data-marpit-advanced-background="content"] h3 + p {
+  margin: 0 0 1.1em;
+  font-size: 19px;
+  line-height: 1.3;
+}
+
+section.privacy-audit[data-marpit-advanced-background="content"] h3 + p a {
+  color: var(--foam);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--iris);
+}
+
+section.privacy-audit[data-marpit-advanced-background="content"] ul,
+section.solution-intro[data-marpit-advanced-background="content"] ul {
+  margin: 0;
+  padding-left: 1.15em;
+  line-height: 1.48;
+}
+
+section.privacy-audit.light-body[data-marpit-advanced-background="content"] li,
+section.solution-intro.light-body[data-marpit-advanced-background="content"] li {
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 0.6em;
+}
+
+section.privacy-audit.light-body[data-marpit-advanced-background="content"] li:last-child,
+section.solution-intro.light-body[data-marpit-advanced-background="content"] li:last-child {
+  margin-bottom: 0;
+}
+
 /* Title slide: product screenshot contained and centered in the image column */
 section.title[data-marpit-advanced-background] [data-marpit-advanced-background-container] {
   display: flex !important;

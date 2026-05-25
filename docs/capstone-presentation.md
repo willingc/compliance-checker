@@ -22,46 +22,25 @@ paginate: true
 <!-- class: sec1 -->
 <!-- _class: sec1 divider -->
 
-# Project & use case
+# Problem
 
-- What we audited
-- Problem solved
-- Architecture at a glance
-- Why privacy matters
+Software teams in regulated or audit-heavy environments (healthcare, fintech, enterprise SaaS or critical infrastructure) often lose significant time during releases because documentation quality and compliance checks are manual, inconsistent and late in the delivery cycle.
 
 ---
 
-![bg left:50% contain](images/PII-CollectionAndPrivacy-2026-04-26.svg)
+<!-- _class: sec1 light-body solution-intro -->
 
-### What we audited
+![bg left:42% contain](images/raw/DocQuality_Compliance-QA-Lab.JPG)
 
-- **Scope:** Documentation quality compliance checker performs AI-assisted QM audits of technical docs and governance docs (SOPs)
-- **Repo:** https://github.com/IloBe/doc_quality_compliance_check
-- **Audit:** https://willingc.github.io/compliance-checker/
+### Initial solution and audit scope
 
-<!--
-## 1. Introduce your Use Case (~2 min)
+The **Doc Quality Compliance Checker** is a structured, workflow-oriented system that:
 
-Goal: Give everyone a holistic view of your use case as it stands today.
-
-- The problem your software/system solves (1-2 sentences)
-- Use Case: high-level explainer (1-2 sentences)
-- Why privacy matters for this specific use case (1-2 sentences)
-
-- Start with the problem the use case solves
-- Why is privacy relevant?
-
--->
-
----
-
-![bg left:50% contain](images/edited/simple-architecture.png)
-
-### Problem solved
-
-- Teams must prove documentation meets quality and regulatory expectations
-- Manual QM review is slow, inconsistent, and hard to scale
-- AI agents can help — but introduce new privacy and data-flow risks
+- Checks technical documents against governance and quality standards
+- Improves consistency across SOP, architecture, and risk artifacts
+- Shortens review cycles for QA, compliance, and audit teams
+- Surfaces release-risk gaps earlier in the delivery cycle
+- Improves traceability for approvals and governance decisions
 
 ---
 
@@ -73,17 +52,24 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 - Next.js frontend
 - FastAPI backend
 - PostgreSQL database
-- Orchestrator and agents
+- Orchestrator and external agents
+- Excellent documentation and production software engineering practices
+- [github.com/Ilobe/doc_quality_compliance_check](https://github.com/IloBe/doc_quality_compliance_check)
 
 ---
 
-![bg left:50% contain](images/raw/simple-architecture.png)
+<!-- _class: sec1 light-body privacy-audit -->
 
-### Privacy matters
+![bg left:50% contain](images/PII-CollectionAndPrivacy-2026-04-26.svg)
 
+### Privacy-focused audit
+
+**[View audit report →](https://willingc.github.io/compliance-checker/)**
+
+- End-to-end investigation of privacy risks across the stack
 - User accounts, roles, and session data (GDPR-relevant)
-- Document content and audit trails may contain sensitive business data
-- Egress to LLM providers and telemetry expand the trust boundary
+- Document content and audit trails with business and personal data
+- External LLM egress and telemetry expand the trust boundary
 
 ---
 
