@@ -7,13 +7,15 @@ paginate: true
 
 <!-- _class: title -->
 
-![bg left:20% cover](images/pexels-pixabay-207580.jpg)
+![bg right:48% contain](images/raw/Docquality_LoginPage.png)
 
 # Documentation Quality Compliance Checker
 
-Ilona Brinkmeier · Wiebke Meyer · Carol Willing
-
-<!-- TODO: add a screenshot from actual app-->
+<p class="title-authors">
+  <span>Ilona Brinkmeier</span>
+  <span>Wiebke Meyer</span>
+  <span>Carol Willing</span>
+</p>
 
 ---
 

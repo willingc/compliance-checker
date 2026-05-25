@@ -266,14 +266,66 @@ section[data-marpit-advanced-background]:not(.title) figure {
   background-repeat: no-repeat;
 }
 
-/* Title slide: photo fills the left column edge to edge (top to bottom) */
-section.title[data-marpit-advanced-background] figure {
-  background-size: cover !important;
-  background-position: center center;
+/* Title slide: product screenshot contained and centered in the image column */
+section.title[data-marpit-advanced-background] [data-marpit-advanced-background-container] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 48px 28px 56px 28px;
+  box-sizing: border-box;
 }
 
-section.title[data-marpit-advanced-background] [data-marpit-advanced-background-container] {
+section.title[data-marpit-advanced-background] figure {
+  position: relative !important;
+  top: unset !important;
+  flex: 1 1 auto;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100%;
+  min-height: 0;
+  background-size: contain !important;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Title text column: keep heading block vertically centered on the left */
+section.title[data-marpit-advanced-background] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Title slide: heading + author byline */
+section.title h1 {
+  font-size: 40px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+section.title p.title-authors {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35em 0;
+  margin: 1.1em 0 0;
   padding: 0;
+  font-size: 20px;
+  line-height: 1.45;
+  color: var(--subtle);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+section.title p.title-authors span {
+  white-space: nowrap;
+}
+
+section.title p.title-authors span + span::before {
+  content: "·";
+  display: inline-block;
+  margin: 0 0.65em;
+  color: var(--muted);
+  font-weight: 400;
 }
 
 /* Section 1 split slides: image panel ≤50%, vertically aligned with text column */
