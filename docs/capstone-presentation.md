@@ -295,7 +295,14 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 
 ---
 
+<!-- _class: sec33 mitigation-screens -->
+
 ### Mitigation: Role-based access controls and GDPR compliance
+
+<div class="appendix-body appendix-duo">
+  <img src="images/raw/Docquality_Admin-GovernanceControl.png" alt="Governance control" />
+  <img src="images/raw/Docquality_Admin-RBAC.png" alt="Role-based access control" />
+</div>
 
 ---
 

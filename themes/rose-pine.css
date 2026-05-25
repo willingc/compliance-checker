@@ -474,22 +474,29 @@ section.sec5[data-marpit-advanced-background]:not(.divider) figure {
   background-repeat: no-repeat;
 }
 
-/* Appendix: screenshot slides — stay above footer and page number */
-section.appendix:not(.divider) {
+/* Screenshot slides (appendix + in-section mitigations) — stay above footer */
+section.appendix:not(.divider),
+section.mitigation-screens {
   display: flex;
   flex-direction: column;
-  padding: var(--slide-banner-reserve) 48px var(--slide-footer-reserve) 48px;
+  overflow: hidden;
   box-sizing: border-box;
 }
 
-section.appendix:not(.divider) h3 {
+section.appendix:not(.divider) {
+  padding: var(--slide-banner-reserve) 48px var(--slide-footer-reserve) 48px;
+}
+
+section.appendix:not(.divider) h3,
+section.mitigation-screens h3 {
   flex: 0 0 auto;
   margin: 0 0 0.45em;
   font-size: 22px;
   line-height: 1.2;
 }
 
-section.appendix .appendix-body {
+section.appendix .appendix-body,
+section.mitigation-screens .appendix-body {
   flex: 1 1 auto;
   min-height: 0;
   max-height: calc(
@@ -502,7 +509,8 @@ section.appendix .appendix-body {
   margin: 0;
 }
 
-section.appendix .appendix-body.appendix-duo {
+section.appendix .appendix-body.appendix-duo,
+section.mitigation-screens .appendix-body.appendix-duo {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px;
@@ -510,7 +518,8 @@ section.appendix .appendix-body.appendix-duo {
   justify-items: stretch;
 }
 
-section.appendix .appendix-body img {
+section.appendix .appendix-body img,
+section.mitigation-screens .appendix-body img {
   display: block;
   width: 100%;
   height: 100%;
