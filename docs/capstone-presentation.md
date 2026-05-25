@@ -114,44 +114,52 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 ---
 
-![bg left:40% contain](images/raw/claude_1.png)
-![bg left:40% contain](images/raw/claude_1.1.png)
+<!-- _class: sec31 light-body risk-detail dense -->
 
-### Sensitive data
+![bg left:42% contain](images/raw/claude_1.png)
+![bg left:42% contain](images/raw/claude_1.1.png)
 
-- External model: transfer of potentially personal prompt/output data
-  - **Data**:
-    - Names, emails, stakeholder assignments, reviewer identifiers, document passages copied into prompts, generated summaries that may restate personal data
-  - **Why Sensitive**:
-    - Leaves the primary application context during model inference (current external-provider path)
+### External model
 
----
-
-![bg left:40% contain](images/raw/claude_2.jpg)
-
-- Over-collection and -retention in model observability traces
-  - **Data**:
-    - provider, model_used, trace_id, correlation_id, latency/tokens,
-      rich payload entries, prompt/output snapshots
-  - **Why Sensitive**:
-    - Enables reconstruction of _who_ triggered _what_ model action
-      and _when_
-    - can become re-identifiable when combined with audit tables
+- **Data**
+  - Names, emails, stakeholder assignments, reviewer identifiers, document passages copied into prompts, generated summaries that may restate personal data
+- **Why sensitive**
+  - Leaves the primary application context during model inference (current external-provider path)
 
 ---
 
-![bg left:40% contain](images/raw/claude_3.jpg)
+<!-- _class: sec31 light-body risk-detail dense -->
 
-- Model credentials and routing configuration
-  - **Data**:
-    - API keys, adapter routing flags, provider selection settings
-  - **Why Sensitive**:
-    - Compromise enables data exfiltration or unauthorized
-      model usage
+![bg left:42% contain](images/raw/claude_2.jpg)
+
+### Observability traces
+
+- **Data**
+  - provider, model_used, trace_id, correlation_id, latency/tokens, rich payload entries, prompt/output snapshots
+- **Why sensitive**
+  - Enables reconstruction of _who_ triggered _what_ model action and _when_
+  - Can become re-identifiable when combined with audit tables
 
 ---
+
+<!-- _class: sec31 light-body risk-detail dense -->
+
+![bg left:42% contain](images/raw/claude_3.jpg)
+
+### Model credentials
+
+- **Data**
+  - API keys, adapter routing flags, provider selection settings
+- **Why sensitive**
+  - Compromise enables data exfiltration or unauthorized model usage
+
+---
+
+<!-- _class: sec31 risk-diagram -->
 
 ### Mitigation: Egress traffic flow data to orchestrator and models
+
+![](images/raw/Docquality_General-AI-Disclaimer.png)
 
 ---
 
@@ -159,7 +167,7 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 ### TODO: add happy mitigated image here
 
-![](images/raw/risk-area-1.png)
+![](images/raw/Docquality_General-AI-Disclaimer.png)
 
 ---
 
@@ -172,53 +180,63 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 ---
 
-### Sensitive data
+<!-- _class: sec32 light-body risk-detail dense -->
 
-- Raw LLM prompt and output in _quality_observations.payload_
-  - **Data**:
-    - _payload.provider, payload.model_used, payload.llm_temperature_
-    - _payload.llm_prompt_ (document text submitted by user, stakeholder names,
-      reviewer assignments)
-    - _payload.llm_output_ (generated compliance summaries restating personal
-      context)
+![bg left:42% contain](images/raw/risk-area-2.png)
 
----
+### LLM quality observations
 
-- - **Why Sensitive**:
-    - Prompt context is assembled from user-submitted documents which routinely contain names, emails, project identifiers, and business-sensitive content
-    - The output may restate or summarise that content
-    - Both are persisted to a queryable table
+- **Data**
+  - _payload.provider_, _payload.model_used_, _payload.llm_temperature_
+  - _payload.llm_prompt_ — document text, stakeholder names, reviewer assignments
+  - _payload.llm_output_ — compliance summaries that may restate personal context
+- **Why sensitive**
+  - Prompt context from user documents with names, emails, project identifiers, and business-sensitive content
+  - Output may restate that content; both are persisted to a queryable table
 
 ---
 
-- Audit event payload in audits_events.payload
-  - **Data**:
-    - payload.roles (user role at login), payload.remember_me flag, event-specific context fields, any free-form data inserted by orchestrator or Skills API callers
-  - **Why Sensitive**:
-    - Append-only and intended for long retention
-    - No technical control prevents a caller from writing personal data into the payload column
-    - Combined with actor_id (user email) it forms a rich personal profile
+<!-- _class: sec32 light-body risk-detail dense -->
+
+![bg left:42% contain](images/raw/risk-area-2.png)
+
+### Audit event payload
+
+- **Data**
+  - payload.roles (user role at login), payload.remember_me flag, event-specific context fields, free-form data from orchestrator or Skills API callers
+- **Why sensitive**
+  - Append-only and intended for long retention
+  - No technical control prevents callers from writing personal data into the payload column
+  - Combined with actor_id (user email) it forms a rich personal profile
 
 ---
 
-- OTEL (open telemetry) span attributes (exporter config)
-  - **Data**:
-    - HTTP path attribute (e.g., _/api/v1/documents/doc-abc123_ — document ID in path), user_agent, http.method, http.status_code, trace_id / span_id (linkable back to session)
-  - **Why Sensitive**:
-    - When TRACING_EXPORTER=otlp span data is sent to an external collector,
-      - path values can embed document or session identifiers
-      - user-agent can contribute to fingerprinting
+<!-- _class: sec32 light-body risk-detail dense -->
+
+![bg left:42% contain](images/raw/risk-area-2.png)
+
+### OpenTelemetry span attributes
+
+- **Data**
+  - HTTP path attribute (e.g., _/api/v1/documents/doc-abc123_ — document ID in path), user_agent, http.method, http.status_code, trace_id / span_id
+- **Why sensitive**
+  - When TRACING_EXPORTER=otlp, path values can embed document or session identifiers
+  - User-agent can contribute to fingerprinting
 
 ---
 
-- Frontend CSV export of prompt/output pairs
-  - **Data**:
-    - Exported observability _prompt_output_pairs.csv_ file containing prompt, output, source_component, trace_id, timestamps
-  - **Why Sensitive**:
-    - Created on the user's local filesystem;
-    - outside system access controls, retention policy, and audit log;
-    - may contain personal data from documents processed during the export
-      window
+<!-- _class: sec32 light-body risk-detail dense -->
+
+![bg left:42% contain](images/raw/risk-area-2.png)
+
+### Frontend CSV export
+
+- **Data**
+  - Exported observability _prompt_output_pairs.csv_ with prompt, output, source_component, trace_id, timestamps
+- **Why sensitive**
+  - Created on the user's local filesystem
+  - Outside system access controls, retention policy, and audit log
+  - May contain personal data from documents processed during the export window
 
 ---
 
@@ -236,7 +254,7 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 ### TODO: add happy mitigated image here
 
-![](images/raw/risk-area-2.png)
+![](images/raw/Docquality_General-AI-Disclaimer.png)
 
 ---
 
@@ -299,14 +317,6 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
   <img src="images/raw/Docquality_Admin-GovernanceControl.png" alt="Governance control" />
   <img src="images/raw/Docquality_Admin-RBAC.png" alt="Role-based access control" />
 </div>
-
----
-
-<!-- _class: sec33 risk-diagram -->
-
-### TODO: add happy mitigated image here
-
-![](images/raw/risk-area-3.png)
 
 ---
 

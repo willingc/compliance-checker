@@ -502,6 +502,81 @@ section.solution-intro.light-body[data-marpit-advanced-background="content"] li:
   margin-bottom: 0;
 }
 
+/* sec31 risk detail slides (8–10): consistent split panel + typography */
+section.risk-detail[data-marpit-advanced-background="content"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 21px;
+  padding-right: 48px;
+}
+
+section.risk-detail.dense[data-marpit-advanced-background="content"] {
+  font-size: 20px;
+}
+
+section.risk-detail[data-marpit-advanced-background="content"] h3 {
+  margin: 0 0 0.5em;
+  font-size: 26px;
+  line-height: 1.2;
+}
+
+section.risk-detail[data-marpit-advanced-background="content"] ul {
+  margin: 0;
+  padding-left: 1.15em;
+  line-height: 1.45;
+}
+
+section.risk-detail.light-body[data-marpit-advanced-background="content"] li {
+  color: var(--text);
+  font-weight: 400;
+  margin-bottom: 0.4em;
+}
+
+section.risk-detail.light-body[data-marpit-advanced-background="content"] ul ul {
+  margin-top: 0.2em;
+  padding-left: 1.1em;
+}
+
+section.risk-detail.light-body[data-marpit-advanced-background="content"] li > strong {
+  color: var(--iris);
+  font-weight: 600;
+}
+
+section.risk-detail.light-body[data-marpit-advanced-background="content"] li li {
+  color: var(--subtle-aa);
+}
+
+/* Image column: one or two figures at equal visual weight */
+section.risk-detail[data-marpit-advanced-background="background"]
+  [data-marpit-advanced-background-container] {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  padding: var(--slide-banner-reserve) 16px var(--slide-footer-reserve) 16px !important;
+  box-sizing: border-box;
+}
+
+section.risk-detail[data-marpit-advanced-background="background"] figure {
+  position: relative !important;
+  top: unset !important;
+  flex: 1 1 0 !important;
+  width: 100% !important;
+  min-height: 0;
+  max-height: 100%;
+  background-size: contain !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+
+section.risk-detail[data-marpit-advanced-background="background"]
+  [data-marpit-advanced-background-container] figure:only-child {
+  flex: 1 1 auto !important;
+  max-height: 100%;
+}
+
 /* Title slide: product screenshot contained and centered in the image column */
 section.title[data-marpit-advanced-background] [data-marpit-advanced-background-container] {
   display: flex !important;
