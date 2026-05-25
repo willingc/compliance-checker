@@ -377,7 +377,10 @@ Tips:
 
 <!-- _class: sec5 -->
 
-![bg right:30%](images/pexels-ozum-afsar-1430297-7908609.jpg)
+![bg right:45% contain](images/raw/claude_1.png)
+![bg right:45% contain](images/raw/claude_1.1.png)
+![bg right:45% contain](images/raw/claude_2.jpg)
+![bg right:45% contain](images/raw/claude_3.jpg)
 
 # Thank you
 

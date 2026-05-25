@@ -351,6 +351,31 @@ section.sec1[data-marpit-advanced-background]:not(.divider):not(.title) figure {
   background-repeat: no-repeat;
 }
 
+/* Thank-you slide: four hand-drawn images in a 2×2 grid */
+section.sec5[data-marpit-advanced-background]:not(.divider)
+  [data-marpit-advanced-background-container] {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  align-items: center !important;
+  justify-items: stretch !important;
+  padding: 74px 14px 56px 14px;
+  box-sizing: border-box;
+}
+
+section.sec5[data-marpit-advanced-background]:not(.divider) figure {
+  position: relative !important;
+  top: unset !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0;
+  flex: unset !important;
+  background-size: contain !important;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 /* ---- Light body: normal weight for paragraph-heavy slides ---- */
 section.light-body p,
 section.light-body li {
