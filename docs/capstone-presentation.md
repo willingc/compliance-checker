@@ -375,6 +375,61 @@ Tips:
 
 ---
 
+<!-- class: appendix -->
+<!-- _class: appendix divider -->
+
+# Appendix
+
+- DocQuality Bridge workflow screens
+- DocQuality Admin screens
+- DocQuality Compliance standards screens
+
+---
+
+<!-- _class: appendix -->
+
+### Bridge workflow — orchestration
+
+![](images/raw/Docquality_Bridge-OrchestrationWorkflow.png)
+
+---
+
+<!-- _class: appendix appendix-runs -->
+
+### Bridge workflow — run steps
+
+<div class="workflow-grid">
+  <img src="images/raw/Docquality_Bridge-WorkflowRun-1.png" alt="Workflow step 1" />
+  <img src="images/raw/Docquality_Bridge-WorkflowRun-2.png" alt="Workflow step 2" />
+  <img src="images/raw/Docquality_Bridge-WorkflowRun-4.png" alt="Workflow step 4" />
+  <img src="images/raw/Docquality_Bridge-WorkflowRun-4b.png" alt="Workflow step 4 (detail)" />
+  <img src="images/raw/Docquality_Bridge-WorkflowRun-5.png" alt="Workflow step 5" />
+</div>
+
+---
+
+<!-- _class: appendix appendix-admin -->
+
+### Admin — governance & access control
+
+<div class="admin-grid">
+  <img src="images/raw/Docquality_Admin-GovernanceControl.png" alt="Governance control" />
+  <img src="images/raw/Docquality_Admin-RBAC.png" alt="Role-based access control" />
+</div>
+
+---
+
+<!-- _class: appendix appendix-standards -->
+
+### Compliance standards — mandatory & optional
+
+<div class="standards-grid">
+  <img src="images/raw/Docquality_ComplianceStandards-mandatory.png" alt="Mandatory compliance standards" />
+  <img src="images/raw/Docquality_ComplianceStandards-optional.png" alt="Optional compliance standards" />
+</div>
+
+---
+
 <!-- _class: sec5 -->
 
 ![bg right:45% contain](images/raw/claude_1.png)
