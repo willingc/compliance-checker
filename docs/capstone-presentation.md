@@ -13,6 +13,8 @@ paginate: true
 
 Ilona Brinkmeier · Wiebke Meyer · Carol Willing
 
+<!-- TODO: add a screenshot from actual app-->
+
 ---
 
 <!-- class: sec1 -->
@@ -86,53 +88,38 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 <!-- class: sec2 dense -->
 <!-- _class: sec2 divider -->
 
-# Privacy risks
-
-- Top privacy risks
-- Risk areas in depth
-- Prioritization and trade-offs
-
----
-
-_2.0_
-
 # Top privacy risks
 
-1. Egress traffic flow data to orchestrator and models
+1. Egress traffic flow data to director and external models
 2. Application telemetry and workflow tracing
 3. Role-based access controls and GDPR compliance
 
-<!--
-## 2. Top Risks Identified (~4 min)
+---
 
-Goal: Demonstrate your ability to identify and prioritize real world AI privacy risk.
+# Up next: In-depth risk analysis
+
+### Let's look at each privacy risk...
+
+- its sensitive data
+- why the risk matters
+- the priority of the risk
+- **mitigations** of the risk
 
 ---
 
-Include:
+<!-- class: sec31 -->
+<!-- _class: sec31 divider -->
 
-- Top 3 risks you identified and prioritized
-- Why each risk matters (harms, severity, business and/or customer impact, compliance)
-- How you prioritized risk, including one example of a top risk you deprioritized and why
+### Egress exposes privacy data
 
-Tips:
-
-- Focus on impact and control, why was this important and how/why did you prioritize?
-- Connect to real-world consequences (fines, user harm, reputation)
-- Keep it AI-centric if possible (that's what this class is about!)
-
--->
+![](images/raw/risk-area-1.png)
 
 ---
-
-_2.1_ **Risk Area 1**
-
-### Egress traffic flow data to orchestrator and models
 
 ![bg left:40% contain](images/raw/claude_1.png)
 ![bg left:40% contain](images/raw/claude_1.1.png)
 
-Sensitive data:
+### Sensitive data
 
 - External model: transfer of potentially personal prompt/output data
   - **Data**:
@@ -166,60 +153,30 @@ Sensitive data:
 
 ---
 
-![](images/raw/risk-area-1.png)
-
----
-
-_3.0_
-
-# _---> this seems to be weird now-maybe delete it_
-
-# Mitigations and controls
-
-- Mitigation implemented
-- Technical details
-- Selected approach vs. alternatives
-- Outcome and learnings
-
-<!--
-## 3. How You Addressed Them (Mitigations + Controls) (~4 min)
-
-Goal: Demonstrate your technical competence and decision-making.
-
----
-
-Include:
-
-- For each top risk: what mitigation you implemented
-- Technical details: tools, frameworks, specific implementations
-- Why you chose these approaches over alternatives
-- What worked, what didn't, what you'd change
-
-Tips:
-
-- Be specific — mention concrete tools, parameters, configurations
-- Explain your trade-offs — nothing is perfect
-- Show you tested your solutions (red teaming, evaluations, etc.)
-
--->
-
----
-
-_3.1_ **Mitigating Risk 1**
+**Mitigation**
 
 ### Egress traffic flow data to orchestrator and models
 
 ---
 
+# TODO: add happy mitigated image here
+
+![](images/raw/risk-area-1.png)
+
 ---
 
-_2.2_ **Risk Area 2**
+<!-- class: sec32 -->
+<!-- _class: sec32 divider -->
 
-### Application telemetry and workflow tracing
+### Audit logs/reports and telemetry expose privacy data
 
-Sensitive data:
+![](images/raw/risk-area-2.png)
 
-- Raw LLM promp and output in _quality_observations.payload_
+---
+
+### Sensitive data
+
+- Raw LLM prompt and output in _quality_observations.payload_
   - **Data**:
     - _payload.provider, payload.model_used, payload.llm_temperature_
     - _payload.llm_prompt_ (document text submitted by user, stakeholder names,
@@ -246,8 +203,6 @@ Sensitive data:
 
 ---
 
-**Risk Area 2**
-
 - OTEL (open telemetry) span attributes (exporter config)
   - **Data**:
     - HTTP path attribute (e.g., _/api/v1/documents/doc-abc123_ — document ID in path), user_agent, http.method, http.status_code, trace_id / span_id (linkable back to session)
@@ -257,8 +212,6 @@ Sensitive data:
       - user-agent can contribute to fingerprinting
 
 ---
-
-**Risk Area 2**
 
 - Frontend CSV export of prompt/output pairs
   - **Data**:
@@ -271,23 +224,28 @@ Sensitive data:
 
 ---
 
-![](images/raw/risk-area-2.png)
-
----
-
-_3.2_ **Mitigating Risk 2**
+**Mitigation**
 
 ### Application telemetry and workflow tracing
 
 ---
 
+# TODO: add happy mitigated image here
+
+![](images/raw/risk-area-2.png)
+
 ---
 
-_2.3_ **Risk Area 3**
+<!-- class: sec33 -->
+<!-- _class: sec33 divider -->
 
-### Role-based access controls and GDPR compliance
+### Misconfigured and stale controls give access to private data
 
-Sensitive data:
+![](images/raw/risk-area-3.png)
+
+---
+
+### Sensitive data
 
 - User identity in session store
   - **Data**:
@@ -329,30 +287,15 @@ Sensitive data:
 
 ---
 
-![](images/raw/risk-area-3.png)
-
----
-
-_3.3_ **Mitigating Risk 3**
+**Mitigation**
 
 ### Role-based access controls and GDPR compliance
 
 ---
 
----
+# TODO: add happy mitigated image here
 
-<!-- class: sec3 -->
-<!-- _class: sec3 divider -->
-
-# _--->maybe we don't need that anymore_
-
-# Mitigations & controls
-
-- Mitigation per top risk
-- Technical approach and trade-offs
-- Outcomes and learnings
-
----
+![](images/raw/risk-area-3.png)
 
 ---
 
@@ -440,3 +383,6 @@ Ilona Brinkmeier · Wiebke Meyer · Carol Willing
 
 **Privacy audit**
 https://willingc.github.io/compliance-checker/
+
+**Application**
+https://github.com/IloBe/doc_quality_compliance_check

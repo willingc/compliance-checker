@@ -169,9 +169,11 @@ section[class*="sec"]::before {
   border-bottom: 2px solid var(--iris);
 }
 
-section.sec1::before { content: "1 · Project & Use Case"; }
+section.sec1::before { content: "1 · Project and Use Case"; }
 section.sec2::before { content: "2 · Privacy Risks"; }
-section.sec3::before { content: "3 · Mitigations & Controls"; }
+section.sec31::before { content: "3.1 · Egress traffic flow data to director and external models"; }
+section.sec32::before { content: "3.2 · Application telemetry and workflow tracing"; }
+section.sec33::before { content: "3.3 · Role-based access controls and GDPR compliance"; }
 section.sec4::before { content: "4 · Recommendations"; }
 section.sec5::before { content: "5 · Questions & Answers"; }
 
