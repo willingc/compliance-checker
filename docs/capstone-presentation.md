@@ -161,6 +161,8 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 
 ---
 
+<!-- _class: sec31 risk-diagram -->
+
 # TODO: add happy mitigated image here
 
 ![](images/raw/risk-area-1.png)
@@ -232,6 +234,8 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 
 ---
 
+<!-- _class: sec32 risk-diagram -->
+
 # TODO: add happy mitigated image here
 
 ![](images/raw/risk-area-2.png)
@@ -294,6 +298,8 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 ### Role-based access controls and GDPR compliance
 
 ---
+
+<!-- _class: sec33 risk-diagram -->
 
 # TODO: add happy mitigated image here
 

@@ -34,6 +34,12 @@ palette in :root
     font-weight: initial;
 
     background-color: var(--base);
+
+    /* Marp 16:9 slide — keep content above footer + page number */
+    --slide-height: 720px;
+    --slide-footer-reserve: 72px;
+    --slide-banner-reserve: 74px;
+    --slide-padding-x: 70px;
 }
 /* Common style */
 h1 {
@@ -149,11 +155,6 @@ section.lead {
   padding-top: 60px;
 }
 
-section[class*="sec"],
-section.appendix {
-  padding-top: 74px;   /* clears the banner */
-}
-
 section[class*="sec"]::before,
 section.appendix::before {
   position: absolute;
@@ -184,16 +185,22 @@ section.appendix::before { content: "Appendix · DocQuality UI"; }
 /* Layout enhancements                                   */
 /* ===================================================== */
 
-/* Consistent breathing room on every slide.
-   Banner slides need extra top padding; see override below. */
+/* Consistent breathing room on every slide (footer reserve on all). */
 section {
-  padding: 60px 70px 56px 70px;
+  padding: 60px var(--slide-padding-x) var(--slide-footer-reserve) var(--slide-padding-x);
   font-size: 26px;
+  box-sizing: border-box;
 }
 
-/* Banner slides keep clearance for the 46px top bar */
-section[class*="sec"]:not(.title):not(.lead) {
-  padding-top: 74px;
+section[class*="sec"],
+section.appendix {
+  padding-top: var(--slide-banner-reserve);
+  padding-bottom: var(--slide-footer-reserve);
+}
+
+section.title,
+section.lead {
+  padding-bottom: var(--slide-footer-reserve);
 }
 
 /* Type scale — deliberate hierarchy */
@@ -222,14 +229,16 @@ li::marker {
   color: var(--iris);
 }
 
-/* Quiet, professional footer and pagination */
+/* Quiet, professional footer and pagination — stay above slide content */
 section footer {
   font-size: 13px;
   color: var(--muted);
+  z-index: 10;
 }
 section::after {
   font-size: 13px;
   color: var(--muted);
+  z-index: 10;
 }
 
 /* ---- Section-divider ("chapter") slides ---- */
@@ -262,8 +271,89 @@ section.divider::before {
   border-bottom-color: var(--iris);
 }
 
+section.divider img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(
+    var(--slide-height) - var(--slide-banner-reserve) - var(--slide-footer-reserve) - 5em
+  );
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+/* Full-width inline screenshots (risk diagrams, etc.) */
+section[class*="sec"]:not(.divider):not(.risk-diagram) img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(
+    var(--slide-height) - var(--slide-banner-reserve) - var(--slide-footer-reserve) - 2.5em
+  );
+  margin: 0.25em auto 0;
+  object-fit: contain;
+}
+
+/* Mitigation diagram slides (h1 + risk-area image): flex layout above footer */
+section.risk-diagram {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+section.risk-diagram h1 {
+  flex: 0 0 auto;
+  font-size: 28px;
+  line-height: 1.2;
+  margin: 0 0 0.35em;
+  padding-bottom: 0;
+}
+
+section.risk-diagram p {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+section.risk-diagram img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: calc(
+    var(--slide-height) - var(--slide-banner-reserve) - var(--slide-footer-reserve) - 3.5em
+  );
+  object-fit: contain;
+  object-position: center;
+  margin: 0 auto;
+}
+
 /* Split-panel backgrounds: show full image (avoid cover crop in narrow column) */
 section[data-marpit-advanced-background]:not(.title) figure {
+  background-size: contain !important;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Split-panel image columns: respect top banner and bottom footer */
+section[data-marpit-advanced-background]:not(.title):not(.divider)
+  [data-marpit-advanced-background-container] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: var(--slide-banner-reserve) 20px var(--slide-footer-reserve) 20px !important;
+  box-sizing: border-box;
+}
+
+section[data-marpit-advanced-background]:not(.title):not(.divider) figure {
+  position: relative !important;
+  top: unset !important;
+  flex: 1 1 auto;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100%;
+  min-height: 0;
   background-size: contain !important;
   background-position: center center;
   background-repeat: no-repeat;
@@ -274,7 +364,7 @@ section.title[data-marpit-advanced-background] [data-marpit-advanced-background-
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 48px 28px 56px 28px;
+  padding: 48px 28px var(--slide-footer-reserve) 28px;
   box-sizing: border-box;
 }
 
@@ -331,29 +421,6 @@ section.title p.title-authors span + span::before {
   font-weight: 400;
 }
 
-/* Section 1 split slides: image panel ≤50%, vertically aligned with text column */
-section.sec1[data-marpit-advanced-background]:not(.divider):not(.title)
-  [data-marpit-advanced-background-container] {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 74px 20px 56px 20px; /* match sec* content padding (below banner, above footer) */
-  box-sizing: border-box;
-}
-
-section.sec1[data-marpit-advanced-background]:not(.divider):not(.title) figure {
-  position: relative !important;
-  top: unset !important;
-  flex: 1 1 auto;
-  width: 100% !important;
-  height: 100% !important;
-  max-height: 100%;
-  min-height: 0;
-  background-size: contain !important;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-
 /* Thank-you slide: four hand-drawn images in a 2×2 grid */
 section.sec5[data-marpit-advanced-background]:not(.divider)
   [data-marpit-advanced-background-container] {
@@ -363,8 +430,19 @@ section.sec5[data-marpit-advanced-background]:not(.divider)
   gap: 10px;
   align-items: center !important;
   justify-items: stretch !important;
-  padding: 74px 14px 56px 14px;
+  padding: var(--slide-banner-reserve) 14px var(--slide-footer-reserve) 14px !important;
   box-sizing: border-box;
+}
+
+/* Thank-you text column: keep links above footer */
+section.sec5[data-marpit-advanced-background]:not(.divider) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+section.sec5[data-marpit-advanced-background]:not(.divider) h1 {
+  margin-bottom: 0.6em;
 }
 
 section.sec5[data-marpit-advanced-background]:not(.divider) figure {
@@ -383,7 +461,7 @@ section.sec5[data-marpit-advanced-background]:not(.divider) figure {
 section.appendix:not(.divider) {
   display: flex;
   flex-direction: column;
-  padding: 74px 48px 72px 48px;
+  padding: var(--slide-banner-reserve) 48px var(--slide-footer-reserve) 48px;
   box-sizing: border-box;
 }
 
@@ -397,7 +475,9 @@ section.appendix:not(.divider) h3 {
 section.appendix .appendix-body {
   flex: 1 1 auto;
   min-height: 0;
-  max-height: calc(720px - 74px - 72px - 2.2em);
+  max-height: calc(
+    var(--slide-height) - var(--slide-banner-reserve) - var(--slide-footer-reserve) - 2.2em
+  );
   display: flex;
   align-items: center;
   justify-content: center;
