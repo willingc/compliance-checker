@@ -135,7 +135,7 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 ### Observability traces
 
 - **Data**
-  - provider, model_used, trace_id, correlation_id, latency/tokens, rich payload entries, prompt/output snapshots
+  - `provider`, `model_used`, `trace_id`, `correlation_id`, latency/tokens, rich payload entries, prompt/output snapshots
 - **Why sensitive**
   - Enables reconstruction of _who_ triggered _what_ model action and _when_
   - Can become re-identifiable when combined with audit tables
@@ -187,9 +187,9 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 ### LLM quality observations
 
 - **Data**
-  - _payload.provider_, _payload.model_used_, _payload.llm_temperature_
-  - _payload.llm_prompt_ — document text, stakeholder names, reviewer assignments
-  - _payload.llm_output_ — compliance summaries that may restate personal context
+  - `payload.provider`, `payload.model_used`, `payload.llm_temperature`
+  - `payload.llm_prompt` — document text, stakeholder names, reviewer assignments
+  - `payload.llm_output` — compliance summaries that may restate personal context
 - **Why sensitive**
   - Prompt context from user documents with names, emails, project identifiers, and business-sensitive content
   - Output may restate that content; both are persisted to a queryable table
@@ -203,11 +203,11 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 ### Audit event payload
 
 - **Data**
-  - payload.roles (user role at login), payload.remember_me flag, event-specific context fields, free-form data from orchestrator or Skills API callers
+  - `payload.roles` (user role at login), `payload.remember_me` flag, event-specific context fields, free-form data from orchestrator or Skills API callers
 - **Why sensitive**
   - Append-only and intended for long retention
   - No technical control prevents callers from writing personal data into the payload column
-  - Combined with actor_id (user email) it forms a rich personal profile
+  - Combined with `actor_id` (user email) it forms a rich personal profile
 
 ---
 
@@ -218,9 +218,9 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 ### OpenTelemetry span attributes
 
 - **Data**
-  - HTTP path attribute (e.g., _/api/v1/documents/doc-abc123_ — document ID in path), user_agent, http.method, http.status_code, trace_id / span_id
+  - HTTP path attribute (e.g., `/api/v1/documents/doc-abc123` — document ID in path), `user_agent`, `http.method`, `http.status_code`, `trace_id` / `span_id`
 - **Why sensitive**
-  - When TRACING_EXPORTER=otlp, path values can embed document or session identifiers
+  - When `TRACING_EXPORTER=otlp`, path values can embed document or session identifiers
   - User-agent can contribute to fingerprinting
 
 ---
@@ -232,7 +232,7 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 ### Frontend CSV export
 
 - **Data**
-  - Exported observability _prompt_output_pairs.csv_ with prompt, output, source_component, trace_id, timestamps
+  - Exported observability `prompt_output_pairs.csv` with prompt, output, `source_component`, `trace_id`, timestamps
 - **Why sensitive**
   - Created on the user's local filesystem
   - Outside system access controls, retention policy, and audit log
@@ -267,45 +267,63 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 ---
 
-### Sensitive data
+<!-- _class: sec33 light-body risk-detail dense -->
 
-- User identity in session store
-  - **Data**:
-    - user_email (primary identifier), user_org, session session_id, expires_at, last_seen_at
-  - **Why Sensitive**:
-    - Directly identifies users and links their organisational role to access patterns and audit trails
-    - Retained in PostgreSQL with no visible TTL-based purge policy
+![bg left:42% contain](images/raw/risk-area-3.png)
 
----
+### User identity in session store
 
-- Role assignments and permission scope
-  - **Data**:
-    - user_roles array per session row (e.g., ["qm_lead"], ["auditor"]), org isolation field user_org
-  - **Why Sensitive**:
-    - Reveals organisational responsibilities and access privileges
-    - Can be used for social engineering or targeted attacks
-    - GDPR data minimisation applies
+- **Data**
+  - `user_email` (primary identifier), `user_org`, session `session_id`, `expires_at`, `last_seen_at`
+- **Why sensitive**
+  - Directly identifies users and links organisational role to access patterns and audit trails
+  - Retained in PostgreSQL with no visible TTL-based purge policy
 
 ---
 
-- Bootstrap/MVP credentials in environment configuration
-  - **Data**:
-    - AUTH_MVP_EMAIL, AUTH_MVP_PASSWORD, AUTH_MVP_ROLES, AUTH_MVP_ORG (env vars)
-    - SECRET_KEY (API key secret)
-  - **Why sensitive**:
-    - Compromise of bootstrap credentials gives attacker a fully provisioned account with configurable roles
-    - SECRET_KEY grants service-client access to skills and observability
+<!-- _class: sec33 light-body risk-detail dense -->
+
+![bg left:42% contain](images/raw/risk-area-3.png)
+
+### Role assignments and permission scope
+
+- **Data**
+  - `user_roles` array per session row (e.g., `["qm_lead"]`, `["auditor"]`), org isolation field `user_org`
+- **Why sensitive**
+  - Reveals organisational responsibilities and access privileges
+  - Can be used for social engineering or targeted attacks
+  - GDPR data minimisation applies
 
 ---
 
-- Access decision and audit context not separately persisted
-  - **Data**:
-    - Which role accessed which route at what time
-    - 403 access denials
-    - service-client route usage with payload summary
-  - **Why sensitive**:
-    - Absence of access-decision audit log prevents retrospective investigation of data-access incidents
-    - Required for GDPR Art. 30 record of processing activities and breach response
+<!-- _class: sec33 light-body risk-detail dense -->
+
+![bg left:42% contain](images/raw/risk-area-3.png)
+
+### Bootstrap/MVP credentials
+
+- **Data**
+  - `AUTH_MVP_EMAIL`, `AUTH_MVP_PASSWORD`, `AUTH_MVP_ROLES`, `AUTH_MVP_ORG` (env vars)
+  - `SECRET_KEY` (API key secret)
+- **Why sensitive**
+  - Compromise of bootstrap credentials gives attacker a fully provisioned account with configurable roles
+  - `SECRET_KEY` grants service-client access to skills and observability
+
+---
+
+<!-- _class: sec33 light-body risk-detail dense -->
+
+![bg left:42% contain](images/raw/risk-area-3.png)
+
+### Access decision audit gap
+
+- **Data**
+  - Which role accessed which route at what time
+  - 403 access denials
+  - Service-client route usage with payload summary
+- **Why sensitive**
+  - Absence of access-decision audit log prevents retrospective investigation of data-access incidents
+  - Required for GDPR Art. 30 record of processing activities and breach response
 
 ---
 
