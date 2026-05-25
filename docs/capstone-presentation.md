@@ -155,9 +155,7 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 
 ---
 
-**Mitigation**
-
-### Egress traffic flow data to orchestrator and models
+### Mitigation: Egress traffic flow data to orchestrator and models
 
 ---
 
@@ -228,9 +226,7 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 
 ---
 
-**Mitigation**
-
-### Application telemetry and workflow tracing
+### Mitigation: Application telemetry and workflow tracing
 
 - Recommend following [OpenTelemetry best practices for handling sensitive data](https://opentelemetry.io/docs/security/handling-sensitive-data/)
 - Follow the principle of data minimization, where possible.
@@ -299,9 +295,7 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 
 ---
 
-**Mitigation**
-
-### Role-based access controls and GDPR compliance
+### Mitigation: Role-based access controls and GDPR compliance
 
 ---
 
