@@ -130,7 +130,7 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 <!-- _class: sec31 light-body risk-detail dense -->
 
-![bg left:42% contain](images/raw/claude_2.jpg)
+![bg left:42% contain](images/raw/claude_2.JPG)
 
 ### Observability traces
 
@@ -144,7 +144,7 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 <!-- _class: sec31 light-body risk-detail dense -->
 
-![bg left:42% contain](images/raw/claude_3.jpg)
+![bg left:42% contain](images/raw/claude_3.JPG)
 
 ### Model credentials
 
@@ -398,8 +398,8 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 ![bg right:45% contain](images/raw/claude_1.png)
 ![bg right:45% contain](images/raw/claude_1.1.png)
-![bg right:45% contain](images/raw/claude_2.jpg)
-![bg right:45% contain](images/raw/claude_3.jpg)
+![bg right:45% contain](images/raw/claude_2.JPG)
+![bg right:45% contain](images/raw/claude_3.JPG)
 
 # Thank you
 

@@ -1,0 +1,2 @@
+# Required for PDF/PPTX: embed images from docs/images (see README).
+allowLocalFiles: true
