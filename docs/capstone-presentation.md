@@ -110,9 +110,9 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 ---
 
 <!-- class: sec31 -->
-<!-- _class: sec31 divider -->
+<!-- _class: sec31 divider section-intro -->
 
-### Egress exposes privacy data
+# Egress exposes privacy data
 
 ![](images/raw/risk-area-1.png)
 
@@ -170,9 +170,9 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 ---
 
 <!-- class: sec32 -->
-<!-- _class: sec32 divider -->
+<!-- _class: sec32 divider section-intro -->
 
-### Audit logs/reports and telemetry expose privacy data
+# Audit logs/reports and telemetry expose privacy data
 
 ![](images/raw/risk-area-2.png)
 
@@ -243,9 +243,9 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 ---
 
 <!-- class: sec33 -->
-<!-- _class: sec33 divider -->
+<!-- _class: sec33 divider section-intro -->
 
-### Misconfigured and stale controls give access to private data
+# Misconfigured and stale controls give access to private data
 
 ![](images/raw/risk-area-3.png)
 

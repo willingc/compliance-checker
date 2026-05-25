@@ -271,16 +271,6 @@ section.divider::before {
   border-bottom-color: var(--iris);
 }
 
-section.divider img {
-  display: block;
-  max-width: 100%;
-  max-height: calc(
-    var(--slide-height) - var(--slide-banner-reserve) - var(--slide-footer-reserve) - 5em
-  );
-  margin: 0 auto;
-  object-fit: contain;
-}
-
 /* Full-width inline screenshots (risk diagrams, etc.) */
 section[class*="sec"]:not(.divider):not(.risk-diagram) img {
   display: block;
@@ -292,24 +282,41 @@ section[class*="sec"]:not(.divider):not(.risk-diagram) img {
   object-fit: contain;
 }
 
-/* Mitigation diagram slides (h1 + risk-area image): flex layout above footer */
-section.risk-diagram {
+/* Title + diagram slides (section intros, mitigation placeholders): flex above footer */
+section.risk-diagram,
+section.divider.section-intro {
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
-section.risk-diagram h1 {
-  flex: 0 0 auto;
-  font-size: 28px;
-  line-height: 1.2;
-  margin: 0 0 0.35em;
-  padding-bottom: 0;
+section.divider.section-intro {
+  justify-content: flex-start;
+  text-align: center;
 }
 
-section.risk-diagram p {
+section.risk-diagram h1,
+section.divider.section-intro h1 {
+  flex: 0 0 auto;
+  padding-bottom: 0;
+  margin: 0 0 0.35em;
+}
+
+section.divider.section-intro h1 {
+  font-size: 40px;
+  line-height: 1.15;
+}
+
+section.risk-diagram h1 {
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+section.risk-diagram p,
+section.divider.section-intro p {
   flex: 1 1 auto;
   min-height: 0;
+  width: 100%;
   margin: 0;
   display: flex;
   align-items: center;
@@ -317,16 +324,26 @@ section.risk-diagram p {
   overflow: hidden;
 }
 
-section.risk-diagram img {
+section.risk-diagram img,
+section.divider.section-intro img {
   display: block;
   width: 100%;
   height: 100%;
-  max-height: calc(
-    var(--slide-height) - var(--slide-banner-reserve) - var(--slide-footer-reserve) - 3.5em
-  );
   object-fit: contain;
   object-position: center;
   margin: 0 auto;
+}
+
+section.divider.section-intro img {
+  max-height: calc(
+    var(--slide-height) - var(--slide-banner-reserve) - var(--slide-footer-reserve) - 4.5em
+  );
+}
+
+section.risk-diagram img {
+  max-height: calc(
+    var(--slide-height) - var(--slide-banner-reserve) - var(--slide-footer-reserve) - 3.5em
+  );
 }
 
 /* Split-panel backgrounds: show full image (avoid cover crop in narrow column) */
