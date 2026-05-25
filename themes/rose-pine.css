@@ -280,6 +280,52 @@ section.divider::before {
   border-bottom-color: var(--iris);
 }
 
+/* Combined top risks + analysis preview (slides 6–7) */
+section.risks-overview.divider {
+  justify-content: center;
+}
+
+section.risks-overview h1 {
+  font-size: 48px;
+  margin-bottom: 0.55em;
+}
+
+section.risks-overview .risks-overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+section.risks-overview .risks-overview-grid h3 {
+  margin: 0 0 0.5em;
+  font-size: 24px;
+  line-height: 1.25;
+  text-align: left;
+}
+
+section.risks-overview.divider .risks-overview-grid ul {
+  margin: 0;
+  padding-left: 1.2em;
+  line-height: 1.55;
+  text-align: left;
+  list-style-position: outside;
+  max-width: none;
+}
+
+section.risks-overview.dense .risks-overview-grid li {
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 0.55em;
+}
+
+section.risks-overview.dense .risks-overview-grid li:last-child {
+  margin-bottom: 0;
+}
+
 /* Full-width inline screenshots (risk diagrams, etc.) */
 section[class*="sec"]:not(.divider):not(.risk-diagram) img {
   display: block;

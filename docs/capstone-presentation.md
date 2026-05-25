@@ -74,24 +74,32 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 ---
 
 <!-- class: sec2 dense -->
-<!-- _class: sec2 divider -->
+<!-- _class: sec2 divider risks-overview -->
 
 # Top privacy risks
+
+<div class="risks-overview-grid">
+
+<div>
 
 - Egress traffic flow data to director and external models
 - Application telemetry and workflow tracing
 - Role-based access controls and GDPR compliance
 
----
+</div>
 
-# Up next: In-depth risk analysis
+<div>
 
-### Let's look at each privacy risk...
+### Up next: In-depth risk analysis
 
-- its sensitive data
-- why the risk matters
-- the priority of the risk
-- **mitigations** of the risk
+- Sensitive data
+- Why the risk matters
+- Priority of the risk
+- **Mitigations** for each risk
+
+</div>
+
+</div>
 
 ---
 
