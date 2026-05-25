@@ -254,18 +254,27 @@ section.divider h1 {
   font-size: 60px;
   margin-bottom: 8mm;
 }
-section.divider ul {
+section.divider ul,
+section.divider ol {
   margin-top: 0;
   padding-left: 0;
   list-style-position: inside;
-  line-height: 2;
+  line-height: 1.65;
   text-align: center;
+  width: 100%;
+  max-width: 920px;
 }
+
 section.divider li {
-  margin-bottom: 0.75em;
+  margin-bottom: 0.65em;
 }
+
 section.divider li:last-child {
   margin-bottom: 0;
+}
+
+section.divider li::marker {
+  color: var(--iris);
 }
 section.divider::before {
   border-bottom-color: var(--iris);

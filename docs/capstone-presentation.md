@@ -92,9 +92,9 @@ Goal: Give everyone a holistic view of your use case as it stands today.
 
 # Top privacy risks
 
-1. Egress traffic flow data to director and external models
-2. Application telemetry and workflow tracing
-3. Role-based access controls and GDPR compliance
+- **1.** Egress traffic flow data to director and external models
+- **2.** Application telemetry and workflow tracing
+- **3.** Role-based access controls and GDPR compliance
 
 ---
 
