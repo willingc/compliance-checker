@@ -4,7 +4,7 @@
 
     Privacy audit for Katharine Jarmul's privacy course.
 
-    [Capstone presentation: [PDF](capstone-presentation.pdf) [HTML](capstone-presentation.html)
+    Capstone presentation: [PDF](capstone-presentation.pdf) [HTML](capstone-presentation.html)
 
 ## Audit subject
 
