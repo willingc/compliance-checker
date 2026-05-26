@@ -46,6 +46,7 @@ Copyright &copy; 2026 Carol, Ilona, Wiebke.
 # Read more: https://zensical.org/docs/setup/navigation/
 nav = [
   {"Overview" ="index.md"},
+  {"Capstone" = "capstone-presentation.md"},
   {"Use cases" = [
     "02-week1_use_cases.md",
     "03-week2_risk_model.md",
@@ -59,14 +60,11 @@ nav = [
     "04-risks_04_secrets_tokens_keys.md",
     "05-week3_feedback.md",
   ]},
-  {"Assignments" = [
+  {"Appendix - course assignments" = [
     "06-week3_assignment_review_mitigation.md",
     "07-week3_assignment_red_teaming.md",
-    "08-week4_assignment_architecture_update_guardrails.md"
-  ]},
-  {"Capstone" = [
+    "08-week4_assignment_architecture_update_guardrails.md",
     "09-week5_capstone_instructions.md",
-    "capstone-presentation.md",
   ]},
 ]
 
