@@ -40,6 +40,8 @@ palette in :root
     --slide-footer-reserve: 72px;
     --slide-banner-reserve: 74px;
     --slide-padding-x: 70px;
+    --flowchart-panel: #f8f4ef;
+    --flowchart-panel-border: #ddd5c8;
 }
 /* Common style */
 h1 {
@@ -360,6 +362,7 @@ section.divider.section-intro {
 }
 
 section.risk-diagram h1,
+section.risk-diagram h3,
 section.divider.section-intro h1 {
   flex: 0 0 auto;
   padding-bottom: 0;
@@ -374,6 +377,251 @@ section.divider.section-intro h1 {
 section.risk-diagram h1 {
   font-size: 28px;
   line-height: 1.2;
+}
+
+section.risk-diagram h3 {
+  font-size: 22px;
+  line-height: 1.15;
+}
+
+/* Wide Mermaid flowchart (slide 11): warm panel so edges stay visible on dark slides */
+section.flowchart-slide {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+section.flowchart-slide h3 {
+  flex: 0 0 auto;
+  margin: 0 0 0.4em;
+  padding: 0.28em 0.55em;
+  font-size: 19px;
+  line-height: 1.15;
+  font-weight: 600;
+  color: var(--text);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  border-left: 3px solid var(--iris);
+  max-width: 92%;
+}
+
+section.flowchart-slide .flowchart-panel {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  background-color: var(--flowchart-panel);
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px var(--flowchart-panel-border);
+  overflow: hidden;
+  max-height: calc(
+    var(--slide-height) - var(--slide-banner-reserve) - var(--slide-footer-reserve) - 2.6em
+  );
+}
+
+section.flowchart-slide .flowchart-panel img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  background-color: var(--flowchart-panel) !important;
+}
+
+/* sec31 mitigation narrative slides (12–16) */
+section.mitigation-brief {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+  font-size: 19px;
+}
+
+section.mitigation-brief.dense {
+  font-size: 18px;
+}
+
+section.mitigation-brief h3 {
+  flex: 0 0 auto;
+  margin: 0 0 0.45em;
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--foam);
+  border-bottom: 1px solid var(--highlight-muted);
+  padding-bottom: 0.2em;
+}
+
+section.mitigation-brief > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1.42;
+}
+
+section.mitigation-brief > ul > li {
+  margin-bottom: 0.4em;
+  color: var(--text);
+}
+
+section.mitigation-brief ul ul {
+  margin: 0.2em 0 0.35em;
+  padding-left: 1.1em;
+  border-left: 2px solid var(--highlight-muted);
+}
+
+section.mitigation-brief ul ul li {
+  color: var(--subtle-aa);
+  margin-bottom: 0.28em;
+}
+
+section.mitigation-brief li > strong {
+  display: block;
+  color: var(--iris);
+  font-weight: 600;
+  margin-bottom: 0.12em;
+}
+
+section.mitigation-brief p.mitigation-summary {
+  flex: 0 0 auto;
+  margin: 0.55em 0 0;
+  padding: 0.55em 0.7em;
+  font-size: 0.94em;
+  line-height: 1.45;
+  font-weight: 400;
+  color: var(--text);
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  border-left: 3px solid var(--pine);
+  border-radius: 0 4px 4px 0;
+}
+
+section.mitigation-brief p.mitigation-summary strong {
+  color: var(--gold);
+}
+
+/* Before / After two-column comparison (slides 13–15) */
+section.mitigation-compare .mitigation-compare-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 0.15em;
+  max-height: calc(
+    var(--slide-height) - var(--slide-banner-reserve) - var(--slide-footer-reserve) - 3.4em
+  );
+}
+
+section.mitigation-compare .mitigation-before,
+section.mitigation-compare .mitigation-after {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 0.5em 0.65em;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+section.mitigation-compare .mitigation-before {
+  background: color-mix(in srgb, var(--love) 10%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--love) 32%, transparent);
+}
+
+section.mitigation-compare .mitigation-after {
+  background: color-mix(in srgb, var(--pine) 12%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--pine) 38%, transparent);
+}
+
+section.mitigation-compare .compare-label {
+  flex: 0 0 auto;
+  margin: 0 0 0.35em;
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+section.mitigation-compare .mitigation-before .compare-label {
+  color: var(--love);
+}
+
+section.mitigation-compare .mitigation-after .compare-label {
+  color: var(--foam);
+}
+
+section.mitigation-compare ul {
+  margin: 0;
+  padding-left: 1.05em;
+  line-height: 1.38;
+}
+
+section.mitigation-compare li {
+  color: var(--text);
+  font-weight: 400;
+  margin-bottom: 0.28em;
+}
+
+section.mitigation-compare li:last-child {
+  margin-bottom: 0;
+}
+
+/* Slide 16: rationale + implemented controls */
+section.mitigation-controls h4 {
+  flex: 0 0 auto;
+  margin: 0.5em 0 0.3em;
+  font-size: 0.95em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--iris);
+}
+
+section.mitigation-controls ul.mitigation-rationale {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+section.mitigation-controls ul.mitigation-rationale li {
+  margin-bottom: 0.32em;
+  padding-left: 1em;
+  position: relative;
+  color: var(--text);
+}
+
+section.mitigation-controls ul.mitigation-rationale li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--iris);
+}
+
+section.mitigation-controls ul.mitigation-implemented {
+  list-style: none;
+  margin: 0;
+  padding: 0.35em 0 0;
+  columns: 2;
+  column-gap: 28px;
+  line-height: 1.36;
+}
+
+section.mitigation-controls ul.mitigation-implemented li {
+  break-inside: avoid;
+  margin-bottom: 0.3em;
+  padding-left: 0.95em;
+  position: relative;
+  color: var(--subtle-aa);
+  font-size: 0.92em;
+}
+
+section.mitigation-controls ul.mitigation-implemented li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--pine-aa);
 }
 
 section.risk-diagram p,

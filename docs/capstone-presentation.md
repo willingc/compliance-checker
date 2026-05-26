@@ -155,19 +155,132 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 ---
 
-<!-- _class: sec31 risk-diagram -->
+<!-- _class: sec31 flowchart-slide -->
 
-### Mitigation: Egress traffic flow data to orchestrator and models
+### Mitigation: Bridge egress flow diagram
 
-![](images/raw/Docquality_General-AI-Disclaimer.png)
+<div class="flowchart-panel">
+  <img src="images/raw/bridge_diagram-flowchart.svg" alt="Bridge egress flow diagram" />
+</div>
 
 ---
 
-<!-- _class: sec31 risk-diagram -->
+<!-- _class: sec31 mitigation-brief light-body dense -->
 
-### TODO: add happy mitigated image here
+### Mitigation: decision statement about bridge behaviour changes
 
-![](images/raw/Docquality_General-AI-Disclaimer.png)
+- **Contract-first execution**
+  - Model-using steps must pass mandatory policy metadata validation
+- **Personal-data-possible workloads**
+  - Must run on-prem models
+  - Each model in its own sandbox (containerized)
+- **Auditable outcomes**
+  - Deny/allow paths must be auditable with actionable operator guidance
+
+<p class="mitigation-summary">The operational model path has shifted <strong>from</strong> remote external GenAI inference <strong>to</strong> locally governed Ollama-based inference for privacy-sensitive workflows, with active model policy and generation parameters controlled through the model-policy admin surface by privileged roles.</p>
+
+---
+
+<!-- _class: sec31 mitigation-brief mitigation-compare light-body dense -->
+
+### Mitigation focus 1: Sensitive data transfer at model boundary
+
+<div class="mitigation-compare-grid">
+
+<div class="mitigation-before">
+<p class="compare-label">Before</p>
+<ul>
+<li>Potentially personal prompt/output content could be exposed on remote external inference paths.</li>
+</ul>
+</div>
+
+<div class="mitigation-after">
+<p class="compare-label">After</p>
+<ul>
+<li>Bridge privacy-sensitive path is governed toward local Ollama execution.</li>
+<li>Mandatory step policy contract + fail-closed routing denies non-on-prem paths for personal-data-possible steps.</li>
+<li>Runtime readiness gate blocks unsafe execution before run continuation.</li>
+</ul>
+</div>
+
+</div>
+
+---
+
+<!-- _class: sec31 mitigation-brief mitigation-compare light-body dense -->
+
+### Mitigation focus 2: Over-collection and retention in model observability traces
+
+<div class="mitigation-compare-grid">
+
+<div class="mitigation-before">
+<p class="compare-label">Before</p>
+<ul>
+<li>Rich trace payloads could enable identity/action reconstruction when joined with audit context.</li>
+</ul>
+</div>
+
+<div class="mitigation-after">
+<p class="compare-label">After</p>
+<ul>
+<li>Structured correlation and safe client-envelope filtering are enforced.</li>
+<li>Architecture and DoD retention split controls are defined and tracked.</li>
+<li>Remaining closure: strict retention-class enforcement + redaction-at-write in telemetry stores.</li>
+</ul>
+</div>
+
+</div>
+
+---
+
+<!-- _class: sec31 mitigation-brief mitigation-compare light-body dense -->
+
+### Mitigation focus 3: Model credentials and routing configuration risk
+
+<div class="mitigation-compare-grid">
+
+<div class="mitigation-before">
+<p class="compare-label">Before</p>
+<ul>
+<li>Compromised provider credentials or unsafe routing configuration could enable unauthorized model usage/exfiltration.</li>
+</ul>
+</div>
+
+<div class="mitigation-after">
+<p class="compare-label">After</p>
+<ul>
+<li>Role-restricted model-policy updates control active model priority and generation parameters.</li>
+<li>Policy/routing deny paths are explicit, actionable, and auditable.</li>
+<li>Remaining closure: dedicated bridge pre-persist secret/token scanner.</li>
+</ul>
+</div>
+
+</div>
+
+---
+
+<!-- _class: sec31 mitigation-brief mitigation-controls light-body dense -->
+
+### Why this decision
+
+<ul class="mitigation-rationale">
+<li>Privacy risk concentration is highest at model routing boundaries.</li>
+<li>Conventional policy text is insufficient for runtime assurance.</li>
+<li>Compliance requires deterministic controls plus traceable evidence.</li>
+</ul>
+
+#### Implemented architecture controls
+
+<ul class="mitigation-implemented">
+<li>Step policy contract validation before execution/routing.</li>
+<li>Local Ollama active-model governance with role-restricted parameter updates.</li>
+<li>Fail-closed routing for personal-data-possible workloads.</li>
+<li>Runtime self-check gate with strict/transitional topology proof behavior.</li>
+<li>Audit evidence persistence for both allow and deny paths.</li>
+<li>Stable API error envelope and frontend action-point guidance.</li>
+<li>Mandatory HITL bridge review with persisted decision trail.</li>
+<li>Bridge deny-path evidence includes explicit routing reason and fallback reason coding when applicable.</li>
+</ul>
 
 ---
 
@@ -247,14 +360,6 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 - While it may not be optimal, try hashing user information and id and delete unhashed data.
 - Consider using OTel's `redaction` processor between collection and export
 - Apply similar principles to audit logs and reports
-
----
-
-<!-- _class: sec32 risk-diagram -->
-
-### TODO: add happy mitigated image here
-
-![](images/raw/Docquality_General-AI-Disclaimer.png)
 
 ---
 
@@ -343,26 +448,20 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 # Recommendations
 
-- Top priority going forward
-- Why it matters
-- Fit with company and risk strategy
-- Value created
-
 ---
 
 ### Top priority going forward
 
-- Continue to refine the automation and human interaction
-- Focus on reducing manual work while meeting the standard
-- Maintain and enhance the tool for furthre efficiency gains and respond to regulatory changes
-
----
+- Harden and refine the bridge behavior use of internal models
+- Focus on reducing manual work while meeting the regulatory standards
+- Respond to regulatory changes
 
 ### Why it matters
 
-- Too much for any one human to analyze 1000 page document
-- Reduces time to analyze document from weeks and months
-- Flexibility to implement changes if directives change
+- Improve ability to analyze 1000 page document by supporting a specialist with deterministic,
+  privacy-conscious tools
+- Reduces time for specialists to analyze document from weeks and months
+- Adds flexibility to implement changes if directives change
 - Reduces the need for expensive specialists to work on repetitive tasks
 - Offers basic insights on what has changed, where changed, and policies affected
 
@@ -372,8 +471,6 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 - Complies with GDPR / BSI in Germany regulations for software rules
 - Main regulatory points are addressed in workflow and prepares for external audits
-
----
 
 ### Value created
 
