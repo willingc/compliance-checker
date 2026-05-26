@@ -159,6 +159,10 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 ### Mitigation: Bridge egress flow diagram
 
+<!-- this would be nice on top or top-right -->
+
+_2.2_ **Risk Area 2**
+
 <div class="flowchart-panel">
   <img src="images/raw/bridge_diagram-flowchart.svg" alt="Bridge egress flow diagram" />
 </div>
@@ -209,6 +213,8 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 <!-- _class: sec31 mitigation-brief mitigation-compare light-body dense -->
 
+**Risk Area 2**
+
 ### Mitigation focus 2: Over-collection and retention in model observability traces
 
 <div class="mitigation-compare-grid">
@@ -234,6 +240,8 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 ---
 
 <!-- _class: sec31 mitigation-brief mitigation-compare light-body dense -->
+
+**Risk Area 2**
 
 ### Mitigation focus 3: Model credentials and routing configuration risk
 
@@ -313,6 +321,8 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 ![bg left:42% contain](images/raw/risk-area-2.png)
 
+_2.3_ **Risk Area 3**
+
 ### Audit event payload
 
 - **Data**
@@ -335,6 +345,11 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 - **Why sensitive**
   - When `TRACING_EXPORTER=otlp`, path values can embed document or session identifiers
   - User-agent can contribute to fingerprinting
+
+- Role assignments and permission scope
+  - **Data**:
+    - user_roles array per session row (e.g., ["qm_lead"], ["auditor"]), org isolation field user_org
+  - **Why Sensitive**: - Reveals organisational responsibilities and access privileges - Can be used for social engineering or targeted attacks - GDPR data minimisation applies
 
 ---
 
@@ -374,7 +389,7 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 <!-- _class: sec33 light-body risk-detail dense -->
 
-![bg left:42% contain](images/raw/risk-area-3.png)
+![bg left:42% contain](images/raw/risk-area-2.png)
 
 ### User identity in session store
 
@@ -388,7 +403,7 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 <!-- _class: sec33 light-body risk-detail dense -->
 
-![bg left:42% contain](images/raw/risk-area-3.png)
+![bg left:42% contain](images/raw/risk-area-2.png)
 
 ### Role assignments and permission scope
 
@@ -418,7 +433,7 @@ The **Doc Quality Compliance Checker** is a structured, workflow-oriented system
 
 <!-- _class: sec33 light-body risk-detail dense -->
 
-![bg left:42% contain](images/raw/risk-area-3.png)
+![bg left:30% contain](images/raw/GDPR.png)
 
 ### Access decision audit gap
 
