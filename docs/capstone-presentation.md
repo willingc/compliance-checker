@@ -321,8 +321,6 @@ _2.2_ **Risk Area 2**
 
 ![bg left:42% contain](images/raw/risk-area-2.png)
 
-_2.3_ **Risk Area 3**
-
 ### Audit event payload
 
 - **Data**
