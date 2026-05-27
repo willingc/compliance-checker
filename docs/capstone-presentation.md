@@ -313,7 +313,7 @@ _2.2_ **Risk Area 2**
   - `payload.llm_output` — compliance summaries that may restate personal context
 - **Why sensitive**
   - Prompt context from user documents with names, emails, project identifiers, and business-sensitive content
-  - Output may restate that content; both are persisted to a queryable table
+  - Output may restate that content-> both are persisted to a queryable table
 
 ---
 
@@ -329,14 +329,14 @@ _2.3_ **Risk Area 3**
   - `payload.roles` (user role at login), `payload.remember_me` flag, event-specific context fields, free-form data from orchestrator or Skills API callers
 - **Why sensitive**
   - Append-only and intended for long retention
-  - No technical control prevents callers from writing personal data into the payload column
+  - Callers could write personal data into the payload column
   - Combined with `actor_id` (user email) it forms a rich personal profile
 
 ---
 
 <!-- _class: sec32 light-body risk-detail dense -->
 
-![bg left:42% contain](images/raw/risk-area-2.png)
+![bg left:30% contain](images/raw/OTEL.png)
 
 ### OpenTelemetry span attributes
 
@@ -346,10 +346,16 @@ _2.3_ **Risk Area 3**
   - When `TRACING_EXPORTER=otlp`, path values can embed document or session identifiers
   - User-agent can contribute to fingerprinting
 
-- Role assignments and permission scope
-  - **Data**:
-    - user_roles array per session row (e.g., ["qm_lead"], ["auditor"]), org isolation field user_org
-  - **Why Sensitive**: - Reveals organisational responsibilities and access privileges - Can be used for social engineering or targeted attacks - GDPR data minimisation applies
+---
+
+### Role assignments and permission scope
+
+- **Data**:
+  - user_roles array per session row (e.g., ["qm_lead"], ["auditor"]), org isolation field user_org
+- **Why Sensitive**:
+  - Reveals organisational responsibilities and access privileges
+  - Can be used for social engineering or targeted attacks
+  - GDPR data minimisation applies
 
 ---
 
@@ -367,6 +373,8 @@ _2.3_ **Risk Area 3**
   - May contain personal data from documents processed during the export window
 
 ---
+
+![bg left:30% contain](images/raw/OTEL.png)
 
 ### Mitigation: Application telemetry and workflow tracing
 
@@ -396,7 +404,7 @@ _2.3_ **Risk Area 3**
 - **Data**
   - `user_email` (primary identifier), `user_org`, session `session_id`, `expires_at`, `last_seen_at`
 - **Why sensitive**
-  - Directly identifies users and links organisational role to access patterns and audit trails
+  - Directly identifies users and links the organisational role to access patterns and audit trails
   - Retained in PostgreSQL with no visible TTL-based purge policy
 
 ---
@@ -442,8 +450,8 @@ _2.3_ **Risk Area 3**
   - 403 access denials
   - Service-client route usage with payload summary
 - **Why sensitive**
-  - Absence of access-decision audit log prevents retrospective investigation of data-access incidents
-  - Required for GDPR Art. 30 record of processing activities and breach response
+  - Needed: Without access-decision audit log, retrospective investigation of data-access incidents is impossible
+  - Required for GDPR Art. 30 "record of processing activities and breach response"
 
 ---
 
@@ -484,6 +492,7 @@ _2.3_ **Risk Area 3**
 
 ### Fit with company and risk strategy
 
+- Strengthens customers trust in brand and products / uplift for brand reputation.
 - Complies with GDPR / BSI in Germany regulations for software rules
 - Main regulatory points are addressed in workflow and prepares for external audits
 
